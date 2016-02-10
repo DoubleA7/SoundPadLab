@@ -123,7 +123,3 @@ git checkout -b branchName origin/branchName
 * work on your feature branch only until it is ready to be integrated into the main project
 * once it is ready, go on GitHub and send a Pull Request for this branch to be merged into dev branch
 
-```bash
-$ sh ./scripts/generate-ssl-certs.sh
-```
-
