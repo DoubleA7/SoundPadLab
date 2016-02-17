@@ -18,10 +18,8 @@ exports.create = function (req, res) {
     // grab the request json body fields from req.body
    
     participant.name = req.body.name;
-    participant.contact_info = {
-        phone_number : req.body.phone_number,
-        email : req.body.email
-    };
+    participant.phone_number : req.body.phone_number,
+    participant.email : req.body.email;
     // participant.contact_info.phone_number = req.body.contact_info.phone_number;
     // participant.contact_info.email = req.body.contact_info.email;
     participant.contact_lenses = req.body.contact_lenses;
@@ -56,10 +54,9 @@ exports.update = function (req, res) {
 	var participant = req.participant;
 
     participant.name = req.body.name;
-    participant.contact_info = {
-        phone_number : req.body.phone_number,
-        email : req.body.email
-    };
+    
+    participant.phone_number : req.body.phone_number,
+    participant.email : req.body.email;
     // participant.contact_info.phone_number = req.body.contact_info.phone_number;
     // participant.contact_info.email = req.body.contact_info.email;
     participant.contact_lenses = req.body.contact_lenses;
