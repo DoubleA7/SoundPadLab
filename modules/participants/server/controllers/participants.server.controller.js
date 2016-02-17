@@ -17,14 +17,14 @@ exports.create = function (req, res) {
     //the fields
     // grab the request json body fields from req.body
    
-    participant.name = req.body.name;
-    participant.phone_number : req.body.phone_number,
-    participant.email : req.body.email;
-    // participant.contact_info.phone_number = req.body.contact_info.phone_number;
-    // participant.contact_info.email = req.body.contact_info.email;
-    participant.contact_lenses = req.body.contact_lenses;
-    participant.corrective_lenses = req.body.corrective_lenses;
-    participant.vision_test = req.body.vision_test;
+    // participant.name = req.body.name;
+    // participant.phone_number : req.body.phone_number,
+    // participant.email : req.body.email;
+    // // participant.contact_info.phone_number = req.body.contact_info.phone_number;
+    // // participant.contact_info.email = req.body.contact_info.email;
+    // participant.contact_lenses = req.body.contact_lenses;
+    // participant.corrective_lenses = req.body.corrective_lenses;
+    // participant.vision_test = req.body.vision_test;
    // participant.tags = req.body.tags; //must be sent as a list of String tags when creating? //check this
    //add tags in update operation (when we tag the participant, thats when we update the participant)
     
@@ -55,8 +55,8 @@ exports.update = function (req, res) {
 
     participant.name = req.body.name;
     
-    participant.phone_number : req.body.phone_number,
-    participant.email : req.body.email;
+    participant.phone_number = req.body.phone_number,
+    participant.email = req.body.email;
     // participant.contact_info.phone_number = req.body.contact_info.phone_number;
     // participant.contact_info.email = req.body.contact_info.email;
     participant.contact_lenses = req.body.contact_lenses;
