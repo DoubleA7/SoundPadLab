@@ -1,3 +1,5 @@
+/*Default MEAN*/
+
 .content {
   margin-top: 50px;
 }
@@ -34,4 +36,11 @@ a:hover .header-profile-image {
 }
 .has-error .help-inline.error-text {
   display: inline;
+}
+
+
+/*Custom CSS for Home Page*/
+
+.title-text {
+  background-color: #5EBDB1;
 }
