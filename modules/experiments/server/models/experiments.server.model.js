@@ -17,7 +17,7 @@ var experimentSchema = new Schema({
     users: [Schema.Types.ObjectId],
     requirements: [String],
     requires_eyeglasses: {
-        type: boolean,
+        type: Boolean,
         required: true,
         default: false
     },
@@ -31,8 +31,8 @@ var experimentSchema = new Schema({
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
-ExperimentSchema.pre('save', function(next) {
-  var currentTime = new Date;
+experimentSchema.pre('save', function(next) {
+  var currentTime = new Date();
   this.updated_at = currentTime;
   if(!this.created_at){
     this.created_at = currentTime;
