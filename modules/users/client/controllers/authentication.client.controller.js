@@ -9,16 +9,17 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     $scope.error = $location.search().err;
 
 	// If user is signed in, redirect to admin if state is signin
-    // If user is signed in then redirect back home
-	if ($scope.authentication.user) {
-	  if ($state.$current.name === 'authentication.signin') {
-		$location.path('/admin');
-	  }
-	}else{
-	  if ($state.$current.name === 'authentication.signup') {
+    if ($scope.authentication.user) {
+      if ($state.$current.name === 'authentication.signin') {
+        $location.path('/admin');
+      }
+    }
+    // Guests get redirected to home if they attempt to signup
+    else{
+      if ($state.$current.name === 'authentication.signup') {
         $location.path('/');
-	  }
-	}
+      }
+    }
 
     $scope.signup = function (isValid) {
       $scope.error = null;
