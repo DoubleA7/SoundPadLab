@@ -55,7 +55,7 @@ exports.update = function (req, res) {
 
     participant.name = req.body.name;
     
-    participant.phone_number = req.body.phone_number,
+    participant.phone_number = req.body.phone_number;
     participant.email = req.body.email;
     // participant.contact_info.phone_number = req.body.contact_info.phone_number;
     // participant.contact_info.email = req.body.contact_info.email;
