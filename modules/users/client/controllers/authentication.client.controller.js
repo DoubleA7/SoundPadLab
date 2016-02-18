@@ -31,11 +31,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       }
 
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
-        // If successful we assign the response to the global user model
-        $scope.authentication.user = response;
-
-        // And redirect to the previous or home page
-        $state.go('admin.home' || $state.previous.state.name, $state.previous.params);
+        // And redirect to the previous or list of users 
+        $state.go('admin.users', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });
@@ -43,10 +40,10 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
     $scope.signin = function (isValid) {
       $scope.error = null;
-
+      console.log("sign in!");
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'userForm');
-
+			
         return false;
       }
 
@@ -54,8 +51,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         // If successful we assign the response to the global user model
         $scope.authentication.user = response;
 
-        // And redirect to the previous or home page
-        $state.go('admin.home' || $state.previous.state.name, $state.previous.params);
+        // And redirect to the previous or admin-home page
+        $state.go($state.previous.state.name || 'admin.home', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });

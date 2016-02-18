@@ -37,17 +37,12 @@ exports.signup = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
-      // Remove sensitive data before login
+      // Remove sensitive data 
       user.password = undefined;
       user.salt = undefined;
-
-      req.login(user, function (err) {
-        if (err) {
-          res.status(400).send(err);
-        } else {
-          res.json(user);
-        }
-      });
+     
+      // Send admin back to user list
+      res.redirect('/admin/users');
     }
   });
 };
