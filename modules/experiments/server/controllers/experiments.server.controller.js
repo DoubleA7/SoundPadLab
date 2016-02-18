@@ -79,7 +79,7 @@ exports.delete = function (req, res) {
  * List of experiments
  */
 exports.list = function (req, res) {
-    Experiment.find().sort('-created').exec(function (err, experiments) {
+    Experiment.find().sort('experiment_name').exec(function (err, experiments) {
         
         if (err) {
             console.log(err);

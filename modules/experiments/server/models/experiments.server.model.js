@@ -10,16 +10,9 @@ var mongoose = require('mongoose'),
  * Experiment Schema
  */
  
-var ExperimentSchema = new Schema({
-    created_at: {
-        type: Date,
-        default: Date.now
-    },
-    updated_at: {
-        type: Date,
-        default: Date.now
-    },
-    
+var experimentSchema = new Schema({
+    created_at: Date,
+    updated_at: Date,
     participants: [Schema.Types.ObjectId],
     users: [Schema.Types.ObjectId],
     requirements: [String],
@@ -37,5 +30,14 @@ var ExperimentSchema = new Schema({
     },
 });
 
-var Experiment = mongoose.model('Experiment', ExperimentSchema);
+/* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
+ExperimentSchema.pre('save', function(next) {
+  var currentTime = new Date;
+  this.updated_at = currentTime;
+  if(!this.created_at){
+    this.created_at = currentTime;
+  }
+  next();
+});
+var Experiment = mongoose.model('Experiment', experimentSchema);
 module.exports = Experiment;
