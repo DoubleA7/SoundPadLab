@@ -1,5 +1,14 @@
 /*Default MEAN*/
 
+#splash .row {
+  height : 30%;
+
+
+}
+
+#splash .row img {
+  width:100%;
+}
 .content {
   margin-top: 50px;
 }
