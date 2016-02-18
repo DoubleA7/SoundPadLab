@@ -23,7 +23,7 @@ var experimentSchema = new Schema({
     },
     appointments: [Schema.Types.ObjectId],
     tags: [String],
-    experiment_namename: {
+    experiment_name: {
         type: String,
         unique: true,
         required: true

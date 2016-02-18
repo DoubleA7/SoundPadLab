@@ -18,5 +18,5 @@ module.exports = function (app) {
 		.delete(experiments.delete);
 
 	// Finish by binding the experiment middleware
-	app.param('experimentID', experiments.experimentByID);
+	app.param('experimentId', experiments.experimentByID);
 };

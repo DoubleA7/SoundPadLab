@@ -30,6 +30,7 @@ exports.create = function (req, res) {
  * Show the current experiment
  */
 exports.read = function (req, res) {
+	//console.log(res);
     res.json(req.experiment);
 };
 
@@ -97,13 +98,22 @@ exports.list = function (req, res) {
  */
 exports.experimentByID = function (req, res, next, id) {
 
+// Experiment.findById(id).exec(function (err, experiment){
+	// if(err){
+		// res.status(400).send(err);
+	// }
+	// else{
+		// req.experiment = experiment;
+		// next();
+	// }
+// });
     if (!mongoose.Types.ObjectId.isValid(id)) {
         return res.status(400).send({
             message: 'experiment is invalid'
         });
     }
 
-    //experiment.findById(id).populate('name', 'displayName').exec(function (err, experiment) {
+   // experiment.findById(id).populate('name', 'displayName').exec(function (err, experiment) {
     Experiment.findById(id).exec(function (err, experiment) {
         if (err) {
             return next(err);
