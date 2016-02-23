@@ -8,9 +8,17 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
 
-    // If user is signed in then redirect back home
+	// If user is signed in, redirect to admin if state is signin
     if ($scope.authentication.user) {
-      $location.path('/');
+      if ($state.$current.name === 'authentication.signin') {
+        $location.path('/admin');
+      }
+    }
+    // Guests get redirected to home if they attempt to signup
+    else{
+      if ($state.$current.name === 'authentication.signup') {
+        $location.path('/');
+      }
     }
 
     $scope.signup = function (isValid) {
@@ -23,11 +31,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       }
 
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
-        // If successful we assign the response to the global user model
-        $scope.authentication.user = response;
-
-        // And redirect to the previous or home page
-        $state.go($state.previous.state.name || 'home', $state.previous.params);
+        // And redirect to the previous or list of users 
+        $state.go('admin.users', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });
@@ -35,10 +40,10 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
     $scope.signin = function (isValid) {
       $scope.error = null;
-
+      console.log("sign in!");
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'userForm');
-
+			
         return false;
       }
 
@@ -46,8 +51,8 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         // If successful we assign the response to the global user model
         $scope.authentication.user = response;
 
-        // And redirect to the previous or home page
-        $state.go($state.previous.state.name || 'home', $state.previous.params);
+        // And redirect to the previous or admin-home page
+        $state.go($state.previous.state.name || 'admin.home', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });
