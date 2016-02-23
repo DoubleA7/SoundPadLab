@@ -1,0 +1,37 @@
+'use strict';
+
+//Dependencies
+var mongoose = require('mongoose'),
+  Schema = mongoose.Schema;
+
+//Schema
+var appointmentSchema = new Schema({
+  participant: {
+    type: Schema.Types.ObjectId,
+    //ref: 'Participant'
+  },
+  experiments: {
+    type: [Schema.Types.ObjectId],
+    //ref: 'Experiment'
+  }, 
+  created_at: Date,
+  updated_at: Date,
+  time: Date,
+  tags: [String],
+  comments: String
+});
+
+//Set created/updated time on saves
+appointmentSchema.pre('save', function (next) {
+  var currentTime = new Date();
+  this.updated_at = currentTime;
+  if (!this.created_at) {
+    this.created_at = currentTime;
+  }
+  next();
+});
+
+
+var Appointment = mongoose.model('Appointment', appointmentSchema);
+
+module.exports = Appointment;
