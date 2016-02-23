@@ -31,12 +31,15 @@ angular.module('users').config(['$stateProvider',
       })
       .state('authentication', {
         abstract: true,
-        url: '/authentication',
+        url: '/auth',
         templateUrl: 'modules/users/client/views/authentication/authentication.client.view.html'
       })
       .state('authentication.signup', {
         url: '/signup',
-        templateUrl: 'modules/users/client/views/authentication/signup.client.view.html'
+        templateUrl: 'modules/users/client/views/authentication/signup.client.view.html',
+        data: {
+          roles: ['admin']
+        }
       })
       .state('authentication.signin', {
         url: '/signin?err',
