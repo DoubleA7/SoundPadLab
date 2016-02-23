@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 /**
  * Participant Schema
  */
- 
+
 var ParticipantSchema = new Schema({
 	
 	created: {
@@ -29,31 +29,58 @@ var ParticipantSchema = new Schema({
     //email is not being stored and then retrieved.+
     email: {  // add validator in this
         type: String,
+        default: '',
         unique: true,
-        required: true
+        required: "Email must be specified!"
     },
-
-	past_experiments: [Schema.Types.ObjectId],
+    
+    last_paid: Date,
+    
+    gender: String,
+    
+    dob: {
+        day: Number,
+        month: Number,
+        year: Number
+    },
+    
+    card_info: String,
+    
+    appointments: [Schema.Types.ObjectId],
 	past_appointments: [Schema.Types.ObjectId],
-    experiments: [Schema.Types.ObjectId],
-    appointment: Schema.Types.ObjectId,
+	completed_experiments: [Schema.Types.ObjectId],
+    assigned_experiments: [Schema.Types.ObjectId],
     comment: String,
+    
+    subject_id: Number,
     contact_lenses: Boolean,
     corrective_lenses: Boolean,
     vision_test: Boolean,
-    tags: [String], //right now tagged by string, this may be more complicated than i thought
-	// user: {                              //no relationships yet!!
-		// type: Schema.ObjectId,
-		// ref: 'User'
-	// }
+    took_audiogram: Boolean,
+    HRTF_assigned: Boolean,
+    
+    
+    tags: [String]
+    
+
+});
+
+
+/* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
+ParticipantSchema.pre('save', function(next) {
+  var currentTime = new Date;
+  this.updated_at = currentTime;
+  if(!this.created_at)
+  {
+    this.created_at = currentTime;
+  }
+  
+  //var dob_str = new Date(Date.UTC(this.dob.year, , day, 0, 0, 0)); testing this.
+  
+  
+  next();
 });
 
 var Participant = mongoose.model('Participant', ParticipantSchema);
 module.exports = Participant;
-
-
-//for tagging implementaion
-//keep a tags table
-//map objectid to tag
-//re askher if she really wants this or what?
 
