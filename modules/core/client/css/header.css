@@ -1,0 +1,29 @@
+.navbar {
+  border-bottom: 2px solid rgba(10, 30, 70, 0.6);
+  background: #f2f6f7;
+  background: -moz-linear-gradient(top, #f2f6f7 0%, #dfecf0 50%, #f2f6f7 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, #f2f6f7), color-stop(50%, #dfecf0), color-stop(100%, #f2f6f7));
+  background: -webkit-linear-gradient(top, #f2f6f7 0%, #dfecf0 50%, #f2f6f7 100%);
+  background: -o-linear-gradient(top, #f2f6f7 0%, #dfecf0 50%, #f2f6f7 100%);
+  background: -ms-linear-gradient(top, #f2f6f7 0%, #dfecf0 50%, #f2f6f7 100%);
+  background: linear-gradient(to bottom, #f2f6f7 0%, #dfecf0 50%, #f2f6f7 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f7', endColorstr='#f2f6f7', GradientType=0 ); }
+
+.navbar-header > a {
+  max-width: 90px;
+  margin-right: 30px; }
+  .navbar-header > a img {
+    width: 100%;
+    padding: 20px 0; }
+
+.nav > li > a {
+  padding: 42px 15px;
+  font-size: 1.3em;
+  font-family: 'Trebuchet MS';
+  font-weight: bold;
+  color: #1e3b78; }
+
+.nav > li > a:hover {
+  background-color: rgba(255, 255, 255, 0.4); }
+
+/*# sourceMappingURL=header.css.map */
