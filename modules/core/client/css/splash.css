@@ -1,0 +1,58 @@
+#splash img {
+  width: 100%; }
+
+#footer {
+  padding: 15px;
+  clear: both; }
+
+#footer span {
+  text-align: center; }
+
+#footer a {
+  text-decoration: none; }
+
+#footer-nav a {
+  margin: 10px; }
+
+#rights a {
+  font-size: 0.8em;
+  color: #a0a0a0; }
+
+#rights a:hover {
+  color: #646464; }
+
+#splash_content img {
+  height: 150px;
+  position: absolute;
+  opacity: 0.5;
+  z-index: 0; }
+
+#splash_content > div {
+  margin-bottom: 20px; }
+
+#splash_content div div {
+  height: 150px;
+  overflow: hidden;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  border: none;
+  padding: 0; }
+
+#splash_content div div:hover {
+  cursor: pointer; }
+  #splash_content div div:hover img {
+    opacity: 0.2; }
+  #splash_content div div:hover p {
+    color: white; }
+
+#splash_content div p {
+  position: absolute;
+  width: 100%;
+  font-family: 'Trebuchet MS';
+  font-size: 2em;
+  line-height: 150px;
+  color: #e6e6e6;
+  text-align: center;
+  z-index: 1; }
+
+/*# sourceMappingURL=splash.css.map */
