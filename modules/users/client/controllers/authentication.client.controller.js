@@ -38,6 +38,23 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       });
     };
 
+    $scope.addParticipant = function (isValid) {
+      $scope.error = null;
+
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'userForm');
+
+        return false;
+      }
+
+      $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
+        // And redirect to the previous or list of users 
+        $state.go('admin.users', $state.previous.params);
+      }).error(function (response) {
+        $scope.error = response.message;
+      });
+    };
+
     $scope.signin = function (isValid) {
       $scope.error = null;
       console.log("sign in!");

@@ -32,6 +32,13 @@ angular.module('participants.admin.routes').config(['$stateProvider',
             });
           }]
         }
+      })
+      .state('authentication.addParticipant', {
+        url: '/addParticipant',
+        templateUrl: 'modules/participants/client/views/admin/add-participant.html',
+        data: {
+          roles: ['admin']
+        }
       });
   }
 ]);
