@@ -1,10 +1,10 @@
 'use strict';
 
-angular.module('experiments.admin').controller('ExperimentListController', ['$scope', '$filter', 'experimentsAdmin',
-  function ($scope, $filter, experimentsAdmin) {
-    console.log("experiments list initialized!!");
-    experimentsAdmin.query(function (data) {
-      $scope.experiments = data;
+angular.module('participants.admin').controller('ParticipantListController', ['$scope', '$filter', 'participantsAdmin',
+  function ($scope, $filter, participantsAdmin) {
+    console.log("participants list initialized!!");
+    participantsAdmin.query(function (data) {
+      $scope.participants = data;
       $scope.buildPager();
     });
 
@@ -16,7 +16,7 @@ angular.module('experiments.admin').controller('ExperimentListController', ['$sc
     };
 
     $scope.figureOutItemsToDisplay = function () {
-      $scope.filteredItems = $filter('filter')($scope.experiments, {
+      $scope.filteredItems = $filter('filter')($scope.participants, {
         $: $scope.search
       });
       $scope.filterLength = $scope.filteredItems.length;
