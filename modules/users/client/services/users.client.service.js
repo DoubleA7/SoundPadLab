@@ -26,11 +26,23 @@ angular.module('users.admin').factory('Admin', ['$resource',
   }
 ]);
 
-//TODO this should be Users service
 angular.module('participants.admin').factory('participantsAdmin', ['$resource',
   function ($resource) {
     console.log("part ADMIN 2");
     return $resource('api/participants/:participantId', {
+      userId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);
+
+angular.module('experiments.admin').factory('experimentsAdmin', ['$resource',
+  function ($resource) {
+    console.log("experiments admin");
+    return $resource('api/experiments/:experimentId', {
       userId: '@_id'
     }, {
       update: {

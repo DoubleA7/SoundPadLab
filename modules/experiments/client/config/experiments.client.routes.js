@@ -32,6 +32,13 @@ angular.module('experiments.admin.routes').config(['$stateProvider',
             });
           }]
         }
+      })
+      .state('authentication.addExperiment', {
+        url: '/addExperiment',
+        templateUrl: 'modules/experiments/client/views/admin/add-experiment.html',
+        data: {
+          roles: ['admin']
+        }
       });
   }
 ]);
