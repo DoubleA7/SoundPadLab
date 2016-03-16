@@ -38,5 +38,9 @@ a:hover .header-profile-image {
 	padding-top: 100px;
 }
 
-/*Custom CSS for Home Page*/
+/*Custom CSS for Core View*/
 
+div.top-row
+{
+    padding-top: 50px;
+}

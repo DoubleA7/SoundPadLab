@@ -6,12 +6,12 @@ angular.module('core').controller('HomeController', ['$scope', '$state', 'Authen
     $scope.authentication = Authentication;
 
     $scope.goToContact = function() {
-      $state.go('contact');
+      $state.go('core.contact');
       alert('Switch to contact');
     };
 
     $scope.goToTeam = function() {
-      $state.go('team');
+      $state.go('core.team');
       alert('Switch to team');
     };
   }

@@ -13,21 +13,27 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
     // Home state routing
     $stateProvider
-    .state('home', {
-      url: '/',
+      .state('core', {
+        abstract: true,
+        templateUrl: 'modules/core/client/views/core.client.view.html',
+        controller: 'CoreController',
+        controllerAs: 'vm'
+      })
+    .state('core.home', {
+      url: '/home',
       templateUrl: 'modules/core/client/views/home.client.view.html'
     })
-    .state('about', {
+    .state('core.about', {
       url: '/about',
       templateUrl: 'modules/core/client/views/about.client.view.html'
     })
-    .state('contact', {
+    .state('core.contact', {
       url: '/contact',
       templateUrl: 'modules/core/client/views/contact.client.view.html',
       controller: 'ContactController',
       controllerAs: 'vm'
     })
-    .state('team', {
+    .state('core.team', {
       url: '/team',
       templateUrl: 'modules/core/client/views/team.client.view.html'//,
       //controller: 'TeamController',
