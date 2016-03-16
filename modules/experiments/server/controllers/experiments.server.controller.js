@@ -12,11 +12,13 @@ var path = require('path'),
  * Create a experiment
  */
 exports.create = function (req, res) {
+  console.log(req.body);
   var experiment = new Experiment(req.body);
+  console.log(experiment);
       
   experiment.save(function (err) {
     if (err) {
-      //console.log(err);
+      console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
