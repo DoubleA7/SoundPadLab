@@ -1,15 +1,6 @@
 'use strict';
 
 /**
- * Render the splash page of application
- */
-exports.renderSplash = function (req,res) {
-  res.render('modules/core/server/views/splash', {
-    user: req.user || null
-  });
-};
-
-/**
  * Render the main application page
  */
 exports.renderIndex = function (req, res) {
