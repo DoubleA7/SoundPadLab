@@ -38,6 +38,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       });
     };
 
+
     $scope.signin = function (isValid) {
       $scope.error = null;
       console.log("sign in!");

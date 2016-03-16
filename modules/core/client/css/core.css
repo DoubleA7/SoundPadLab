@@ -22,8 +22,7 @@ a:hover .header-profile-image {
   opacity: 1;
 }
 .user-header-dropdown-toggle {
-  padding-top: 11px !important;
-  padding-bottom: 11px !important;
+  padding: 38px 15px !important;
 }
 .error-text {
   display: none;
@@ -35,6 +34,9 @@ a:hover .header-profile-image {
   display: inline;
 }
 
+.index-section{
+	padding-top: 100px;
+}
 
 /*Custom CSS for Home Page*/
 
