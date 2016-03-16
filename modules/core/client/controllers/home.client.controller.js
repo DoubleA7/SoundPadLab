@@ -6,6 +6,7 @@ angular.module('core').controller('HomeController', ['$scope', '$state', 'Authen
     $scope.authentication = Authentication;
 
     $scope.contact = function() {
+      alert('Switch to contact');
       $state.go('contact');
     };
   }

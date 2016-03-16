@@ -13,9 +13,12 @@
     // Contact controller logic
     // ...
 
+    console.log('ContactController');
+
     init();
 
     function init() {
+      console.log('ContactController');
     }
   }
 })();

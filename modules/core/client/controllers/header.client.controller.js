@@ -2,7 +2,9 @@
 
 angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus',
   function ($scope, $state, Authentication, Menus) {
+    console.log("Start Header controller");
     // Expose view variables
+    $scope.showHeader = false;
     $scope.$state = $state;
     $scope.authentication = Authentication;
 
@@ -19,5 +21,13 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     $scope.$on('$stateChangeSuccess', function () {
       $scope.isCollapsed = false;
     });
+
+    if ($state.includes('home')) {
+      $scope.showHeader = false;
+      alert("HEY");
+    } else {
+      $scope.showHeader = true;
+      alert("YEH");
+    }
   }
 ]);
