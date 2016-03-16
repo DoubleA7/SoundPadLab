@@ -2,3 +2,20 @@
 {
     padding: 15px;
 }
+
+#footer {
+  padding: 15px;
+  clear: both; }
+
+#footer span {
+  text-align: center; }
+
+#footer a {
+  text-decoration: none; }
+
+#footer-nav a {
+  margin: 10px; }
+
+#rights a {
+  font-size: 0.8em;
+  color: #a0a0a0; }
