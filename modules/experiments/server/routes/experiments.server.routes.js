@@ -14,9 +14,9 @@ module.exports = function (app) {
 
 	// Single participant routes
   app.route('/api/experiments/:experimentId')
-    .get(adminPolicy.isAllowed,experiments.read)
-    .put(adminPolicy.isAllowed,experiments.update)
-    .delete(adminPolicy.isAllowed,experiments.delete);
+    .get(experiments.read)
+    .put(experiments.update)
+    .delete(experiments.delete);
 
 	// Finish by binding the experiment middleware
   app.param('experimentId', experiments.experimentByID);
