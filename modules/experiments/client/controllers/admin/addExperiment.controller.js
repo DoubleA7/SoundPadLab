@@ -11,7 +11,6 @@ angular.module('experiments').controller('addExperimentController', ['$scope', '
 
 	
     $scope.addExperiment = function (isValid) {
-      console.log("ADD Experiment");
       if(!$scope.credentials.requires_eyeglasses) {
         $scope.credentials.requires_eyeglasses=false;
       }
@@ -25,11 +24,9 @@ angular.module('experiments').controller('addExperimentController', ['$scope', '
 
 
       $http.post('/api/experiments', $scope.credentials).success(function (response) {
-        console.log("ADDED experiment");
         // And redirect to the previous or list of users 
         $state.go('admin.experiments', $state.previous.params);
       }).error(function (response) {
-        console.log("FAILED TO ADD experiment");
         $scope.error = response.message;
       });
     };
