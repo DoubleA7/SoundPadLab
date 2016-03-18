@@ -1,21 +1,16 @@
-(function() {
-  'use strict';
+'use strict';
 
-  angular
-    .module('core')
-    .controller('CoreController', CoreController);
+angular.module('core').controller('CoreController', ['$scope', '$state',
+  function ($scope, $state) {
+    $scope.showHeader = false;
 
-  CoreController.$inject = ['$scope'];
-
-  function CoreController($scope) {
-    var vm = this;
-
-    // Core controller logic
-    // ...
-
-    init();
-
-    function init() {
-    }
+    $scope.init = function() {
+      alert('Init function call');
+      if ($state.includes('core.home')) {
+        $scope.showHeader = false;
+      } else {
+        $scope.showHeader = true;
+      }
+    };
   }
-})();
+]);
