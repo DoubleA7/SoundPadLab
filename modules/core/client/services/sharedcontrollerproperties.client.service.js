@@ -1,4 +1,4 @@
-'use strict'
+'use strict';
 
 angular.module('core').service('sharedControllerProperties', function () {
   var showHeader = true;

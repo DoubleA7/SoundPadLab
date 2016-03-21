@@ -22,7 +22,7 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
       $scope.isCollapsed = false;
     });
 
-    if ($state.includes('home')) {
+    if ($state.includes('core.home')) {
       $scope.showHeader = false;
       alert("HEY");
     } else {
