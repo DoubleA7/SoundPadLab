@@ -3,15 +3,16 @@
 //Dependencies
 var path = require('path'),
   mongoose = require('mongoose'),
-  Event = mongoose.model('Event'),
+  Event = require('../models/events.server.model.js'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 //Create
 exports.create = function (req, res) {
   var event = new Event(req.body);
-
+  console.log(event);
   event.save(function (err) {
     if (err) {
+      console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -53,19 +54,9 @@ exports.delete = function (req, res) {
 
   event.remove(function (err) {
     if (err) {
-      res.status(400).send(err);
-    }
-    else {
-      res.end();
-    }
-  });
-};
-
-//List All
-exports.list = function (req, res) {
-  Event.find().sort('time').exec(function (err, event) {
-    if (err) {
-      res.status(400).send(err);
+        return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+        });
     }
     else {
       res.json(event);
@@ -73,15 +64,39 @@ exports.list = function (req, res) {
   });
 };
 
-//Middleware
-exports.eventByID = function (req, res, next, id) {
-  Event.findById(id).exec(function (err, event) {
+//List All
+exports.list = function (req, res) {
+  Event.find().sort('-created_at').exec(function (err, events) {
     if (err) {
-      res.status(400).send(err);
+      console.log(err);
+      return res.status(400).send({
+        message: errorHander.getErrorMessage(err)
+      });
     }
     else {
-      req.event = event;
-      next();
+      res.json(events);
     }
   });
+};
+
+//Middleware
+exports.eventByID = function (req, res, next, id) {
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+        return res.status(400).send({
+            message: 'event is invalid'
+        });
+    }
+
+    Event.findById(id).exec(function (err, event) {
+        if (err) {
+            return next(err);
+        } else if (!event) {
+            return res.status(404).send({
+                message: 'No event with that identifier has been found'
+            });
+        }
+        req.event = event;
+        next();
+    });
 };
