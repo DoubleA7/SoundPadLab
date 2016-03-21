@@ -1,0 +1,33 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 ng-bind="audioFile.name"></h1>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="admin.audioFile-edit({audioFileId: audioFile._id})">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="remove();" ng-if="audioFile._id !== authentication.audioFile._id">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-3"><strong>Audio FIle Name</strong></div>
+        <div class="col-md-6" ng-bind="audioFile.name"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Audio file link</strong></div>
+        <div class="col-md-6" ng-bind="audioFile.download_link"></div>
+      </div>
+      <hr/>
+     
+    </div>
+  </div>
+</section>
