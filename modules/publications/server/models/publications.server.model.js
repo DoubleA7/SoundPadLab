@@ -12,6 +12,7 @@ var mongoose = require('mongoose'),
 
 var PublicationSchema = new Schema({
   
+  name: String,
   created: {
     type: Date,
     default: Date.now()

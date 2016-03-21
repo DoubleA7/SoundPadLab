@@ -40,32 +40,9 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
     
   var publication = req.publication;
-    
   publication.name = req.body.name;
-  publication.phone_number = req.body.phone_number;
-  publication.email = req.body.email;
-  publication.gender = req.body.gender;
-    
-    
-    //dob stored as dob.month, dob.day, dob.year
-  publication.dob = req.body.dob;
-    
-  publication.card_info = req.body.card_info;
-    
-  publication.vision_test = req.body.vision_test;
-  publication.corrective_lenses = req.body.corrective_lenses;
-  publication.contact_lenses = req.body.contact_lenses;
-  publication.took_audiogram = req.body.took_audiogram;
-  publication.HTRF_assigned = req.body.HTRF_assigned;
-    
-  publication.completed_experiments = req.body.completed_experiments;
-  publication.assigned_experiments = req.body.assigned_experiments;
-  publication.past_appointments = req.body.past_appointments;
-  publication.appointments = req.body.appointments;
-  publication.comment = publication.comment;
-    
-  publication.last_paid = req.body.last_paid;
-  publication.tags = req.body.tags; 
+  publication.information = req.body.information;
+  
     
     //subject_id not being updated 
     

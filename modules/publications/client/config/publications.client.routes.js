@@ -14,8 +14,8 @@ angular.module('publications.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/publications/client/views/admin/view-publication.client.view.html',
         controller: 'PublicationController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
-            return Admin.get({
+          userResolve: ['$stateParams', 'publicationsAdmin', function ($stateParams, publicationsAdmin) {
+            return publicationsAdmin.get({
               publicationId: $stateParams.publicationId
             });
           }]
@@ -26,13 +26,21 @@ angular.module('publications.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/publications/client/views/admin/edit-publication.client.view.html',
         controller: 'PublicationController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
-            return Admin.get({
+          userResolve: ['$stateParams', 'publicationsAdmin', function ($stateParams, publicationsAdmin) {
+            return publicationsAdmin.get({
               publicationId: $stateParams.publicationId
             });
           }]
         }
-      });
+      })
+      .state('authentication.addPublication', {
+            url: '/addPublication',
+            templateUrl: 'modules/publications/client/views/admin/add-publication.client.view.html',
+            data: {
+                roles: ['admin']
+            }
+        });
+      
   }
 ]);
 

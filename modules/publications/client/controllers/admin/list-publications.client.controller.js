@@ -1,13 +1,13 @@
 'use strict';
 
-angular.module('publications.admin').controller('PublicationListController', ['$scope', '$filter', 'Admin',
-  function ($scope, $filter, Admin) {
-    console.log("user list initialized!!");
-    Admin.query(function (data) {
-      $scope.users = data;
+angular.module('publications.admin').controller('PublicationListController', ['$scope', '$filter', 'publicationsAdmin',
+  function ($scope, $filter, publicationsAdmin) {
+    console.log("publications list initialized!!");
+    publicationsAdmin.query(function (data) {
+      $scope.publications = data;
       $scope.buildPager();
     });
-
+    
     $scope.buildPager = function () {
       $scope.pagedItems = [];
       $scope.itemsPerPage = 15;
@@ -16,7 +16,7 @@ angular.module('publications.admin').controller('PublicationListController', ['$
     };
 
     $scope.figureOutItemsToDisplay = function () {
-      $scope.filteredItems = $filter('filter')($scope.users, {
+      $scope.filteredItems = $filter('filter')($scope.publications, {
         $: $scope.search
       });
       $scope.filterLength = $scope.filteredItems.length;
