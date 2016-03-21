@@ -7,7 +7,7 @@ var path = require('path'),
   config = require(path.resolve('./config/config'));
 
 /**
- * Research module init function.
+ * Participants module init function.
  */
 module.exports = function (app, db) {
 
