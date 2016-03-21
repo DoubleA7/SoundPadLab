@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('audioFiles.admin').controller('AudioFileListController', ['$scope', '$filter', 'audioFilesAdmin',
-  function ($scope, $filter, audioFilesAdmin) {
+angular.module('audioFiles.admin').controller('AudioFileListController', ['$scope', '$filter', 'audioFileAdmin',
+  function ($scope, $filter, audioFileAdmin) {
     console.log("audioFiles list initialized!!");
-    audioFilesAdmin.query(function (data) {
+    audioFileAdmin.query(function (data) {
       $scope.audioFiles = data;
       $scope.buildPager();
     });

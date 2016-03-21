@@ -7,7 +7,7 @@ angular.module('audioFiles.admin.routes').config(['$stateProvider',
       .state('admin.audioFiles', {
         url: '/audioFiles',
         templateUrl: 'modules/audioFiles/client/views/admin/list-audioFiles.client.view.html',
-        controller: 'AudioFileController'
+        controller: 'AudioFileListController'
       })
       .state('admin.audioFile', {
         url: '/audioFiles/:audioFileId',

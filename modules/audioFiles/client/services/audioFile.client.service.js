@@ -2,11 +2,11 @@
 
 angular.module('audioFiles.admin').factory('audioFileAdmin', ['$resource',
   function ($resource) {
-      return $resource('api/audioFiles/:audioFileId', {
-          eventId: '@_id'
+    return $resource('api/audioFiles/:audioFileId', {
+        eventId: '@_id'
       }, {
-          update: {
-              method: 'PUT'
+        update: {
+            method: 'PUT'
           }
       });
   }
