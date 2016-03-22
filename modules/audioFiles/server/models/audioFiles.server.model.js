@@ -17,8 +17,8 @@ var AudioFileSchema = new Schema({
     default: Date.now
   },
   
-  title: {type: String,required:true},
-  download_link: {type: String, required:true}
+  title: { type: String,required:true },
+  download_link: { type: String, required:true }
     
 
 });
