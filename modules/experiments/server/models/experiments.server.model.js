@@ -13,16 +13,21 @@ var mongoose = require('mongoose'),
 var experimentSchema = new Schema({
   created_at: Date,
   updated_at: Date,
-  participants: [Schema.Types.ObjectId],
-  users: [Schema.Types.ObjectId],
+  participants: [ { type: Schema.Types.ObjectId, ref: 'Participant' } ],
+  //users: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  appointments: [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
+  tags: [String],
   requirements: [String],
+  completed: {
+    type: Boolean,
+    required: true,
+    default: false
+  },
   requires_eyeglasses: {
     type: Boolean,
     required: true,
     default: false
   },
-  appointments: [Schema.Types.ObjectId],
-  tags: [String],
   experiment_name: {
     type: String,
     unique: true,
