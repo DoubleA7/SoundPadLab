@@ -16,7 +16,6 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       .state('core', {
         abstract: true,
         template: '<ui-view/>',
-        //templateUrl: 'modules/core/client/views/core.client.view.html',
         views: {
 			'': {
 				templateUrl: 'modules/core/client/views/core.client.view.html',
