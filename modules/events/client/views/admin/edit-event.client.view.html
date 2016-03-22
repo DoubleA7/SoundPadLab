@@ -1,37 +1,38 @@
-﻿<div ng-controller="addEventController">
-    <h3 class="col-md-12 text-center">Edit Event <span ng-bind="event.title"></span></h3>
-    <div class="col-xs-offset-2 col-xs-8 col-md-offset-2 col-md-8">
-        <form name="eventForm" ng-submit="update(eventForm.$valid)" class="signin" novalidate autocomplete="off">
+﻿<section>
+    <div class="page-header">
+        <h1>Event <span ng-bind="event.title"></span></h1>
+    </div>
+    <div class="col-md-12">
+        <form name="eventForm" ng-submit="update(eventForm.$valid)" novalidate>
             <fieldset>
                 <div class="form-group" show-errors>
                     <label for="title">Title</label>
-                    <input type="text" id="title" name="title" class="form-control" ng-model="event.title" placeholder="title" required>
+                    <input type="text" id="titlee" name="title" class="form-control" ng-model="event.title" placeholder="Title" required />
                     <div ng-messages="eventForm.title.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">title is required.</p>
-                    </div>
-                </div>
-                <div class="form-group" show-errors>
-                    <label for="image">Image</label>
-                    <input type="text" id="image" name="image" class="form-control" ng-model="event.image" placeholder="Image" required>
-                    <div ng-messages="eventForm.image.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Image is required.</p>
+                        <p class="help-block error-text" ng-message="required">Title is required.</p>
                     </div>
                 </div>
                 <div class="form-group" show-errors>
                     <label for="description">Description</label>
-                    <input type="text" id="description" name="description" class="form-control" ng-model="event.description" placeholder="Description" required>
+                    <input type="text" id="description" name="description" class="form-control" ng-model="event.description" placeholder="Description" required />
                     <div ng-messages="eventForm.description.$error" role="alert">
                         <p class="help-block error-text" ng-message="required">Description is required.</p>
                     </div>
                 </div>
-
-                <div class="text-center form-group">
-                    <button type="submit" class="btn btn-primary">Edit Event</button>
+                <div class="form-group" show-errors>
+                    <label for="image">Image</label>
+                    <input type="text" id="image" name="image" class="form-control" ng-model="event.image" placeholder="Image" required />
+                    <div ng-messages="eventForm.image.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Image is required.</p>
+                    </div>
                 </div>
-                <div ng-show="error" class="text-center text-danger">
+                <div class="form-group">
+                    <input type="submit" value="Update" class="btn btn-default">
+                </div>
+                <div ng-show="error" class="text-danger">
                     <strong ng-bind="error"></strong>
                 </div>
             </fieldset>
         </form>
     </div>
-</div>
+</section>

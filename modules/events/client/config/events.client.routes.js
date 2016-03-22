@@ -14,7 +14,7 @@ angular.module('events.admin.routes').config(['$stateProvider',
             templateUrl: 'modules/events/client/views/admin/view-event.client.view.html',
             controller: 'EventController',
             resolve: {
-                userResolve: ['$stateParams', 'eventsAdmin', function ($stateParams, eventsAdmin) {
+                eventResolve: ['$stateParams', 'eventsAdmin', function ($stateParams, eventsAdmin) {
                     return eventsAdmin.get({
                         eventId: $stateParams.eventId
                     });
@@ -26,7 +26,7 @@ angular.module('events.admin.routes').config(['$stateProvider',
             templateUrl: 'modules/events/client/views/admin/edit-event.client.view.html',
             controller: 'EventController',
             resolve: {
-                userResolve: ['$stateParams', 'eventsAdmin', function ($stateParams, eventsAdmin) {
+                eventResolve: ['$stateParams', 'eventsAdmin', function ($stateParams, eventsAdmin) {
                     return eventsAdmin.get({
                         eventId: $stateParams.eventId
                     });

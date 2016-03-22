@@ -70,7 +70,7 @@ exports.list = function (req, res) {
     if (err) {
       console.log(err);
       return res.status(400).send({
-        message: errorHander.getErrorMessage(err)
+        message: errorHandler.getErrorMessage(err)
       });
     }
     else {
