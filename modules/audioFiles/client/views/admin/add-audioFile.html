@@ -5,13 +5,13 @@
       <fieldset>
         <div class="form-group" show-errors>
           <label for="name">Audio File Name</label>
-          <input type="text" id="Name" name="Name" class="form-control" ng-model="credentials.name" placeholder="File name" required>
+          <input type="text" id="Name" name="Name" class="form-control" ng-model="credentials.title" placeholder="File name" required>
           <div ng-messages="audioFileForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Name is required.</p>
+            <p class="help-block error-text" ng-message="required">File name is required.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label for="downloadLink">Phone number</label>
+          <label for="downloadLink">Download Link</label>
           <input type="text" id="downloadLink" name="downloadLink" class="form-control" ng-model="credentials.download_link" placeholder="Download Link" required>
           <div ng-messages="audioFileForm.downloadLink.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Link is required.</p>

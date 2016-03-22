@@ -13,7 +13,7 @@ module.exports = function (app) {
         .post(/*adminPolicy.isAllowed,*/audioFiles.create);
 
     // Single participant routes
-  app.route('/api/audioFiles/:participantId')
+  app.route('/api/audioFiles/:audioFileId')
         .get(/*adminPolicy.isAllowed,*/audioFiles.read)
         .put(/*adminPolicy.isAllowed,*/audioFiles.update)
         .delete(/*adminPolicy.isAllowed,*/audioFiles.delete);

@@ -14,20 +14,20 @@ angular.module('audioFiles.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/audioFiles/client/views/admin/view-audioFile.client.view.html',
         controller: 'AudioFileController',
         resolve: {
-          audioFileResolve: ['$stateParams', 'audioFilesAdmin', function ($stateParams, audioFilesAdmin) {
-            return audioFilesAdmin.get({
+          audioFileResolve: ['$stateParams', 'audioFileAdmin', function ($stateParams, audioFileAdmin) {
+            return audioFileAdmin.get({
               audioFileId: $stateParams.audioFileId
             });
           }]
         }
       })
       .state('admin.audioFile-edit', {
-        url: '/audioFiles/:audioFileId/edit',
+        url: '/audioFiles/:audioFileId',
         templateUrl: 'modules/audioFiles/client/views/admin/edit-audioFile.client.view.html',
         controller: 'AudioFileController',
         resolve: {
-          audioFileResolve: ['$stateParams', 'audioFilesAdmin', function ($stateParams, audioFilesAdmin) {
-            return audioFilesAdmin.get({
+          audioFileResolve: ['$stateParams', 'audioFileAdmin', function ($stateParams, audioFileAdmin) {
+            return audioFileAdmin.get({
               audioFileId: $stateParams.audioFileId
             });
           }]
@@ -35,6 +35,7 @@ angular.module('audioFiles.admin.routes').config(['$stateProvider',
       })
       .state('authentication.addAudioFile', {
         url: '/addAudioFile',
+        controller: 'addAudioFileController',
         templateUrl: 'modules/audioFiles/client/views/admin/add-audioFile.html',
         data: {
           roles: ['admin']

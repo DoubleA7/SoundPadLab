@@ -10,10 +10,9 @@
     </div>
   </div>
   <div class="list-group">
-    <a ng-repeat="audioFile in pagedItems" ui-sref="admin.audioFiles({participantId: audioFile._id})" class="list-group-item">
-      <h4 class="list-group-item-heading" ng-bind="audioFile.name"></h4>
-      <p class="list-group-item-text pull-right small" ng-bind="audioFile.download-link"></p>
-      
+    <a ng-repeat="audioFile in pagedItems" ui-sref="admin.audioFile({audioFileId: audioFile._id})" class="list-group-item">
+      <h4 class="list-group-item-heading" ng-bind="audioFile.title"></h4>
+      <p class="list-group-item-text pull-right small" ng-bind="audioFile.download_link"></p>
     </a>
   </div>
 

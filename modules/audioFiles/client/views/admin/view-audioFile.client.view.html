@@ -18,13 +18,13 @@
   <div class="row">
     <div class="col-md-8">
       <div class="row">
-        <div class="col-md-3"><strong>Audio FIle Name</strong></div>
-        <div class="col-md-6" ng-bind="audioFile.name"></div>
+        <div class="col-md-3"><strong>Audio file Name</strong></div>
+        <div class="col-md-6" ng-bind="audioFile.title"></div>
       </div>
       <hr/>
       <div class="row">
         <div class="col-md-3"><strong>Audio file link</strong></div>
-        <div class="col-md-6" ng-bind="audioFile.download_link">{{audioFile.download_link}}</div>
+        <div class="col-md-6" > <a ng-href="audioFile.download_link">{{audioFile.download_link}}</div>
       </div>
       <hr/>
      
