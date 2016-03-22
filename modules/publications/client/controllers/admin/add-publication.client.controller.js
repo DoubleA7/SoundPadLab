@@ -9,21 +9,23 @@ angular.module('publications').controller('addPublicationController', ['$scope',
       $scope.error = $location.search().err;
 
 
-      $scope.addEvent = function (isValid) {
-          //console.log("ADD publication");
+      $scope.addPublication = function (isValid) {
+          console.log("ADD publication");
           $scope.error = null;
 
-          // if (!isValid) {
-              // $scope.$broadcast('show-errors-check-validity', 'publicationForm');
+          if (!isValid) {
+              $scope.$broadcast('show-errors-check-validity', 'publicationForm');
             
-              // return false;
-          // }
+              return false;
+          }
 
           $http.post('/api/publications', $scope.credentials).success(function (response) {
               // And redirect to the previous or list of users 
+             // console.log("error");
               $state.go('admin.publications', $state.previous.params);
           }).error(function (response) {
               $scope.error = response.message;
+             // console.log("error");
           });
       };
 

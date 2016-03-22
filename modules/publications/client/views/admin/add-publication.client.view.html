@@ -4,9 +4,9 @@
         <form name="publicationForm" ng-submit="addPublication(publicationForm.$valid)" class="signin" novalidate autocomplete="off">
             <fieldset>
                 <div class="form-group" show-errors>
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" class="form-control" ng-model="credentials.name" placeholder="Name" required>
-                    <div ng-messages="publicationForm.name.$error" role="alert">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" name="title" class="form-control" ng-model="credentials.title" placeholder="Title" required>
+                    <div ng-messages="publicationForm.title.$error" role="alert">
                         <p class="help-block error-text" ng-message="required">Title is required.</p>
                     </div>
                 </div>

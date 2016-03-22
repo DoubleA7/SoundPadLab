@@ -40,7 +40,7 @@ exports.read = function (req, res) {
 exports.update = function (req, res) {
     
   var publication = req.publication;
-  publication.name = req.body.name;
+  publication.title = req.body.title;
   publication.information = req.body.information;
   
     

@@ -11,22 +11,15 @@
                     </div>
                 </div>
                 <div class="form-group" show-errors>
-                    <label for="image">Image</label>
-                    <input type="text" id="image" name="image" class="form-control" ng-model="publication.image" placeholder="Image" required>
-                    <div ng-messages="publicationForm.image.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Image is required.</p>
-                    </div>
-                </div>
-                <div class="form-group" show-errors>
-                    <label for="description">Description</label>
-                    <input type="text" id="description" name="description" class="form-control" ng-model="publication.description" placeholder="Description" required>
-                    <div ng-messages="publicationForm.description.$error" role="alert">
-                        <p class="help-block error-text" ng-message="required">Description is required.</p>
+                    <label for="information">Information</label>
+                    <input type="text" id="information" name="information" class="form-control" ng-model="publication.information" placeholder="information" required>
+                    <div ng-messages="publicationForm.information.$error" role="alert">
+                        <p class="help-block error-text" ng-message="required">Information is required.</p>
                     </div>
                 </div>
 
                 <div class="text-center form-group">
-                    <button type="submit" class="btn btn-primary">Edit Event</button>
+                    <button type="submit" class="btn btn-primary">Update Publication</button>
                 </div>
                 <div ng-show="error" class="text-center text-danger">
                     <strong ng-bind="error"></strong>
