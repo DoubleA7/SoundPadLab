@@ -12,16 +12,16 @@ var mongoose = require('mongoose'),
 
 var PublicationSchema = new Schema({
   
-  title: {type: String, required: true},
+  title: { type: String, required: true },
   created: {
     type: Date,
     default: Date.now()
   },
   
   information: {
-      type: String,
-      required: true}
-      ,
+    type: String,
+    required: true },
+      
     
   tags: [String]
     

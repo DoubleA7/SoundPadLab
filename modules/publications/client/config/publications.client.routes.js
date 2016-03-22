@@ -34,12 +34,13 @@ angular.module('publications.admin.routes').config(['$stateProvider',
         }
       })
       .state('authentication.addPublication', {
-            url: '/addPublication',
-            templateUrl: 'modules/publications/client/views/admin/add-publication.client.view.html',
-            data: {
-                roles: ['admin']
-            }
-        });
+        url: '/addPublication',
+        controller: 'addPublicationController',
+        templateUrl: 'modules/publications/client/views/admin/add-publication.client.view.html',
+        data: {
+          roles: ['admin']
+        }
+      });
       
   }
 ]);
