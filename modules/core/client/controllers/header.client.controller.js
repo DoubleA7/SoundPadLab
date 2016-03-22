@@ -21,12 +21,18 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     $scope.$on('$stateChangeSuccess', function () {
       $scope.isCollapsed = false;
     });
-
-    if ($state.includes('core.home')) {
+    console.log($scope.authentication);
+    var user_roles = $scope.authentication.user.roles;
+    //check if admin is signed in
+    if(!user_roles){
+      console.log('no user roles found');
       $scope.showHeader = false;
+    }
+    else if (user_roles.indexOf('admin') > -1) {
+      $scope.showHeader = true;
       alert("HEY");
     } else {
-      $scope.showHeader = true;
+      $scope.showHeader = false;
       alert("YEH");
     }
   }

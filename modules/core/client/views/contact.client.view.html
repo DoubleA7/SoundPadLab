@@ -1,9 +1,23 @@
+  <!DOCTYPE html>
+  <html>   
 <section class="contact" ng-controller="ContactController">
-
+    <script>
+      function initMap() {
+        var mapDiv = document.getElementById('map');
+        var map = new google.maps.Map(mapDiv, {
+          center: {lat: 44.540, lng: -78.546},
+          zoom: 8
+        });
+      }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?callback=initMap"
+        async defer></script>
     <div class="row" id="jumbotrons">
         <div class="col-md-5 jumbotron">
             <h1>Location</h1>
-            <div class="thumbnail">Insert map here</div>
+            <!--<div class="thumbnail">Insert map here</div>
+            <div id = "googleMap"></div>-->
+            <div id="map"></div>
             <p>Our lab is located at E313A CSE Building, University of Florida, Gainesville, FL 32611</p>
         </div>
         <div class="col-md-5 col-md-offset-1 jumbotron">
@@ -26,3 +40,7 @@
     <script src='//maps.googleapis.com/maps/api/js?sensor=false'></script>
     <script src="/public/lib/angular-google-maps/dist/angular-google-maps.min.js"></script>
 </section>
+  </body>
+  </html>>
+       
+</html>
