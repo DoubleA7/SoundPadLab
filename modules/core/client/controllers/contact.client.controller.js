@@ -3,10 +3,10 @@
 angular.module('core').controller('ContactController', ['$scope', '$http',
   function($scope, $http) {
 
-    $scope.name = 'Jonathen';
-    $scope.email = 'test';
+    $scope.name = 'Your name here';
+    $scope.email = 'Your e-mail address';
     $scope.verifyEmail = 'test2';
-    $scope.msg = 'actual email';
+    $scope.msg = 'Additional Information';
 
     var data = ({
       name : $scope.name,
