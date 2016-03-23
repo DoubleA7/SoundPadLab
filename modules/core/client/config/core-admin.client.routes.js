@@ -37,8 +37,8 @@ angular.module('core.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/appointments/client/views/admin/view-appointment.client.view.html',
         controller: 'AppointmentController',
         resolve: {
-          appointmentResolve: ['$stateParams', 'appointmentsAdmin', function ($stateParams, appointmentsAdmin) {
-            return appointmentsAdmin.get({
+          appointmentResolve: ['$stateParams', 'appointmentAdmin', function ($stateParams, appointmentAdmin) {
+            return appointmentAdmin.get({
               appointmentId: $stateParams.appointmentId
             });
           }]
@@ -49,8 +49,8 @@ angular.module('core.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/appointments/client/views/admin/edit-appointment.client.view.html',
         controller: 'AppointmentController',
         resolve: {
-          appointmentResolve: ['$stateParams', 'appointmentsAdmin', function ($stateParams, appointmentsAdmin) {
-            return appointmentsAdmin.get({
+          appointmentResolve: ['$stateParams', 'appointmentAdmin', function ($stateParams, appointmentAdmin) {
+            return appointmentAdmin.get({
               appointmentId: $stateParams.appointmentId
             });
           }]
