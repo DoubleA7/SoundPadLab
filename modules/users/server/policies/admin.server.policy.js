@@ -21,6 +21,12 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/users/:userId',
       permissions: '*'
     }, {
+      resources: '/api/participants/:participantId',
+      permissions: '*'
+    },{
+      resources: '/api/experiments/:experimentId',
+      permissions: '*'
+    },{
       resources: '/api/participants',
       permissions: '*'
     }, {
@@ -28,6 +34,30 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }, {
       resources: '/api/experiments',
+      permissions: '*'
+    }, {
+      resources: '/api/audioFiles',
+      permissions: '*'
+    }, {
+      resources: '/api/audioFiles/:audioFileId',
+      permissions: '*'
+    }, {
+      resources: '/api/publications',
+      permissions: '*'
+    }, {
+      resources: '/api/publications/:publicationId',
+      permissions: '*'
+    }, {
+      resources: '/api/research',
+      permissions: '*'
+    }, {
+      resources: '/api/research/:researchId',
+      permissions: '*'
+    }, {
+      resources: '/api/events',
+      permissions: '*'
+    }, {
+      resources: '/api/events/:eventId',
       permissions: '*'
     }]
   }]);

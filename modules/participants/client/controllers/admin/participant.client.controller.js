@@ -1,19 +1,19 @@
 'use strict';
 
-angular.module('participants.admin').controller('ParticipantController', ['$scope', '$state', 'Authentication', 'userResolve',
-  function ($scope, $state, Authentication, userResolve) {
+angular.module('participants.admin').controller('ParticipantController', ['$scope', '$state', 'Authentication', 'participantResolve',
+  function ($scope, $state, Authentication, participantResolve) {
     $scope.authentication = Authentication;
-    $scope.user = userResolve;
+    $scope.participant = participantResolve;
 
-    $scope.remove = function (user) {
-      if (confirm('Are you sure you want to delete this user?')) {
-        if (user) {
-          user.$remove();
+    $scope.remove = function (participant) {
+      if (confirm('Are you sure you want to delete this participant?')) {
+        if (participant) {
+          participant.$remove();
 
-          $scope.users.splice($scope.users.indexOf(user), 1);
+          $scope.participants.splice($scope.participants.indexOf(participant), 1);
         } else {
-          $scope.user.$remove(function () {
-            $state.go('admin.users');
+          $scope.participant.$remove(function () {
+            $state.go('admin.participants');
           });
         }
       }
@@ -21,16 +21,16 @@ angular.module('participants.admin').controller('ParticipantController', ['$scop
 
     $scope.update = function (isValid) {
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'userForm');
+        $scope.$broadcast('show-errors-check-validity', 'participantForm');
 
         return false;
       }
 
-      var user = $scope.user;
+      var participant = $scope.participant;
 
-      user.$update(function () {
-        $state.go('admin.user', {
-          userId: user._id
+      participant.$update(function () {
+        $state.go('admin.participant', {
+          participantId: participant._id
         });
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
