@@ -4,7 +4,7 @@
 angular.module('research.admin.routes').config(['$stateProvider',
   function ($stateProvider) {
       $stateProvider
-        .state('admin.research', {
+        .state('admin.researchs', {
             url: '/research',
             templateUrl: 'modules/research/client/views/admin/list-research.client.view.html',
             controller: 'ResearchListController'
@@ -14,7 +14,7 @@ angular.module('research.admin.routes').config(['$stateProvider',
             templateUrl: 'modules/research/client/views/admin/view-research.client.view.html',
             controller: 'ResearchController',
             resolve: {
-                userResolve: ['$stateParams', 'researchAdmin', function ($stateParams, researchAdmin) {
+                researchResolve: ['$stateParams', 'researchAdmin', function ($stateParams, researchAdmin) {
                     return researchAdmin.get({
                         researchId: $stateParams.researchId
                     });
@@ -26,7 +26,7 @@ angular.module('research.admin.routes').config(['$stateProvider',
             templateUrl: 'modules/research/client/views/admin/edit-research.client.view.html',
             controller: 'ResearchController',
             resolve: {
-                userResolve: ['$stateParams', 'researchAdmin', function ($stateParams, researchAdmin) {
+                researchResolve: ['$stateParams', 'researchAdmin', function ($stateParams, researchAdmin) {
                     return researchAdmin.get({
                         researchId: $stateParams.researchId
                     });
@@ -35,6 +35,7 @@ angular.module('research.admin.routes').config(['$stateProvider',
         })
         .state('authentication.addResearch', {
             url: '/addResearch',
+            controller: 'addResearchController',
             templateUrl: 'modules/research/client/views/admin/add-research.client.view.html',
             data: {
                 roles: ['admin']

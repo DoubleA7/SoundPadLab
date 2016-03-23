@@ -4,7 +4,7 @@ angular.module('research.admin').controller('ResearchListController', ['$scope',
   function ($scope, $filter, researchAdmin) {
       console.log("research list initialized!!");
       researchAdmin.query(function (data) {
-          $scope.research = data;
+          $scope.researchs = data;
       $scope.buildPager();
     });
 
@@ -16,7 +16,7 @@ angular.module('research.admin').controller('ResearchListController', ['$scope',
     };
 
     $scope.figureOutItemsToDisplay = function () {
-        $scope.filteredItems = $filter('filter')($scope.research, {
+        $scope.filteredItems = $filter('filter')($scope.researchs, {
         $: $scope.search
       });
       $scope.filterLength = $scope.filteredItems.length;

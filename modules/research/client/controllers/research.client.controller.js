@@ -4,16 +4,16 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
   function ($scope, $state, Authentication, researchResolve) {
     $scope.authentication = Authentication;
     $scope.research = researchResolve;
-
+    
     $scope.remove = function (research) {
         if (confirm('Are you sure you want to delete this research?')) {
             if (research) {
                 research.$remove();
 
-                $scope.research.splice($scope.research.indexOf(research), 1);
+                $scope.researchs.splice($scope.researchs.indexOf(research), 1);
         } else {
                 $scope.research.$remove(function () {
-                    $state.go('admin.research');
+                    $state.go('admin.researchs');
           });
         }
       }

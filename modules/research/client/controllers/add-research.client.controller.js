@@ -21,7 +21,8 @@ angular.module('research').controller('addResearchController', ['$scope', '$stat
 
           $http.post('/api/research', $scope.credentials).success(function (response) {
               // And redirect to the previous or list of research
-              $state.go('admin.research', $state.previous.params);
+              $state.go('admin.researchs', $state.previous.params);
+              
           }).error(function (response) {
               $scope.error = response.message;
           });
