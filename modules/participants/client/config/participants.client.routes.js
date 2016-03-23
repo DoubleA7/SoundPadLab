@@ -14,8 +14,8 @@ angular.module('participants.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/participants/client/views/admin/view-participant.client.view.html',
         controller: 'ParticipantController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
-            return Admin.get({
+          participantResolve: ['$stateParams', 'participantsAdmin', function ($stateParams, participantsAdmin) {
+            return participantsAdmin.get({
               participantId: $stateParams.participantId
             });
           }]
@@ -26,8 +26,8 @@ angular.module('participants.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/participants/client/views/admin/edit-participant.client.view.html',
         controller: 'ParticipantController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
-            return Admin.get({
+          participantResolve: ['$stateParams', 'participantsAdmin', function ($stateParams, participantsAdmin) {
+            return participantsAdmin.get({
               participantId: $stateParams.participantId
             });
           }]
