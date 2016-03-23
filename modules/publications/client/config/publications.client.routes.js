@@ -1,44 +1,24 @@
 'use strict';
 
 // Setting up route
-angular.module('publications.admin.routes').config(['$stateProvider',
+angular.module('publications').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('admin.publications', {
+      .state('publications', {
         url: '/publications',
-        templateUrl: 'modules/publications/client/views/admin/list-publications.client.view.html',
-        controller: 'PublicationListController'
+        templateUrl: 'modules/publications/client/views/list-publications.client.view.html',
+        controller: 'PublicationListPublicController'
       })
-      .state('admin.publication', {
+      .state('publication', {
         url: '/publications/:publicationId',
-        templateUrl: 'modules/publications/client/views/admin/view-publication.client.view.html',
-        controller: 'PublicationController',
+        templateUrl: 'modules/publications/client/views/view-publication.client.view.html',
+        controller: 'PublicationPublicController',
         resolve: {
-          publicationResolve: ['$stateParams', 'publicationsAdmin', function ($stateParams, publicationsAdmin) {
-            return publicationsAdmin.get({
+          publicationResolve: ['$stateParams', 'publicationsPublic', function ($stateParams, publicationsPublic) {
+            return publicationsPublic.get({
               publicationId: $stateParams.publicationId
             });
           }]
-        }
-      })
-      .state('admin.publication-edit', {
-        url: '/publications/:publicationId/edit',
-        templateUrl: 'modules/publications/client/views/admin/edit-publication.client.view.html',
-        controller: 'PublicationController',
-        resolve: {
-          publicationResolve: ['$stateParams', 'publicationsAdmin', function ($stateParams, publicationsAdmin) {
-            return publicationsAdmin.get({
-              publicationId: $stateParams.publicationId
-            });
-          }]
-        }
-      })
-      .state('authentication.addPublication', {
-        url: '/addPublication',
-        controller: 'addPublicationController',
-        templateUrl: 'modules/publications/client/views/admin/add-publication.client.view.html',
-        data: {
-          roles: ['admin']
         }
       });
       
