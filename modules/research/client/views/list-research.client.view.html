@@ -10,7 +10,7 @@
     </div>
   </div>
   <div class="list-group">
-      <a ng-repeat="research in pagedItems" ui-sref="research({researchId: research._id})" class="list-group-item">
+      <a ng-repeat="research in pagedItems" ui-sref="core.research({researchId: research._id})" class="list-group-item">
           <h4 class="list-group-item-heading" ng-bind="research.title"></h4>
           <p class="list-group-item-text pull-right small" ng-bind="research.image"></p>
           <p class="list-group-item-text" ng-bind="research.content"></p>
