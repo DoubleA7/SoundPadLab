@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('research').controller('ResearchListPublicController', ['$scope', '$filter', 'researchPublic',
-  function ($scope, $filter, researchPublic) {
+angular.module('research.admin').controller('ResearchListController', ['$scope', '$filter', 'researchAdmin',
+  function ($scope, $filter, researchAdmin) {
       console.log("research list initialized!!");
-      researchPublic.query(function (data) {
+      researchAdmin.query(function (data) {
           $scope.researchs = data;
       $scope.buildPager();
     });

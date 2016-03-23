@@ -1,44 +1,24 @@
 'use strict';
 
 // Setting up route
-angular.module('research.admin.routes').config(['$stateProvider',
+angular.module('research').config(['$stateProvider',
   function ($stateProvider) {
       $stateProvider
-        .state('admin.researchs', {
+        .state('researchs', {
             url: '/research',
-            templateUrl: 'modules/research/client/views/admin/list-research.client.view.html',
-            controller: 'ResearchListController'
+            templateUrl: 'modules/research/client/views/list-research.client.view.html',
+            controller: 'ResearchListPublicController'
         })
-        .state('admin.research', {
+        .state('research', {
             url: '/research/:researchId',
-            templateUrl: 'modules/research/client/views/admin/view-research.client.view.html',
-            controller: 'ResearchController',
+            templateUrl: 'modules/research/client/views/view-research.client.view.html',
+            controller: 'ResearchPublicController',
             resolve: {
-                researchResolve: ['$stateParams', 'researchAdmin', function ($stateParams, researchAdmin) {
-                    return researchAdmin.get({
+                researchResolve: ['$stateParams', 'researchPublic', function ($stateParams, researchPublic) {
+                    return researchPublic.get({
                         researchId: $stateParams.researchId
                     });
                 }]
-            }
-        })
-        .state('admin.research-edit', {
-            url: '/research/:researchId/edit',
-            templateUrl: 'modules/research/client/views/admin/edit-research.client.view.html',
-            controller: 'ResearchController',
-            resolve: {
-                researchResolve: ['$stateParams', 'researchAdmin', function ($stateParams, researchAdmin) {
-                    return researchAdmin.get({
-                        researchId: $stateParams.researchId
-                    });
-                }]
-            }
-        })
-        .state('authentication.addResearch', {
-            url: '/addResearch',
-            controller: 'addResearchController',
-            templateUrl: 'modules/research/client/views/admin/add-research.client.view.html',
-            data: {
-                roles: ['admin']
             }
         });
   }
