@@ -15,31 +15,32 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     $stateProvider
       .state('core', {
         abstract: true,
-        templateUrl: 'modules/core/client/views/core.client.view.html',
-        controller: 'CoreController',
-        controllerAs: 'vm'
+        template: '<ui-view/>',
+        views: {
+			'': {
+				templateUrl: 'modules/core/client/views/core.client.view.html',
+		  		controller: 'CoreController'
+			}
+		}
       })
     .state('core.home', {
-      url: '/home',
+      url: '/',
       templateUrl: 'modules/core/client/views/home.client.view.html'
     })
     .state('core.about', {
       url: '/about',
       templateUrl: 'modules/core/client/views/about.client.view.html',
-      controller: 'AboutController',
-      controllerAs: 'vm'
+      controller: 'AboutController'
     })
     .state('core.contact', {
       url: '/contact',
       templateUrl: 'modules/core/client/views/contact.client.view.html',
-      controller: 'ContactController',
-      controllerAs: 'vm'
+      controller: 'ContactController'
     })
     .state('core.team', {
       url: '/team',
       templateUrl: 'modules/core/client/views/team.client.view.html'//,
       //controller: 'TeamController',
-      //controllerAs: 'vm'
     })
     .state('not-found', {
       url: '/not-found',

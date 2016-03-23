@@ -2,8 +2,6 @@
 
 angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus',
   function ($scope, $state, Authentication, Menus) {
-    console.log("Start Header controller");
-    // Expose view variables
     $scope.showHeader = false;
     $scope.$state = $state;
     $scope.authentication = Authentication;
@@ -21,19 +19,5 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     $scope.$on('$stateChangeSuccess', function () {
       $scope.isCollapsed = false;
     });
-    console.log($scope.authentication);
-    var user_roles = $scope.authentication.user.roles;
-    //check if admin is signed in
-    if(!user_roles){
-      console.log('no user roles found');
-      $scope.showHeader = false;
-    }
-    else if (user_roles.indexOf('admin') > -1) {
-      $scope.showHeader = true;
-      alert("HEY");
-    } else {
-      $scope.showHeader = false;
-      alert("YEH");
-    }
   }
 ]);
