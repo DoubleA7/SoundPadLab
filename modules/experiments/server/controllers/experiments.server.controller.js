@@ -101,7 +101,10 @@ function removeFromUser(i, experiment) {
  * Create a experiment
  */
 exports.create = function (req, res) {
+  console.log(req.body);
   var experiment = new Experiment(req.body);
+
+  /*
   experiment.participants = req.body.participants;
   experiment.users = req.body.users;
   experiment.appointments = req.body.appointments;
@@ -112,6 +115,12 @@ exports.create = function (req, res) {
   experiment.experiment_name = req.body.experiment_name;
   experiment.save(function (err) {
     if (err) {
+  	*/
+  console.log(experiment);
+      
+  experiment.save(function (err) {
+    if (err) {
+      console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });

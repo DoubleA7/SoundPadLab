@@ -1,0 +1,25 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 ng-bind="experiment.experiment_name"></h1>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="admin.experiment-edit({experimentId: experiment._id})">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="remove();" ng-if="experiment._id !== authentication.experiment._id">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <p class="list-group-item-text small" ng-show="experiment.requires_eyeglasses"> Requires eyeglasses</p>
+      </div>
+    </div>
+  </div>
+</section>

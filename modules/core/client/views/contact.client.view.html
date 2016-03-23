@@ -1,0 +1,51 @@
+<section class="contact" ng-controller="ContactController">
+    <div class="row" id="jumbotrons">
+        <div class="col-md-5 jumbotron">
+            <h1>Location</h1>
+            <!--<div class="thumbnail">Insert map here</div>
+            <div id = "googleMap"></div>-->
+            <div map-lazy-load="https://maps.google.com/maps/api/js">
+                <ng-map center="29.648133, -82.344044" zoom="17">
+                    <marker position="29.648133, -82.344044" on-click = "openGoogleMaps()">
+                    </marker>
+                </ng-map>
+
+            </div>
+            <p>Our lab is located at E313A CSE Building, University of Florida, Gainesville, FL 32611</p>
+        </div>
+        <div class="col-md-5 col-md-offset-1 jumbotron">
+            <h1>Contact Info</h1>
+            <p>Dr. McMullen: E530 CSE Building</p>
+            <form ng-submit="sendMail()">
+                <p>
+                    <md-input-container>
+                        <label>Name</label>
+                        <input type="text" ng-model="name">
+                    </md-input-container>
+                </p>
+                <p>
+                    <md-input-container>
+                        <label>E-Mail</label>
+                        <input type="text" ng-model="email">
+                    </md-input-container>
+                </p>
+                <p>
+                    <md-input-container>
+                        <input type="submit" id="submit" value="Send!">
+                    </md-input-container>
+                </p>
+            </form>
+        </div>
+    </div>
+
+    <div id="footer" class="row">
+        <span id="footer-nav" class="col-md-12 col-sm-12 col-xs-12">
+            <a ng-click="goToContact()">Contact Us</a>
+            <a ui-sref="goToTeam()">The Team</a>
+        </span>
+        <span id="rights" class="col-md-12 col-sm-12 col-xs-12">
+            <a href="http://www.ufl.edu">&copy; University of Florida</a>,
+            <a href="http://www.cise.ufl.edu">Department of Computer & Information Science & Engineering</a>
+        </span>
+    </div>
+</section>

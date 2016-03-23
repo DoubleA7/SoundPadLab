@@ -74,7 +74,7 @@ function removeFromAppointment(i, participant) {
  */
 exports.create = function (req, res) {
   var participant = new Participant(req.body);
-
+/*
   participant.name = req.body.name;
   participant.phone_number = req.body.phone_number;
   participant.email = req.body.email;
@@ -95,6 +95,11 @@ exports.create = function (req, res) {
 
   participant.save(function (err) {
     if (err) {
+  	*/
+  console.log(participant);
+  participant.save(function (err) {
+    if (err) {
+      console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });

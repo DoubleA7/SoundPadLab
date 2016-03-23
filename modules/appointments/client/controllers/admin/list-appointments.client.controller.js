@@ -2,7 +2,7 @@
 
 angular.module('appointments.admin').controller('AppointmentListController', ['$scope', '$filter', 'Admin',
   function ($scope, $filter, Admin) {
-    console.log("user list initialized!!");
+    console.log('user list initialized!!');
     Admin.query(function (data) {
       $scope.users = data;
       $scope.buildPager();

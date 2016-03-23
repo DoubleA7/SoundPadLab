@@ -1,0 +1,77 @@
+<section>
+  <div class="page-header">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 ng-bind="participant.name"></h1>
+      </div>
+      <div class="col-md-4">
+        <a class="btn btn-primary" ui-sref="admin.participant-edit({participantId: participant._id})">
+          <i class="glyphicon glyphicon-edit"></i>
+        </a>
+        <a class="btn btn-primary" ng-click="remove();" ng-if="participant._id !== authentication.participant._id">
+          <i class="glyphicon glyphicon-trash"></i>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8">
+      <div class="row">
+        <div class="col-md-3"><strong>Participant Name</strong></div>
+        <div class="col-md-6" ng-bind="participant.name"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Phone Number</strong></div>
+        <div class="col-md-6" ng-bind="participant.phone_number"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Email</strong></div>
+        <div class="col-md-6" ng-bind="participant.email"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Gender</strong></div>
+        <div class="col-md-6" ng-bind="participant.gender"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Date of Birth</strong></div>
+        <div class="col-md-6" ng-bind="participant.dob"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Card Info</strong></div>
+        <div class="col-md-6" ng-bind="participant.card_info"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Comment</strong></div>
+        <div class="col-md-6" ng-bind="participant.comment"></div>
+      </div>
+      <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>Subject Id</strong></div>
+        <div class="col-md-6" ng-bind="participant.subject_id"></div>
+      </div>
+      <hr/>
+      <div ng-show="participant.contact_lenses" class="row">
+        <div class="col-md-9"><strong>Requires Contact Lenses</strong></div>
+      </div>
+      <div ng-show="participant.corrective_lenses" class="row">
+        <div class="col-md-9"><strong>Requires Corrective Lenses</strong></div>
+      </div>
+      <div ng-show="participant.vision_test" class="row">
+        <div class="col-md-9"><strong>Took Vision Test</strong></div>
+      </div>
+      <div ng-show="participant.took_audiogram" class="row">
+        <div class="col-md-9"><strong>Took Audiogram</strong></div>
+      </div>
+      <div ng-show="participant.HRTF_assigned" class="row">
+        <div class="col-md-9"><strong>HRTF assigned</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
