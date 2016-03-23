@@ -9,7 +9,6 @@ angular.module('core').controller('CoreController', ['$scope', '$state',
     console.log($scope);
 
     $scope.init = function() {
-      alert('Init function call');
     };
   }
 ]);
