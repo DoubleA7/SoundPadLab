@@ -250,7 +250,7 @@ exports.participantByID = function (req, res, next, id) {
     });
   }
 
-  Participant.findById(id).exec(function (err, participant) {
+  Participant.findById(id).populate('experiments').populate('appointments').exec(function (err, participant) {
     if (err) {
       return next(err);
     } else if (!participant) {

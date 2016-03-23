@@ -15,12 +15,13 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
 
 	
     $scope.addAppointment = function (isValid) {
-      	console.log("ADD APPOINTMENT!");
+      console.log("ADD APPOINTMENT");
       $scope.error = null;
 
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'audioForm');
+        $scope.$broadcast('show-errors-check-validity', 'appointmentForm');
 		console.log("NOT VALID");
+
         return false;
       }
 

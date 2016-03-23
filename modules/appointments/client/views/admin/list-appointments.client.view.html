@@ -12,7 +12,7 @@
   <div class="list-group">
     <a ng-repeat="appointment in pagedItems" ui-sref="admin.appointment({appointmentId: appointment._id})" class="list-group-item">
       <p class="list-group-item-text pull-right small" ng-bind="appointment.time"></p>
-      <p class="list-group-item-text" ng-bind="appointment.participant"></p>
+      <p class="list-group-item-text" ng-bind="getName(appointment.participant)"></p>
     </a>
   </div>
 

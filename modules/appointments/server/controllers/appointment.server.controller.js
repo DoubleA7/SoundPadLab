@@ -186,7 +186,7 @@ exports.delete = function (req, res) {
 
 //List All
 exports.list = function (req, res) {
-  Appointment.find().sort('time').exec(function (err, appointment) {
+  Appointment.find().populate('participant').sort('time').exec(function (err, appointment) {
     if (err) {
       res.status(400).send(err);
     }
@@ -198,7 +198,7 @@ exports.list = function (req, res) {
 
 //Middleware
 exports.appointmentByID = function (req, res, next, id) {
-  Appointment.findById(id).exec(function (err, appointment) {
+  Appointment.findById(id).populate('participant').populate('experiments').exec(function (err, appointment) {
     if (err) {
       res.status(400).send(err);
     }
