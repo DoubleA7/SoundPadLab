@@ -20,11 +20,9 @@ angular.module('participants').controller('addParticipantController', ['$scope',
       }
 
       $http.post('/api/participants', $scope.credentials).success(function (response) {
-        console.log("ADDED PARTICIPANT");
         // And redirect to the previous or list of users 
         $state.go('admin.participants', $state.previous.params);
       }).error(function (response) {
-        console.log("FAILED TO ADD PARTICIPANT");
         $scope.error = response.message;
       });
     };
