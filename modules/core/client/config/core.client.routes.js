@@ -52,13 +52,13 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
       templateUrl: 'modules/audioFiles/client/views/view-audioFile.client.view.html',
       controller: 'AudioFilePublicController',
       resolve: {
-      audioFileResolve: ['$stateParams', 'audioFilePublic', function ($stateParams, audioFilePublic) {
-        return audioFilePublic.get({
-          audioFileId: $stateParams.audioFileId
-            });
-          }]
-        }
-      })
+        audioFileResolve: ['$stateParams', 'audioFilePublic', function ($stateParams, audioFilePublic) {
+          return audioFilePublic.get({
+            audioFileId: $stateParams.audioFileId
+          });
+        }]
+      }
+    })
     .state('core.researchs', {
       url: '/research',
       templateUrl: 'modules/research/client/views/list-research.client.view.html',

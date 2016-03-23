@@ -5,7 +5,7 @@ var transporter = nodemailer.createTransport({
   service: 'Gmail',
   auth: {
     user: 'settlejonathen@gmail.com',
-    pass: '*******'
+    pass: 'Ratandpig13'
   },
   debug: true
 });
@@ -61,8 +61,8 @@ exports.sendMail = function (req, res) {
   var mailOptions = {
     from: data.email, // sender address
     to: 'settlejonathen@gmail.com', // list of receivers
-    subject: 'Message from ' + data.name + 'via SoundPadLab app', // Subject line
-    text: data.msg, // plaintext body
+    subject: 'Message from ' + data.name + ' via SoundPadLab app', // Subject line
+    text: data.email + " sent some template message and " + data.msg, // plaintext body
   };
 
   transporter.sendMail(mailOptions, function(error, info){
