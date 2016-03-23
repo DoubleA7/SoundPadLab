@@ -198,7 +198,7 @@ exports.list = function (req, res) {
 
 //Middleware
 exports.appointmentByID = function (req, res, next, id) {
-  Appointment.findById(id).exec(function (err, appointment) {
+  Appointment.findById(id).populate('participant').populate('experiments').exec(function (err, appointment) {
     if (err) {
       res.status(400).send(err);
     }
