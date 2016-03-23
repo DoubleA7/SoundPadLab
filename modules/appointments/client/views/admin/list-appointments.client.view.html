@@ -10,17 +10,16 @@
     </div>
   </div>
   <div class="list-group">
-    <a ng-repeat="user in pagedItems" ui-sref="admin.user({userId: user._id})" class="list-group-item">
-      <h4 class="list-group-item-heading" ng-bind="user.username"></h4>
-      <p class="list-group-item-text pull-right small" ng-bind="user.roles"></p>
-      <p class="list-group-item-text" ng-bind="user.email"></p>
+    <a ng-repeat="appointment in pagedItems" ui-sref="admin.appointment({appointmentId: appointment._id})" class="list-group-item">
+      <p class="list-group-item-text pull-right small" ng-bind="appointment.time"></p>
+      <p class="list-group-item-text" ng-bind="appointment.participant"></p>
     </a>
   </div>
 
   <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></pagination>
   <div class="container">
 	<div class="row">
-		<button class="btn-primary" ui-sref="authentication.signup">Add User</button>
+		<button class="btn-primary" ui-sref="admin.appointment-add">Add Appointment</button>
 	</div>
   </div>
 </section>

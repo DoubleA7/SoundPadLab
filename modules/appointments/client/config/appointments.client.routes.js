@@ -32,6 +32,14 @@ angular.module('appointments.admin.routes').config(['$stateProvider',
             });
           }]
         }
+      })
+      .state('admin.appointment-add', {
+        url: '/addAppointment',
+        controller: 'addAppointmentController',
+        templateUrl: 'modules/appointments/client/views/admin/add-appointment.html',
+        data: {
+          roles: ['admin']
+        }
       });
   }
 ]);
