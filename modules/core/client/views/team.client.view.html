@@ -1,9 +1,9 @@
-<section>
+<section ng-controller="TeamController">
   <h1>Team members</h1>
 
-  <div class = "current_members">
-  	<ul ng-repeat: "user in users">
-  	<li>{{user}}</li>
+  <div>
+  	<ul>
+  	<li ng-repeat= "user in users"><img ng-src= {{user.profileImageURL}}>&nbsp{{user.displayName}}</li>
   	</ul>
   </div>
 </section>
