@@ -3,12 +3,12 @@
 //Dependencies
 var path = require('path'),
   mongoose = require('mongoose'),
-  Event = require('../models/events.server.model.js'),
+  Event_t = require('../models/events.server.model.js'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
 //Create
 exports.create = function (req, res) {
-  var event = new Event(req.body);
+  var event = new Event_t(req.body);
   console.log(event);
   event.save(function (err) {
     if (err) {
@@ -66,7 +66,7 @@ exports.delete = function (req, res) {
 
 //List All
 exports.list = function (req, res) {
-  Event.find().sort('-created_at').exec(function (err, events) {
+  Event_t.find().sort('-created_at').exec(function (err, events) {
     if (err) {
       console.log(err);
       return res.status(400).send({
@@ -88,7 +88,7 @@ exports.eventByID = function (req, res, next, id) {
         });
     }
 
-    Event.findById(id).exec(function (err, event) {
+    Event_t.findById(id).exec(function (err, event) {
         if (err) {
             return next(err);
         } else if (!event) {

@@ -1,9 +1,9 @@
 'use strict';
 
-angular.module('events').controller('EventListPublicController', ['$scope', '$filter', 'eventsPublic',
-  function ($scope, $filter, eventsPublic) {
+angular.module('events.admin').controller('EventListController', ['$scope', '$filter', 'eventsAdmin',
+  function ($scope, $filter, eventsAdmin) {
     console.log("events list initialized!!");
-    eventsPublic.query(function (data) {
+    eventsAdmin.query(function (data) {
       $scope.events = data;
       $scope.buildPager();
     });

@@ -1,43 +1,24 @@
 'use strict';
 
 // Setting up route
-angular.module('events.admin.routes').config(['$stateProvider',
+angular.module('events').config(['$stateProvider',
   function ($stateProvider) {
       $stateProvider
-        .state('admin.events', {
+        .state('events', {
             url: '/events',
-            templateUrl: 'modules/events/client/views/admin/list-events.client.view.html',
-            controller: 'EventListController'
+            templateUrl: 'modules/events/client/views/list-events.client.view.html',
+            controller: 'EventListPublicController'
         })
-        .state('admin.event', {
+        .state('event', {
             url: '/events/:eventId',
-            templateUrl: 'modules/events/client/views/admin/view-event.client.view.html',
-            controller: 'EventController',
+            templateUrl: 'modules/events/client/views/view-event.client.view.html',
+            controller: 'EventPublicController',
             resolve: {
-                eventResolve: ['$stateParams', 'eventsAdmin', function ($stateParams, eventsAdmin) {
-                    return eventsAdmin.get({
+                eventResolve: ['$stateParams', 'eventsPublic', function ($stateParams, eventsPublic) {
+                    return eventsPublic.get({
                         eventId: $stateParams.eventId
                     });
                 }]
-            }
-        })
-        .state('admin.event-edit', {
-            url: '/events/:eventId/edit',
-            templateUrl: 'modules/events/client/views/admin/edit-event.client.view.html',
-            controller: 'EventController',
-            resolve: {
-                eventResolve: ['$stateParams', 'eventsAdmin', function ($stateParams, eventsAdmin) {
-                    return eventsAdmin.get({
-                        eventId: $stateParams.eventId
-                    });
-                }]
-            }
-        })
-        .state('authentication.addEvent', {
-            url: '/addEvent',
-            templateUrl: 'modules/events/client/views/admin/add-event.client.view.html',
-            data: {
-                roles: ['admin']
             }
         });
   }
