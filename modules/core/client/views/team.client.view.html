@@ -1,0 +1,23 @@
+<section ng-controller="TeamController">
+  <h1 class = "header">Team members</h1>
+  <div>
+  <table class = "teamTable">
+  <tbody>
+  <colgroup>
+    <col><col><col>
+  </colgroup>
+  	<tr>
+  	<td ng-repeat = "user in users"><img class ="profileImg" ng-src= {{user.profileImageURL}}></td>
+  </tr>
+  <tr>
+  	<td ng-repeat = "user in users" class = "name">{{user.displayName}}</td>
+  </tr>		
+  </tbody>
+  </table>
+  <div id="footer">
+		<span id="rights" class="col-md-12 col-sm-12 col-xs-12">
+			<a href="http://www.ufl.edu">&copy; University of Florida</a>,
+			<a href="http://www.cise.ufl.edu">Department of Computer & Information Science & Engineering</a>
+		</span>
+	</div>
+</section>

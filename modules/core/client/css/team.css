@@ -1,0 +1,28 @@
+.header {
+	text-align: center;
+}
+
+.profileImg {
+	height:	200px;
+	width:	200px;
+}
+
+.teamTable{
+	column-span: 2;
+	float:left;
+	table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.teamTable th, td {
+    padding: 15px 50px;
+    text-align: left;
+}
+
+.name {
+	font-size: 20pt;
+}
+#rights a {
+  font-size: 0.8em;
+  color: #a0a0a0; 
+}

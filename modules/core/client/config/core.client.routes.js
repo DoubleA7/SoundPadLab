@@ -13,9 +13,34 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
 
     // Home state routing
     $stateProvider
-    .state('home', {
+      .state('core', {
+        abstract: true,
+        template: '<ui-view/>',
+        views: {
+          '': {
+            templateUrl: 'modules/core/client/views/core.client.view.html',
+            controller: 'CoreController'
+          }
+        }
+      })
+    .state('core.home', {
       url: '/',
       templateUrl: 'modules/core/client/views/home.client.view.html'
+    })
+    .state('core.about', {
+      url: '/about',
+      templateUrl: 'modules/core/client/views/about.client.view.html',
+      controller: 'AboutController'
+    })
+    .state('core.contact', {
+      url: '/contact',
+      templateUrl: 'modules/core/client/views/contact.client.view.html',
+      controller: 'ContactController'
+    })
+    .state('core.team', {
+      url: '/team',
+      templateUrl: 'modules/core/client/views/team.client.view.html',
+      controller: 'TeamController'
     })
     .state('not-found', {
       url: '/not-found',
