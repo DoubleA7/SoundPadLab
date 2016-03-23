@@ -38,7 +38,7 @@ angular.module('core.admin.routes').config(['$stateProvider',
         controller: 'AppointmentController',
         resolve: {
           appointmentResolve: ['$stateParams', 'appointmentsAdmin', function ($stateParams, appointmentsAdmin) {
-            return Admin.get({
+            return appointmentsAdmin.get({
               appointmentId: $stateParams.appointmentId
             });
           }]
@@ -50,7 +50,7 @@ angular.module('core.admin.routes').config(['$stateProvider',
         controller: 'AppointmentController',
         resolve: {
           appointmentResolve: ['$stateParams', 'appointmentsAdmin', function ($stateParams, appointmentsAdmin) {
-            return Admin.get({
+            return appointmentsAdmin.get({
               appointmentId: $stateParams.appointmentId
             });
           }]

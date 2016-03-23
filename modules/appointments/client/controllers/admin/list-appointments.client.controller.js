@@ -9,7 +9,7 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
 
 	$scope.getName = function () {
 		
-	}
+	};
 
     $scope.buildPager = function () {
       $scope.pagedItems = [];
