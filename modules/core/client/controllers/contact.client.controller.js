@@ -3,7 +3,7 @@
 angular.module('core').controller('ContactController', ['$scope', '$http',
   function($scope, $http) {
 
-    $scope.name = 'Interested in Being Research Subject';
+    $scope.name = 'Jonathen';
     $scope.email = 'test';
     $scope.verifyEmail = 'test2';
     $scope.msg = 'actual email';

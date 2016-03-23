@@ -59,11 +59,10 @@ exports.sendMail = function (req, res) {
   var data = req.body;
 
   var mailOptions = {
-    from: '"Fred Foo 👥" <foo@blurdybloop.com>', // sender address
+    from: data.email, // sender address
     to: 'settlejonathen@gmail.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world 🐴', // plaintext body
-    html: '<b>Hello world 🐴</b>' // html body
+    subject: 'Message from ' + data.name + 'via SoundPadLab app', // Subject line
+    text: data.msg, // plaintext body
   };
 
   transporter.sendMail(mailOptions, function(error, info){
