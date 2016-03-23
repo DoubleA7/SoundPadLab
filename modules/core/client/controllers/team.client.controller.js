@@ -1,23 +1,10 @@
-(function() {
-  'use strict';
-
-  angular
-    .module('core')
-    .controller('TeamController', TeamController);
-
-  TeamController.$inject = ['$scope'];
-
-  function TeamController($scope) {
-    var vm = this;
-
-    // Team controller logic
-    // ...
-
-    init();
-
-    function init() {
-      console.log('In TeamController');
-      
-    }
+'use strict';
+angular.module('core').controller('TeamController', ['$scope', '$state', 'Admin',
+  function ($scope, $state, Admin) {
+    console.log("team list initialized!!");
+    Admin.query(function (data) {
+      $scope.users = data;
+    });
+    console.log($scope.users);
   }
-})();
+]);
