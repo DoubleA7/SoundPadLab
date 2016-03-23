@@ -1,13 +1,14 @@
 'use strict';
 
-angular.module('participants.admin').controller('ParticipantListController', ['$scope', '$filter', 'participantsAdmin',
-  function ($scope, $filter, participantsAdmin) {
-    console.log("participants list initialized!!");
-    participantsAdmin.query(function (data) {
-      $scope.participants = data;
+angular.module('audioFiles.admin').controller('AudioFileListController', ['$scope', '$filter', 'audioFileAdmin',
+  function ($scope, $filter, audioFileAdmin) {
+    console.log("audioFiles list initialized!!");
+    audioFileAdmin.query(function (data) {
+      $scope.audioFiles = data;
       $scope.buildPager();
     });
 
+    console.log($scope.audioFiles);
     $scope.buildPager = function () {
       $scope.pagedItems = [];
       $scope.itemsPerPage = 15;
@@ -16,7 +17,7 @@ angular.module('participants.admin').controller('ParticipantListController', ['$
     };
 
     $scope.figureOutItemsToDisplay = function () {
-      $scope.filteredItems = $filter('filter')($scope.participants, {
+      $scope.filteredItems = $filter('filter')($scope.audioFiles, {
         $: $scope.search
       });
       $scope.filterLength = $scope.filteredItems.length;
@@ -29,4 +30,6 @@ angular.module('participants.admin').controller('ParticipantListController', ['$
       $scope.figureOutItemsToDisplay();
     };
   }
+  
+  
 ]);

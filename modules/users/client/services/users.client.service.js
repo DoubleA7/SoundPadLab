@@ -23,3 +23,28 @@ angular.module('users.admin').factory('Admin', ['$resource',
     });
   }
 ]);
+
+angular.module('participants.admin').factory('participantsAdmin', ['$resource',
+  function ($resource) {
+    return $resource('api/participants/:participantId', {
+      participantId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);
+
+angular.module('experiments.admin').factory('experimentsAdmin', ['$resource',
+  function ($resource) {
+    console.log("experiments admin");
+    return $resource('api/experiments/:experimentId', {
+      experimentId: '@_id'
+    }, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);

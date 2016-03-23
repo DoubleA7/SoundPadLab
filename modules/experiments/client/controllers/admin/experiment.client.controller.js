@@ -1,19 +1,19 @@
 'use strict';
 
-angular.module('experiments.admin').controller('ExperimentController', ['$scope', '$state', 'Authentication', 'userResolve',
-  function ($scope, $state, Authentication, userResolve) {
+angular.module('experiments.admin').controller('ExperimentController', ['$scope', '$state', 'Authentication', 'experimentResolve',
+  function ($scope, $state, Authentication, experimentResolve) {
     $scope.authentication = Authentication;
-    $scope.user = userResolve;
+    $scope.experiment = experimentResolve;
 
-    $scope.remove = function (user) {
-      if (confirm('Are you sure you want to delete this user?')) {
-        if (user) {
-          user.$remove();
+    $scope.remove = function (experiment) {
+      if (confirm('Are you sure you want to delete this experiment?')) {
+        if (experiment) {
+          experiment.$remove();
 
-          $scope.users.splice($scope.users.indexOf(user), 1);
+          $scope.experiments.splice($scope.experiments.indexOf(experiment), 1);
         } else {
-          $scope.user.$remove(function () {
-            $state.go('admin.users');
+          $scope.experiment.$remove(function () {
+            $state.go('admin.experiments');
           });
         }
       }
@@ -21,16 +21,16 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
 
     $scope.update = function (isValid) {
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'userForm');
+        $scope.$broadcast('show-errors-check-validity', 'experimentForm');
 
         return false;
       }
 
-      var user = $scope.user;
+      var experiment = $scope.experiment;
 
-      user.$update(function () {
-        $state.go('admin.user', {
-          userId: user._id
+      experiment.$update(function () {
+        $state.go('admin.experiment', {
+          experimentId: experiment._id
         });
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
