@@ -6,14 +6,15 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
     $scope.research = researchResolve;
     
     $scope.remove = function (research) {
-        if (confirm('Are you sure you want to delete this research?')) {
-            if (research) {
-                research.$remove();
+      if (confirm('Are you sure you want to delete this research?')) {
+        if (research) {
+          research.$remove();
 
-                $scope.researchs.splice($scope.researchs.indexOf(research), 1);
-        } else {
-                $scope.research.$remove(function () {
-                    $state.go('admin.researchs');
+          $scope.researchs.splice($scope.researchs.indexOf(research), 1);
+        }
+        else {
+          $scope.research.$remove(function () {
+            $state.go('admin.researchs');
           });
         }
       }
@@ -21,7 +22,7 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
 
     $scope.update = function (isValid) {
       if (!isValid) {
-          $scope.$broadcast('show-errors-check-validity', 'researchForm');
+        $scope.$broadcast('show-errors-check-validity', 'researchForm');
 
         return false;
       }
@@ -29,10 +30,11 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
       var research = $scope.research;
 
       research.$update(function () {
-          $state.go('admin.research', {
-              researchId: research._id
+        $state.go('admin.research', {
+          researchId: research._id
         });
-      }, function (errorResponse) {
+      },
+      function (errorResponse) {
         $scope.error = errorResponse.data.message;
       });
     };

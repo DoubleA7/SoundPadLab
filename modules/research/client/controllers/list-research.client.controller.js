@@ -2,9 +2,9 @@
 
 angular.module('research').controller('ResearchListPublicController', ['$scope', '$filter', 'researchPublic',
   function ($scope, $filter, researchPublic) {
-      console.log("research list initialized!!");
-      researchPublic.query(function (data) {
-          $scope.researchs = data;
+    console.log("research list initialized!!");
+    researchPublic.query(function (data) {
+      $scope.researchs = data;
       $scope.buildPager();
     });
 
@@ -16,7 +16,7 @@ angular.module('research').controller('ResearchListPublicController', ['$scope',
     };
 
     $scope.figureOutItemsToDisplay = function () {
-        $scope.filteredItems = $filter('filter')($scope.researchs, {
+      $scope.filteredItems = $filter('filter')($scope.researchs, {
         $: $scope.search
       });
       $scope.filterLength = $scope.filteredItems.length;
