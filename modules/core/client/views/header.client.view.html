@@ -32,6 +32,7 @@
       </li>
 	</ul>
   	------------------------------------------------------------------------------------------>
+
     <ul class="nav navbar-nav navbar-right" ng-show="authentication.user">
       <li class="dropdown" dropdown>
         <a class="dropdown-toggle user-header-dropdown-toggle" dropdown-toggle role="button">
@@ -54,6 +55,30 @@
           <li class="divider"></li>
           <li>
             <a href="/api/auth/signout" target="_self">Signout</a>
+          </li>
+        </ul>
+      </li>
+	</ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li class="dropdown" dropdown>
+        <a class="dropdown-toggle user-header-dropdown-toggle" dropdown-toggle role="button">
+          <span >Navigation</span> <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu" role="menu">
+          <li ui-sref-active="active">
+            <a ui-sref="core.about">About</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="core.audioFiles">Audio</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="core.researchs">Research</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="core.publications">Publications</a>
+          </li>
+          <li ui-sref-active="active">
+            <a ui-sref="core.events">Moments</a>
           </li>
         </ul>
       </li>

@@ -3,7 +3,7 @@
 // Setting up route
 angular.module('research').config(['$stateProvider',
   function ($stateProvider) {
-    $stateProvider
+/*    $stateProvider
     .state('researchs', {
       url: '/research',
       templateUrl: 'modules/research/client/views/list-research.client.view.html',
@@ -20,6 +20,6 @@ angular.module('research').config(['$stateProvider',
           });
         }]
       }
-    });
+    }); */
   }
 ]);

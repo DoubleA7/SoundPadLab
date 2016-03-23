@@ -3,7 +3,7 @@
 // Setting up route
 angular.module('events').config(['$stateProvider',
   function ($stateProvider) {
-    $stateProvider
+/*    $stateProvider
     .state('events', {
       url: '/events',
       templateUrl: 'modules/events/client/views/list-events.client.view.html',
@@ -20,6 +20,6 @@ angular.module('events').config(['$stateProvider',
           });
         }]
       }
-    });
+    });*/
   }
 ]);

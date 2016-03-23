@@ -3,7 +3,7 @@
 // Setting up route
 angular.module('publications').config(['$stateProvider',
   function ($stateProvider) {
-    $stateProvider
+/*    $stateProvider
       .state('publications', {
         url: '/publications',
         templateUrl: 'modules/publications/client/views/list-publications.client.view.html',
@@ -21,7 +21,7 @@ angular.module('publications').config(['$stateProvider',
           }]
         }
       });
-      
+ */     
   }
 ]);
 

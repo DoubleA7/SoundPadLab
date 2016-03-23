@@ -15,16 +15,16 @@ angular.module('core').controller('HomeController', ['$scope', '$state', 'Authen
       $state.go('core.about');
     };
     $scope.goToAudio = function(){
-      $state.go('core.audio');
+      $state.go('core.audioFiles');
     };
     $scope.goToResearch = function(){
-      $state.go('core.research');
+      $state.go('core.researchs');
     };
     $scope.goToPublications = function(){
       $state.go('core.publications');
     };
-    $scope.goToMoments = function(){
-      $state.go('core.moments');
+    $scope.goToEvents = function(){
+      $state.go('core.events');
     };
   }
 ]);
