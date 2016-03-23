@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('audioFiles').controller('addAudioFileController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator',
+angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator',
   function ($scope, $state, $http, $location, $window, Authentication, PasswordValidator) {
     $scope.authentication = Authentication;
     $scope.popoverMsg = PasswordValidator.getPopoverMsg();
