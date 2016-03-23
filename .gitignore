@@ -1,3 +1,8 @@
+modules/core/client/css/header.css
+modules/core/client/css/header.css.map
+modules/core/client/css/splash.css
+modules/core/client/css/splash.css.map
+
 # OS
 # ===========
 .DS_Store
