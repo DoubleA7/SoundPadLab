@@ -1,5 +1,15 @@
 'use strict';
 
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'settlejonathen@gmail.com',
+    pass: 'Ratandpig13'
+  },
+  debug: true
+});
+
 /**
  * Render the main application page
  */
@@ -39,4 +49,29 @@ exports.renderNotFound = function (req, res) {
       res.send('Path not found');
     }
   });
+};
+
+/**
+ * Send an e-mail when the contact form is submitted
+ */
+exports.sendMail = function (req, res) {
+
+  var data = req.body;
+
+  var mailOptions = {
+    from: '"Fred Foo 👥" <foo@blurdybloop.com>', // sender address
+    to: 'settlejonathen@gmail.com', // list of receivers
+    subject: 'Hello ✔', // Subject line
+    text: 'Hello world 🐴', // plaintext body
+    html: '<b>Hello world 🐴</b>' // html body
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+      return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+  });
+
+  res.json(data);
 };
