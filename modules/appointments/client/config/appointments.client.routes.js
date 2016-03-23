@@ -3,7 +3,7 @@
 // Setting up route
 angular.module('appointments.admin.routes').config(['$stateProvider',
   function ($stateProvider) {
-    $stateProvider
+/*    $stateProvider
       .state('admin.appointments', {
         url: '/appointments',
         templateUrl: 'modules/appointments/client/views/admin/list-appointments.client.view.html',
@@ -14,7 +14,7 @@ angular.module('appointments.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/appointments/client/views/admin/view-appointment.client.view.html',
         controller: 'AppointmentController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
+          appointmentResolve: ['$stateParams', 'appointmentsAdmin', function ($stateParams, appointmentsAdmin) {
             return Admin.get({
               appointmentId: $stateParams.appointmentId
             });
@@ -26,7 +26,7 @@ angular.module('appointments.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/appointments/client/views/admin/edit-appointment.client.view.html',
         controller: 'AppointmentController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
+          appointmentResolve: ['$stateParams', 'appointmentsAdmin', function ($stateParams, appointmentsAdmin) {
             return Admin.get({
               appointmentId: $stateParams.appointmentId
             });
@@ -41,6 +41,6 @@ angular.module('appointments.admin.routes').config(['$stateProvider',
           roles: ['admin']
         }
       });
-  }
+*/  }
 ]);
 

@@ -1,19 +1,19 @@
 'use strict';
 
-angular.module('appointments.admin').controller('AppointmentController', ['$scope', '$state', 'Authentication', 'userResolve',
-  function ($scope, $state, Authentication, userResolve) {
+angular.module('appointments.admin').controller('AppointmentController', ['$scope', '$state', 'Authentication', 'appointmentResolve',
+  function ($scope, $state, Authentication, appointmentResolve) {
     $scope.authentication = Authentication;
-    $scope.user = userResolve;
+    $scope.appointment = appointmentResolve;
 
-    $scope.remove = function (user) {
-      if (confirm('Are you sure you want to delete this user?')) {
-        if (user) {
-          user.$remove();
+    $scope.remove = function (appointment) {
+      if (confirm('Are you sure you want to delete this appointment?')) {
+        if (appointment) {
+          appointment.$remove();
 
-          $scope.users.splice($scope.users.indexOf(user), 1);
+          $scope.appointments.splice($scope.appointments.indexOf(appointment), 1);
         } else {
-          $scope.user.$remove(function () {
-            $state.go('admin.users');
+          $scope.appointment.$remove(function () {
+            $state.go('admin.appointments');
           });
         }
       }
@@ -21,16 +21,16 @@ angular.module('appointments.admin').controller('AppointmentController', ['$scop
 
     $scope.update = function (isValid) {
       if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'userForm');
+        $scope.$broadcast('show-errors-check-validity', 'appointmentForm');
 
         return false;
       }
 
-      var user = $scope.user;
+      var appointment = $scope.appointment;
 
-      user.$update(function () {
-        $state.go('admin.user', {
-          userId: user._id
+      appointment.$update(function () {
+        $state.go('admin.appointment', {
+          appointmentId: appointment._id
         });
       }, function (errorResponse) {
         $scope.error = errorResponse.data.message;
