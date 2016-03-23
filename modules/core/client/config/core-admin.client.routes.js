@@ -9,11 +9,11 @@ angular.module('core.admin.routes').config(['$stateProvider',
         url: '/admin',
         template: '<ui-view/>',
         views: {
-			'': {
-				templateUrl: 'modules/core/client/views/core.client.view.html',
-		  		controller: 'CoreController'
-			}
-		},
+          '': {
+            templateUrl: 'modules/core/client/views/core.client.view.html',
+            controller: 'CoreController'
+          }
+        },
         data: {
           roles: ['user', 'admin']
         }
@@ -22,6 +22,10 @@ angular.module('core.admin.routes').config(['$stateProvider',
         url: '',
         templateUrl: 'modules/core/client/views/admin/admin.client.view.html',
         controller: 'AdminController'
+      })
+      .state('home', {
+      url: '/',
+      templateUrl: 'modules/core/client/views/home.client.view.html'
       });
   }
 ]);
