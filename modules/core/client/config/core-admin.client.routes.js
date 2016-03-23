@@ -24,8 +24,8 @@ angular.module('core.admin.routes').config(['$stateProvider',
         controller: 'AdminController'
       })
       .state('home', {
-      url: '/',
-      templateUrl: 'modules/core/client/views/home.client.view.html'
+        url: '/',
+        templateUrl: 'modules/core/client/views/home.client.view.html'
       });
   }
 ]);
