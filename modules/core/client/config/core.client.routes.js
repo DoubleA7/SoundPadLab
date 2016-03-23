@@ -37,9 +37,9 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     })
     .state('core.team', {
       url: '/team',
-      templateUrl: 'modules/core/client/views/team.client.view.html'//,
-      //controller: 'TeamController',
-      //controllerAs: 'vm'
+      templateUrl: 'modules/core/client/views/team.client.view.html',
+      controller: 'TeamController',
+      controllerAs: 'vm'
     })
     .state('not-found', {
       url: '/not-found',

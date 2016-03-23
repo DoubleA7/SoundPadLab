@@ -12,11 +12,18 @@
 
     // About controller logic
     // ...
-
+    /*function event($scope){
+      $scope.$emit('someEvent');
+    }*/
+    function func(){
+      console.log('inside func');
+      $scope.$apply();
+    }
     init();
 
     function init() {
       console.log('In About Controller!');
+      //event($scope);
     }
   }
 })();

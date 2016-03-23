@@ -30,10 +30,10 @@ angular.module('core').controller('HeaderController', ['$scope', '$state', 'Auth
     }
     else if (user_roles.indexOf('admin') > -1) {
       $scope.showHeader = true;
-      alert("HEY");
+      alert('Header set to TRUE inside HeaderController');
     } else {
       $scope.showHeader = false;
-      alert("YEH");
+      alert('Header set to FALSE inside HeaderController');
     }
   }
 ]);
