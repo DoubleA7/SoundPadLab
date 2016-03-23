@@ -1,44 +1,24 @@
 'use strict';
 
 // Setting up route
-angular.module('audioFiles.admin.routes').config(['$stateProvider',
+angular.module('audioFiles').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('admin.audioFiles', {
+      .state('audioFiles', {
         url: '/audioFiles',
-        templateUrl: 'modules/audioFiles/client/views/admin/list-audioFiles.client.view.html',
-        controller: 'AudioFileListController'
+        templateUrl: 'modules/audioFiles/client/views/list-audioFiles.client.view.html',
+        controller: 'AudioFileListPublicController'
       })
-      .state('admin.audioFile', {
+      .state('audioFile', {
         url: '/audioFiles/:audioFileId',
-        templateUrl: 'modules/audioFiles/client/views/admin/view-audioFile.client.view.html',
-        controller: 'AudioFileController',
+        templateUrl: 'modules/audioFiles/client/views/view-audioFile.client.view.html',
+        controller: 'AudioFilePublicController',
         resolve: {
-          audioFileResolve: ['$stateParams', 'audioFileAdmin', function ($stateParams, audioFileAdmin) {
-            return audioFileAdmin.get({
+          audioFileResolve: ['$stateParams', 'audioFilePublic', function ($stateParams, audioFilePublic) {
+            return audioFilePublic.get({
               audioFileId: $stateParams.audioFileId
             });
           }]
-        }
-      })
-      .state('admin.audioFile-edit', {
-        url: '/audioFiles/:audioFileId',
-        templateUrl: 'modules/audioFiles/client/views/admin/edit-audioFile.client.view.html',
-        controller: 'AudioFileController',
-        resolve: {
-          audioFileResolve: ['$stateParams', 'audioFileAdmin', function ($stateParams, audioFileAdmin) {
-            return audioFileAdmin.get({
-              audioFileId: $stateParams.audioFileId
-            });
-          }]
-        }
-      })
-      .state('authentication.addAudioFile', {
-        url: '/addAudioFile',
-        controller: 'addAudioFileController',
-        templateUrl: 'modules/audioFiles/client/views/admin/add-audioFile.html',
-        data: {
-          roles: ['admin']
         }
       });
   }
