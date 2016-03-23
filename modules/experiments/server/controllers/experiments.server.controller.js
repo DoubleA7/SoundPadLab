@@ -311,7 +311,7 @@ exports.experimentByID = function (req, res, next, id) {
   }
 
    // experiment.findById(id).populate('name', 'displayName').exec(function (err, experiment) {
-  Experiment.findById(id).populate('participants').populate('appointments').exec(function (err, experiment) {
+  Experiment.findById(id).populate('participants').populate('appointments').populate({ path: 'appointments', populate: { path: 'participant' } }).exec(function (err, experiment) {
     if (err) {
       return next(err);
     } else if (!experiment) {
