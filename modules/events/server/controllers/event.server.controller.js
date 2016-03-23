@@ -54,9 +54,9 @@ exports.delete = function (req, res) {
 
   event.remove(function (err) {
     if (err) {
-        return res.status(400).send({
-            message: errorHandler.getErrorMessage(err)
-        });
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
     }
     else {
       res.json(event);
@@ -82,21 +82,22 @@ exports.list = function (req, res) {
 //Middleware
 exports.eventByID = function (req, res, next, id) {
 
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        return res.status(400).send({
-            message: 'event is invalid'
-        });
-    }
-
-    Event_t.findById(id).exec(function (err, event) {
-        if (err) {
-            return next(err);
-        } else if (!event) {
-            return res.status(404).send({
-                message: 'No event with that identifier has been found'
-            });
-        }
-        req.event = event;
-        next();
+  if (!mongoose.Types.ObjectId.isValid(id)) {
+    return res.status(400).send({
+      message: 'event is invalid'
     });
+  }
+
+  Event_t.findById(id).exec(function (err, event) {
+    if (err) {
+      return next(err);
+    }
+    else if (!event) {
+      return res.status(404).send({
+        message: 'No event with that identifier has been found'
+      });
+    }
+    req.event = event;
+    next();
+  });
 };
