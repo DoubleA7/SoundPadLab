@@ -13,10 +13,10 @@ var path = require('path'),
  */
 exports.create = function (req, res) {
   var participant = new Participant(req.body);
-    
+  console.log(participant);
   participant.save(function (err) {
     if (err) {
-      //console.log(err);
+      console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });

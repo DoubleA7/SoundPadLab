@@ -1,40 +1,111 @@
-<section>
-  <div class="page-header">
-    <h1>Participant<span ng-bind="user.username"></span></h1>
-  </div>
-  <div class="col-md-12">
-    <form name="userForm" ng-submit="update(userForm.$valid)" novalidate>
+<div ng-controller="addParticipantController">
+  <h3 class="col-md-12 text-center">Edit Participant <span ng-bind="participant.name"></span></h3>
+  <div class="col-xs-offset-2 col-xs-8 col-md-offset-2 col-md-8">
+    <form name="participantForm" ng-submit="update(participantForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
         <div class="form-group" show-errors>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="user.firstName" placeholder="First Name" required />
-          <div ng-messages="userForm.firstName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">First name is required.</p>
+          <label for="firstName">Name</label>
+          <input type="text" id="Name" name="Name" class="form-control" ng-model="participant.name" placeholder="Name" required>
+          <div ng-messages="participantForm.firstName.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Name is required.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="user.lastName" placeholder="Last Name" required />
-          <div ng-messages="userForm.lastName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Last name is required.</p>
+          <label for="phoneNumber">Phone number</label>
+          <input type="number" id="phoneNumber" name="phoneNumber" class="form-control" ng-model="participant.phone_number" placeholder="Phone number" required>
+          <div ng-messages="participantForm.phoneNumber.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Phone number is required.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label class="control-label" for="roles">Roles</label>
-          <div class="controls">
-            <input class="form-control" type="text" name="roles" ng-model="user.roles" id="roles" ng-list required />
-            <div ng-messages="userForm.roles.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">At least one role is required.</p>
-            </div>
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" class="form-control" ng-model="participant.email" placeholder="Email" lowercase required>
+          <div ng-messages="participantForm.email.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Email address is required.</p>
+            <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
           </div>
         </div>
-        <div class="form-group">
-          <input type="submit" value="Update" class="btn btn-default">
+        <div class="form-group" show-errors>
+          <label for="username">Date of birth</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="participant.dob" placeholder="Date of Birth" lowercase >
         </div>
-        <div ng-show="error" class="text-danger">
+        <div class="form-group" show-errors>
+          <label for="gender">Gender</label>
+            <input type="text" id="username" name="username" class="form-control" ng-model="participant.gender" placeholder="gender" lowercase >
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="username">Card Info</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="participant.card_info" placeholder="card info" lowercase >
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="username">Comment</label>
+          <input type="text" id="username" name="username" class="form-control" ng-model="participant.comment" placeholder="participant comments" lowercase >
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="subject">Subject Id</label>
+          <input type="number" id="subjectid" name="subid" class="form-control" ng-model="participant.subject_id" placeholder="Subject Id" lowercase >
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="firstName">Contact Lenses?</label>
+          <div class="radio">
+            <label><input type="radio" name="optradio" ng-model="participant.contact_lenses" ng-value="true">Yes</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="optradio" ng-model="participant.contact_lenses" ng-value="false">No</label>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="firstName">Corrective Lenses?</label>
+          <div class="radio">
+            <label><input type="radio" name="optradio1" ng-model="participant.corrective_lenses" ng-value="true">Yes</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="optradio1" ng-model="participant.corrective_lenses" ng-value="false">No</label>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="firstName">Vision Test?</label>
+          <div class="radio">
+            <label><input type="radio" name="optradio2" ng-model="participant.vision_test" ng-value="true">Yes</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="optradio2" ng-model="participant.vision_test" ng-value="false">No</label>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="firstName">Audiograms?</label>
+          <div class="radio">
+            <label><input type="radio" name="optradio3" ng-model="participant.took_audiogram" ng-value="true">Yes</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="optradio3" ng-model="participant.took_audiogram" ng-value="false">No</label>
+          </div>
+        </div>
+
+        <div class="form-group" show-errors>
+          <label for="firstName">HRTF assigned?</label>
+          <div class="radio">
+            <label><input type="radio" name="optradio4" ng-model="participant.HRTF_assigned" ng-value="true">Yes</label>
+          </div>
+          <div class="radio">
+            <label><input type="radio" name="optradio4" ng-model="participant.HRTF_assigned" ng-value="false">No</label>
+          </div>
+        </div>
+        
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Edit Participant</button>
+        </div>
+        <div ng-show="error" class="text-center text-danger">
           <strong ng-bind="error"></strong>
         </div>
       </fieldset>
     </form>
   </div>
-</section>
+</div>
