@@ -33,13 +33,25 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/audioFiles',
       permissions: '*'
     }, {
+      resources: '/api/audioFiles/:audioFileId',
+      permissions: '*'
+    }, {
       resources: '/api/publications',
+      permissions: '*'
+    }, {
+      resources: '/api/publications/:publicationId',
       permissions: '*'
     }, {
       resources: '/api/research',
       permissions: '*'
     }, {
+      resources: '/api/research/:researchId',
+      permissions: '*'
+    }, {
       resources: '/api/events',
+      permissions: '*'
+    }, {
+      resources: '/api/events/:eventId',
       permissions: '*'
     }]
   }]);
