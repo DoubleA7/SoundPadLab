@@ -41,7 +41,7 @@ exports.update = function (req, res) {
     
   var audiofile = req.audiofile;
     
-  audiofile.name = req.body.name;
+  audiofile.title= req.body.title;
   audiofile.download_link = req.body.download_link;
   
     
