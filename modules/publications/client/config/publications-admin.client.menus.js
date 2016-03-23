@@ -4,7 +4,7 @@
 angular.module('publications.admin').run(['Menus',
   function (Menus) {
     Menus.addSubMenuItem('topbar', 'admin', {
-      title: 'Manage Publications',
+      title: 'Publications',
       state: 'admin.publications'
     });
   }
