@@ -78,7 +78,7 @@ exports.create = function (req, res) {
     }
     else {
       addToExperiment(0, appointment);
-      //addToUser(0, appointment);
+      addToUser(0, appointment);
       Participant.findById(appointment.participant).exec(function(err,participant){
         if(participant.appointments.indexOf(appointment._id) === -1){//If a participant on the Database doesn't contain this appointment add this appointment his/her to its appointment list.
           participant.appointments.push(appointment._id);
@@ -113,30 +113,10 @@ exports.update = function (req, res) {
       });
     }
     else {
-      // for(var i in req.appointment.experiments){
-        // if(appointment.experiments.indexOf(req.appointment.experiments[i]) === -1){//If an experiment has been removed, remove this appointment ID from its appointment list.
-          // Experiment.findByIdAndUpdate(req.appointment.experiments[i], { $pull: { appointments: appointment._id }});
-        // }
-      // }
-      // for(var j in appointment.experiments){
-        // if(req.appointment.experiments.indexOf(appointment.experiments[j]) === -1){//If an experiment has been added, add this appointment ID to its appointment list.
-          // Experiment.findByIdAndUpdate(appointment.experiments[j], { $push: { appointments: appointment._id }}, { 'new': true});
-        // }
-      //}
-      // for(var k in req.appointment.users){
-        // if(appointment.users.indexOf(req.appointment.users[k]) === -1){//If a user has been removed, remove this appointment ID from its appointment list.
-          // User.findByIdAndUpdate(req.appointment.users[k], { $pull: { appointments: appointment._id }});
-        // }
-      // }
-      // for(var l in appointment.users){
-        // if(req.appointment.users.indexOf(appointment.users[l]) === -1){//If an user has been added, add this appointment ID to its appointment list.
-          // User.findByIdAndUpdate(appointment.users[l], { $push: { appointments: appointment._id }}, { 'new': true});
-        // }
-      // }
       removeFromExperiment(0, req.appointment);
       addToExperiment(0, appointment);
-      //removeFromUser(0, req.appointment);
-      //addToUser(0, appointment);
+      removeFromUser(0, req.appointment);
+      addToUser(0, appointment);
       Participant.findById(req.appointment.participant).exec(function(err,participant){
         if(participant.appointments.indexOf(req.appointment._id) !== -1){//If a participant on the Database does contain this appointment remove this appointment his/her from its appointment list.
           participant.appointments.splice(participant.appointments.indexOf(req.appointment._id), 1);
@@ -149,7 +129,6 @@ exports.update = function (req, res) {
           participant.save();
         }	  
       });
-	  //Participant.findByIdAndUpdate(appointment.participant, { $push: { appointments: appointment._id}});
       res.json(appointment);
     }
   });
@@ -164,15 +143,8 @@ exports.delete = function (req, res) {
       res.status(400).send(err);
     }
     else {
-      // for(var i in req.appointment.experiments){
-        // Experiment.findByIdAndUpdate(req.appointment.experiments[i], { $pull: { appointments: appointment._id }});
-      // }
-      // for(var j in req.appointment.users){
-        // User.findByIdAndUpdate(req.appointment.users[j], { $pull: { appointments: appointment._id }});
-      // }
       removeFromExperiment(0, appointment);
-      //removeFromUser(0, appointment);
-	  //Participant.findByIdAndUpdate(appointment.participant, { $pull: { appointments: appointment._id}});
+      removeFromUser(0, appointment);
       Participant.findById(appointment.participant).exec(function(err,participant){
         if(participant.appointments.indexOf(appointment._id) !== -1){//If a participant on the Database does contain this appointment remove this appointment his/her from its appointment list.
           participant.appointments.splice(participant.appointments.indexOf(appointment._id), 1);

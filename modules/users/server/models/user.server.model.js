@@ -125,7 +125,12 @@ UserSchema.pre('validate', function (next) {
       this.invalidate('password', error);
     }
   }
-
+  if(!this.experiments){
+    this.experiments = [];
+  }
+  if(!this.appointments){
+    this.appointments = [];
+  }
   next();
 });
 

@@ -70,7 +70,12 @@ ParticipantSchema.pre('save', function(next) {
   if(!this.created_at){
     this.created_at = currentTime;
   }
-  
+  if(!this.experiments){
+    this.experiments = [];
+  }
+  if(!this.appointments){
+    this.appointments = [];
+  }
   //var dob_str = new Date(Date.UTC(this.dob.year, , day, 0, 0, 0)); testing this.
   
   

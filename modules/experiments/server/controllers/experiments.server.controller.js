@@ -150,14 +150,13 @@ exports.create = function (req, res) {
       //}
       //for(var j in experiment.appointments){
 		//Appointment.findByIdAndUpdate(experiment.appointments[j], { $push: { experiments: experiment._id }}, { 'new': true});
-
-        //addToUser(0, experiment);
      // }
       // for(var k in experiment.users){
 		// User.findByIdAndUpdate(experiment.users[i], { $push: { experiments: experiment._id }}, { 'new': true});
       // }
       addToParticipant(0, experiment);
       addToAppointment(0, experiment);
+      addToUser(0, experiment);
       res.json(experiment);
     }
   });
@@ -196,10 +195,10 @@ exports.update = function (req, res) {
     else {
       removeFromAppointment(0, req.experiment);
       removeFromParticipant(0, req.experiment);
-      //removeFromUser(0, req.experiment);
+      removeFromUser(0, req.experiment);
       addToAppointment(0, experiment);
       addToParticipant(0, experiment);
-      //addToUser(0, experiment);
+      addToUser(0, experiment);
       /*for(var i in req.experiment.participants){
         if(experiment.participants.indexOf(req.experiment.participants[i]) === -1){//If a participants has been removed, remove this experiment ID from his/her experiment list.
           //Participant.findByIdAndUpdate(req.experiment.participants[i], { $pull: { experiments: experiment._id }});
@@ -250,7 +249,7 @@ exports.delete = function (req, res) {
     else {
       removeFromAppointment(0, experiment);
       removeFromParticipant(0, experiment);
-      //removeFromUser(0, experiment);
+      removeFromUser(0, experiment);
       /*for(var i in experiment.participants){
         //Participant.findByIdAndUpdate(experiment.participants[i], { $pull: { experiments: experiment._id }});
         // Participant.findById({"_id": "56f09dbc9c7c29e00eddca2c"}).exec(function (err, participant) {

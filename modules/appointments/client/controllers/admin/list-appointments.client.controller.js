@@ -7,9 +7,9 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
       $scope.buildPager();
     });
 
-	$scope.getName = function () {
-		
-	};
+    $scope.getName = function () {
+        
+    };
 
     $scope.buildPager = function () {
       $scope.pagedItems = [];

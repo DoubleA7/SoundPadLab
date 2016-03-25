@@ -42,6 +42,15 @@ experimentSchema.pre('save', function(next) {
   if(!this.created_at){
     this.created_at = currentTime;
   }
+  if(!this.users){
+    this.users = [];
+  }
+  if(!this.participants){
+    this.participants = [];
+  }
+  if(!this.appointments){
+    this.appointments = [];
+  }
   next();
 });
 var Experiment = mongoose.model('Experiment', experimentSchema);
