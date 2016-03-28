@@ -1,23 +1,20 @@
-<section ng-controller="TeamController">
-  <h1 class = "header">Team members</h1>
-  <div>
-  <table class = "teamTable">
-  <tbody>
-  <colgroup>
-    <col><col><col>
-  </colgroup>
-  	<tr>
-  	<td ng-repeat = "user in users"><img class ="profileImg" ng-src= {{user.profileImageURL}}></td>
-  </tr>
-  <tr>
-  	<td ng-repeat = "user in users" class = "name">{{user.displayName}}</td>
-  </tr>		
-  </tbody>
-  </table>
-  <div id="footer">
-		<span id="rights" class="col-md-12 col-sm-12 col-xs-12">
-			<a href="http://www.ufl.edu">&copy; University of Florida</a>,
-			<a href="http://www.cise.ufl.edu">Department of Computer & Information Science & Engineering</a>
-		</span>
+<section  ng-controller="TeamController">
+  <h1 class = "spaced-out header">Lab Members</h1>
+  <i class="header">At SoundPad, our lab members work together to acheive our lab's mission!</i>
+  <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1">
+	<div class="teamSection row">
+		<div ng-repeat= "user in users" class="teamMember">
+			<div class="profileImgContainer">
+				<img class ="profileImg" ng-src= {{user.profileImageURL}}>
+			</div>
+			<p class = "name">{{user.displayName}}</p>
+		</div>
 	</div>
+  </div>
+  <div id="footer">
+	  <span id="rights" class="col-md-12 col-sm-12 col-xs-12">
+		  <a href="http://www.ufl.edu">&copy; University of Florida</a>,
+		  <a href="http://www.cise.ufl.edu">Department of Computer & Information Science & Engineering</a>
+	  </span>
+  </div>
 </section>
