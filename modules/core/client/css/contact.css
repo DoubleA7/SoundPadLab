@@ -1,6 +1,27 @@
-#jumbotrons
-{
-    padding: 15px;
+
+.contactSection{
+	background: rgba(242,246,247,1);
+	box-shadow: inset 0 0px 3px;
+	border-radius: 10px;
+	padding:10px 40px;
+}
+.contactSection input, .contactSection textarea{
+	font-weight: normal;
+}
+.contactSection textarea{
+	min-height: 95px;
+}
+
+.mapSection{
+	margin-right: 20px;
+}
+
+.mapCaption{
+	background: rgba(242,246,247,1);
+	box-shadow: inset 0 0px 3px;
+	border-radius: 10px;
+	margin-top: 10px;
+	padding:10px 40px;
 }
 
 #footer {
@@ -21,9 +42,8 @@
   color: #a0a0a0; }
 
 #map{
-	height: 500px;
-	padding: 5px;
-	box-shadow: 0px 0px 5px 2px rgba(0, 0, 0, 0.25);
+	border: 3px solid  rgb(30, 59, 120);
+	padding: 0;
 }
 
 p.message label{
