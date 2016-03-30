@@ -1,0 +1,32 @@
+<div>
+  <h3 class="col-md-12 text-center">New Appointment</h3>
+  <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+    <form name="appointmentForm" ng-submit="addAppointment(appointmentForm.$valid)" class="signin" novalidate autocomplete="off">
+      <fieldset>
+        <div class="form-group" show-errors>
+          <label for="time">Time</label>
+          <input type="Date" id="Name" name="time" class="form-control" ng-model="credentials.time" placeholder="Appointment time" required>
+          <div ng-messages="appointmentForm.time.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Time is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="participant">Participant</label>
+		  <select name="participant" ng-model="credentials.participant">
+		    <option ng-repeat="participant in participants" value="{{participant._id}}">{{participant.name}}</option>
+		  </select>
+          <div ng-messages="appointmentForm.participant.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Participant is required.</p>
+          </div>
+        </div>
+		
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Add Appointment</button>
+        </div>
+        <div ng-show="error" class="text-center text-danger">
+          <strong ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</div>

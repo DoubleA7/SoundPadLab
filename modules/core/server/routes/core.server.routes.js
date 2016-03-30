@@ -10,9 +10,8 @@ module.exports = function (app) {
   // Return a 404 for all undefined api, module or lib routes
   app.route('/:url(api|modules|lib)/*').get(core.renderNotFound);
 
-  // Define route to splash page
-  app.route('/').get(core.renderSplash);
-
   // Define application route
   app.route('/*').get(core.renderIndex);
+
+  app.route('/postMail').post(core.sendMail);
 };

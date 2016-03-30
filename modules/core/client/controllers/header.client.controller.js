@@ -2,7 +2,7 @@
 
 angular.module('core').controller('HeaderController', ['$scope', '$state', 'Authentication', 'Menus',
   function ($scope, $state, Authentication, Menus) {
-    // Expose view variables
+    $scope.showHeader = false;
     $scope.$state = $state;
     $scope.authentication = Authentication;
 

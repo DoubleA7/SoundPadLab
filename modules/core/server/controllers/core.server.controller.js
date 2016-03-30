@@ -1,13 +1,14 @@
 'use strict';
 
-/**
- * Render the splash page of application
- */
-exports.renderSplash = function (req,res) {
-  res.render('modules/core/server/views/splash', {
-    user: req.user || null
-  });
-};
+var nodemailer = require('nodemailer');
+var transporter = nodemailer.createTransport({
+  service: 'Gmail',
+  auth: {
+    user: 'settlejonathen@gmail.com',
+    pass: 'Ratandpig13'
+  },
+  debug: true
+});
 
 /**
  * Render the main application page
@@ -48,4 +49,28 @@ exports.renderNotFound = function (req, res) {
       res.send('Path not found');
     }
   });
+};
+
+/**
+ * Send an e-mail when the contact form is submitted
+ */
+exports.sendMail = function (req, res) {
+
+  var data = req.body;
+
+  var mailOptions = {
+    from: data.email, // sender address
+    to: 'settlejonathen@gmail.com', // list of receivers
+    subject: 'Message from ' + data.name + ' via SoundPadLab app', // Subject line
+    text: data.email + " sent some template message and " + data.msg, // plaintext body
+  };
+
+  transporter.sendMail(mailOptions, function(error, info){
+    if(error){
+      return console.log(error);
+    }
+    console.log('Message sent: ' + info.response);
+  });
+
+  res.json(data);
 };
