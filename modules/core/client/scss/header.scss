@@ -1,16 +1,6 @@
 .navbar{
 	border-bottom: 2px solid rgba(10, 30, 70, 0.6);
-
-
-background: rgba(242,246,247,1);
-background: -moz-linear-gradient(top, rgba(242,246,247,1) 0%, rgba(223,236,240,1) 50%, rgba(242,246,247,1) 100%);
-background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(242,246,247,1)), color-stop(50%, rgba(223,236,240,1)), color-stop(100%, rgba(242,246,247,1)));
-background: -webkit-linear-gradient(top, rgba(242,246,247,1) 0%, rgba(223,236,240,1) 50%, rgba(242,246,247,1) 100%);
-background: -o-linear-gradient(top, rgba(242,246,247,1) 0%, rgba(223,236,240,1) 50%, rgba(242,246,247,1) 100%);
-background: -ms-linear-gradient(top, rgba(242,246,247,1) 0%, rgba(223,236,240,1) 50%, rgba(242,246,247,1) 100%);
-background: linear-gradient(to bottom, rgba(242,246,247,1) 0%, rgba(223,236,240,1) 50%, rgba(242,246,247,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f7', endColorstr='#f2f6f7', GradientType=0 );
-
+	background: rgba(242,246,247,1);
 }
 
 .navbar-header>a{
@@ -21,12 +11,22 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2f6f7', end
 		padding: 20px 0;
 	}
 }
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
+	background-color: rgb(50,50,50);
+	background-image: none;
+}
+
+.nav>li>a.dropdown-toggle{
+	border-left: 4px solid white;
+	max-height: 104px;
+}
 
 .nav>li>a{
+	letter-spacing: 1pt;
 	padding: 42px 15px;
 	font-size: 1.3em;
 	font-family: 'Trebuchet MS';
-	font-weight: bold;
+	font-weight: normal;
 }
 .navbar-inverse .navbar-nav > li > a {
 	color: rgb(30, 59, 120);

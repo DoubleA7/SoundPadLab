@@ -32,6 +32,9 @@ exports.invokeRolesPolicies = function () {
     }, {
       resources: '/api/appointments',
       permissions: '*'
+    },{
+      resources: '/api/appointments/:appointmentId',
+      permissions: '*'
     }, {
       resources: '/api/experiments',
       permissions: '*'

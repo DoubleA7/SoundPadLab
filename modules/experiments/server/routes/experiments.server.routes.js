@@ -9,8 +9,8 @@ var adminPolicy = require('../../../users/server/policies/admin.server.policy');
 module.exports = function (app) {
   // experiments collection routes
   app.route('/api/experiments')
-    .get(adminPolicy.isAllowed,experiments.list)
-    .post(adminPolicy.isAllowed,experiments.create);
+    .get(adminPolicy.isAllowed, experiments.list)
+    .post(adminPolicy.isAllowed, experiments.create);
 
 	// Single participant routes
   app.route('/api/experiments/:experimentId')

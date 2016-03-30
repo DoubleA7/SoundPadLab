@@ -12,20 +12,26 @@ var mongoose = require('mongoose'),
 
 var ParticipantSchema = new Schema({
   
-  created: {
+  created_at: {
     type: Date,
     default: Date.now
   },
   
-  name: { type: String,
-            required: true,
-            unique: true
+  updated_at: {
+    type: Date,
+    default: Date.now
+  },
+  
+  name: {
+    type: String,
+    required: true,
+    unique: true
   },
 
   phone_number:{
     type: Number
   },
-    
+
     //email is not being stored and then retrieved.+
   email: {  // add validator in this
     type: String,
@@ -33,36 +39,27 @@ var ParticipantSchema = new Schema({
     unique: true,
     required: 'Email must be specified!'
   },
-    
-  last_paid: Date,
-    
+
   gender: String,
-    
+
+  last_paid: Date,
+
   dob: {
     day: Number,
     month: Number,
     year: Number
   },
-    
-  card_info: String,
-    
-  appointments: [Schema.Types.ObjectId],
-  past_appointments: [Schema.Types.ObjectId],
-  completed_experiments: [Schema.Types.ObjectId],
-  assigned_experiments: [Schema.Types.ObjectId],
-  comment: String,
-    
-  subject_id: Number,
-  contact_lenses: Boolean,
-  corrective_lenses: Boolean,
+  //subject_id: Number,
   vision_test: Boolean,
+  corrective_lenses: Boolean,
+  contact_lenses: Boolean,
   took_audiogram: Boolean,
   HRTF_assigned: Boolean,
-    
-    
-  tags: [String]
-    
-
+  tags: [String],
+  gift_cards: [String],
+  appointments: [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
+  experiments: [ { type: Schema.Types.ObjectId, ref: 'Experiment' } ],
+  comment: String
 });
 
 
@@ -70,11 +67,15 @@ var ParticipantSchema = new Schema({
 ParticipantSchema.pre('save', function(next) {
   var currentTime = new Date();
   this.updated_at = currentTime;
-  if(!this.created_at)
-  {
+  if(!this.created_at){
     this.created_at = currentTime;
   }
-  
+  if(!this.experiments){
+    this.experiments = [];
+  }
+  if(!this.appointments){
+    this.appointments = [];
+  }
   //var dob_str = new Date(Date.UTC(this.dob.year, , day, 0, 0, 0)); testing this.
   
   

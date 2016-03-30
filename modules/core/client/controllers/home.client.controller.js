@@ -4,7 +4,6 @@ angular.module('core').controller('HomeController', ['$scope', '$state', 'Authen
   function ($scope, $state, Authentication) {
     // This provides Authentication context.
     $scope.authentication = Authentication;
-
     $scope.goToContact = function() {
       $state.go('core.contact');
     };

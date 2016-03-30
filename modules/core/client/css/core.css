@@ -22,7 +22,6 @@ a:hover .header-profile-image {
   opacity: 1;
 }
 .user-header-dropdown-toggle {
-  padding: 38px 15px !important;
 }
 .error-text {
   display: none;
@@ -43,4 +42,8 @@ a:hover .header-profile-image {
 .header-wrapper
 {
     padding-bottom: 125px;
+}
+
+.spaced-out{
+	letter-spacing: 1pt;
 }
