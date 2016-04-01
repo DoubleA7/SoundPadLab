@@ -99,6 +99,6 @@ exports.changeProfilePicture = function (req, res) {
  * Send User
  */
 exports.me = function (req, res) {
-  console.log("ME");
+  console.log('ME');
   res.json(req.user || null);
 };
