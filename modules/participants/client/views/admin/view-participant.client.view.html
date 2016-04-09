@@ -104,11 +104,11 @@
       text-align: center;
       margin-top: 2em;
   ">
-      <a class="btn btn-primary" ui-sref="admin.user-edit({userId: user._id})" style="margin-right: 12em;">
-        Edit User <i class="glyphicon glyphicon-edit" style="margin-left: 1em;"></i>
+      <a class="btn btn-primary" ui-sref="admin.participant-edit({participantId: participant._id})" style="margin-right: 12em;">
+        Edit Participant <i class="glyphicon glyphicon-edit" style="margin-left: 1em;"></i>
       </a>
-      <a class="btn btn-primary" ng-click="remove();" ng-if="user._id !== authentication.user._id">
-        Delete User <i class="glyphicon glyphicon-trash" style="margin-left: 1em;"></i>
+      <a class="btn btn-primary" ng-click="remove();" ng-if="participant._id !== authentication.participant._id">
+        Delete Participant <i class="glyphicon glyphicon-trash" style="margin-left: 1em;"></i>
       </a>
     </div>
   </div>
