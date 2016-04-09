@@ -12,7 +12,7 @@ exports.create = function (req, res) {
   console.log(event);
   event.save(function (err) {
     if (err) {
-      console.log(err);
+      console.log("ERR",err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
