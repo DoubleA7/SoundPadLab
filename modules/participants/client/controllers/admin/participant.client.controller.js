@@ -8,7 +8,6 @@ angular.module('participants.admin').controller('ParticipantController', ['$scop
     var dab = new Date($scope.participant.lastPaid)
     $scope.participant.dob = da.toDateString();
     $scope.participant.lastPaid = dab.toDateString();
-    console.log($scope.participant);
     $scope.remove = function (participant) {
       if (confirm('Are you sure you want to delete this participant?')) {
         if (participant) {
