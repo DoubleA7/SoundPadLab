@@ -7,7 +7,12 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
 
     participantsAdmin.query(function (data) {
       console.log(data);
-      $scope.participants= data;
+      if(data.length === 0){
+		$scope.error = "No Participants to schedule!";
+	  }else{
+		$scope.error = null;
+		$scope.participants= data;
+	  }
     });
 
     // Get an eventual error defined in the URL query string:
