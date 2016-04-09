@@ -3,32 +3,54 @@
   <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
     <form name="appointmentForm" ng-submit="addAppointment(appointmentForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
-<div class="container">
-    <div class="col-sm-6" style="height:130px;">
-        <div class="form-group">
-            <div class='input-group date' id='datetimepicker11'>
-                <input type='text' class="form-control" />
-                <span class="input-group-addon">
-                    <span class="glyphicon glyphicon-calendar">
-                    </span>
-                </span>
-            </div>
-        </div>
-    </div>
-    <script type="text/javascript">
-        $(function () {
-            $('#datetimepicker11').datetimepicker({
-            });
-        });
-    </script>
-</div>
+		<div class="container">
+			<div class="col-sm-6" style="height:130px;">
+				<div class="form-group">
+					<div class='input-group date' id='datetimepicker11'>
+						<input type='text' class="form-control" />
+						<span class="input-group-addon">
+							<span class="glyphicon glyphicon-calendar">
+							</span>
+						</span>
+					</div>
+				</div>
+			</div>
+			<script type="text/javascript">
+				$(function () {
+					$('#datetimepicker11').datetimepicker({
+					});
+				});
+			</script>
+		</div>
+		<div class="form-group" show_errors>
+			<label for="duration">Duration:</label>
+			<select name="duration" ng-model="credentials.duration" required>
+				<option value=15>15 minutes</option>
+				<option value=30>30 minutes</option>
+				<option value=45>45 minutes</option>
+				<option value=60>60 minutes</option>
+				<option value=75>75 minutes</option>
+				<option value=90>90 minutes</option>
+				<option value=105>105 minutes</option>
+				<option value=120>120 minutes</option>
+			</select>
+		</div>
         <div class="form-group" show-errors>
           <label for="participant">Participant</label>
-		  <select name="participant" ng-model="credentials.participant">
+		  <select name="participant" ng-model="credentials.participant" required>
 		    <option ng-repeat="participant in participants" value="{{participant._id}}">{{participant.name}}</option>
 		  </select>
           <div ng-messages="appointmentForm.participant.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Participant is required.</p>
+          </div>
+        </div>
+        <div class="form-group" show-errors>
+          <label for="experiment">Experiment</label>
+		  <select name="experiment" ng-model="credentials.experiment" required>
+		    <option ng-repeat="experiment in experiments" value="{{experiment._id}}">{{experiment.experiment_name}}</option>
+		  </select>
+          <div ng-messages="appointmentForm.experiment.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Experiemtn is required.</p>
           </div>
         </div>
 		
