@@ -7,7 +7,6 @@
 
     </div>
   </div>
-
   <div class="row">
     <div class="col-md-8">
       <div class="row">
@@ -20,7 +19,11 @@
         <div class="col-md-6" ng-bind="publication.information"></div>
       </div>
       <hr/>
-
+      <div class="row" ng-show="!publication.url==''">
+        <div class="col-md-3"><strong>Full Document</strong></div>
+        <a href={{publication.url}} target="_blank"><div class="col-md-6" ng-bind="publication.url"></div></a>
+      </div>
+      
     </div>
   </div>
 </section>
