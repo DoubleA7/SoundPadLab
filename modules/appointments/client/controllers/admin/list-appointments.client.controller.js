@@ -38,12 +38,16 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
     var y = date.getFullYear();
 
     $scope.changeTo = 'Hungarian';
+
+
     /* event source that pulls from google.com */
     $scope.eventSource = {
             url: "http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic",
             className: 'gcal-event',           // an option!
             currentTimezone: 'America/Chicago' // an option!
     };
+
+
     /* event source that contains custom events on the scope */
     $scope.events = [
       {title: 'All Day Event',start: new Date(y, m, 1)},
@@ -53,6 +57,8 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
       {title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false},
       {title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
     ];
+
+    
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, timezone, callback) {
       var s = new Date(start).getTime() / 1000;
@@ -71,6 +77,8 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
           {type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/'}
         ]
     };
+
+
     /* alert on eventClick */
     $scope.alertOnEventClick = function( date, jsEvent, view){
         $scope.alertMessage = (date.title + ' was clicked ');
@@ -131,7 +139,7 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
      /* Render Tooltip */
     $scope.eventRender = function( event, element, view ) {
         element.attr({'tooltip': event.title,
-                      'tooltip-append-to-body': true});
+                      'tooltip-append-to-body': false});
         $compile(element)($scope);
     };
     /* config object */
