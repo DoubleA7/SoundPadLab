@@ -8,24 +8,43 @@ var path = require('path'),
   AudioFile = require('../models/audioFiles.server.model.js'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+var _ = require('lodash'),
+  fs = require('fs'),
+  multer = require('multer'),
+  config = require(path.resolve('./config/config'));
 /**
- * Create a participant
+ * Create an audio file
  */
 exports.create = function (req, res) {
+  var upload = multer(config.uploads.mp3Upload).single('mp3File');
+  var mp3UploadFilter = require(path.resolve('./config/lib/multer')).mp3UploadFilter;
   var audiofile = new AudioFile(req.body);
-    
-  audiofile.save(function (err) {
-    if (err) {
-      //console.log(err);
+  upload.fileFilter = mp3UploadFilter;
+  upload(req, res, function (uploadError) {
+    if(uploadError) {
       return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
+        message: 'Error occurred while uploading mp3'
       });
-    } else {
-      res.json(audiofile);
+    } 
+    else {
+      audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
+      audiofile.title = 'testTitle';
+      audiofile.save(function (err) {
+        if (err) {
+          //console.log(err);
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } 
+        else {
+          res.json(audiofile);
+        }
+      });
     }
   });
 };
 
+//audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
 /**
  * Show the current audiofile
  */
@@ -42,7 +61,7 @@ exports.update = function (req, res) {
   var audiofile = req.audiofile;
     
   audiofile.title= req.body.title;
-  audiofile.download_link = req.body.download_link;
+  audiofile.filePath = req.body.filePath;
   
     
     //subject_id not being updated 
@@ -115,4 +134,60 @@ exports.audioFileByID = function (req, res, next, id) {
     req.audiofile = audiofile;
     next();
   });
+};
+
+exports.uploadMp3File = function (req, res) {
+  //var credentials = req.credentials;
+  var message = null;
+  var upload = multer(config.uploads.mp3Upload).single('mp3File');
+  var mp3UploadFilter = require(path.resolve('./config/lib/multer')).mp3UploadFilter;
+  var user = req.user;
+  console.log(JSON.stringify(req.body));
+  // Filtering to upload only images
+  upload.fileFilter = mp3UploadFilter;
+
+  if (user) {
+    upload(req, res, function (uploadError) {
+      if(uploadError) {
+        return res.status(400).send({
+          message: 'Error occurred while uploading mp3'
+        });
+      } else {
+        //credentials.filePath = config.uploads.mp3Upload.dest + req.file.filename;
+        console.log(config.uploads.mp3Upload.dest + req.file.filename);
+        //alert('saved credentials');
+       /* var audiofile = new AudioFile(req.body);
+
+        audiofile.save(function (err) {
+         if (err) {
+        //console.log(err);
+        return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+        });
+      } else {
+      res.json(audiofile);
+      }
+    });*/
+        /*user.save(function (saveError) {
+          if (saveError) {
+            return res.status(400).send({
+              message: errorHandler.getErrorMessage(saveError)
+            });
+          } else {
+            req.login(user, function (err) {
+              if (err) {
+                res.status(400).send(err);
+              } else {
+                res.json(user);
+              }
+            });
+          }
+        });*/
+      }
+    });
+  } else {
+    res.status(400).send({
+      message: 'User is not signed in'
+    });
+  }
 };

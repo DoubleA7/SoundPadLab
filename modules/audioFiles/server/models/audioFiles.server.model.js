@@ -18,7 +18,7 @@ var AudioFileSchema = new Schema({
   },
   
   title: { type: String,required:true },
-  download_link: { type: String, required:true }
+  filePath: { type: String, required:true }
     
 
 });
