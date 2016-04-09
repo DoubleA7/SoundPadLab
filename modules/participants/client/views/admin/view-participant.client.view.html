@@ -1,3 +1,4 @@
+
 <section>
   <div class="page-header">
     <div class="row">
@@ -39,7 +40,12 @@
       <hr/>
       <div class="row">
         <div class="col-md-3"><strong>Date of Birth</strong></div>
-        <div class="col-md-6">{{participant.dob.month}}/{{participant.dob.day}}/{{participant.dob.year}}</div>
+        <div class="col-md-6" id="dob">{{participant.dob}}</div>
+      </div>
+      <hr/>
+      <div class="row" id="lastPaid" >
+        <div class="col-md-3"><strong>Last Paid</strong></div>
+        <div class="col-md-6" >{{participant.lastPaid}}</div>
       </div>
       <hr/>
       <div class="row">
@@ -57,6 +63,11 @@
         <div class="col-md-6" ng-bind="participant.subject_id"></div>
       </div>
       <hr/>
+      <div class="row">
+        <div class="col-md-3"><strong>HRTF assigned:</strong></div>
+        <div class="col-md-6" ng-bind="participant.HRTF_assigned"></div>
+      </div>
+      <hr/>
       <div ng-show="participant.contact_lenses" class="row">
         <div class="col-md-9"><strong>Requires Contact Lenses</strong></div>
       </div>
@@ -69,9 +80,8 @@
       <div ng-show="participant.took_audiogram" class="row">
         <div class="col-md-9"><strong>Took Audiogram</strong></div>
       </div>
-      <div ng-show="participant.HRTF_assigned" class="row">
-        <div class="col-md-9"><strong>HRTF assigned</strong></div>
-      </div>
+      <hr/>
+      
     </div>
   </div>
     <div class="tableWrapper">

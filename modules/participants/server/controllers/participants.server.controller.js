@@ -133,6 +133,8 @@ exports.update = function (req, res) {
     
   var participant = req.participant;
 
+  console.log(participant);
+
   participant.name = req.body.name;
   participant.phone_number = req.body.phone_number;
   participant.email = req.body.email;
@@ -141,6 +143,7 @@ exports.update = function (req, res) {
   //dob stored as dob.month, dob.day, dob.year
   participant.dob = req.body.dob;
   participant.vision_test = req.body.vision_test;
+  participant.card_info = req.body.card_info;
   participant.corrective_lenses = req.body.corrective_lenses;
   participant.contact_lenses = req.body.contact_lenses;
   participant.took_audiogram = req.body.took_audiogram;
