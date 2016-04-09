@@ -19,7 +19,8 @@
     "jquery": "~2.1.4",
     "angular-ui-calendar": "1.0.1",
     "fullcalendar": "~2.3.2",
-    "moment": "~2.10.3"
+    "moment": "~2.10.3",
+    "eonasdan-bootstrap-datetimepicker": "^4.17.37"
   },
   "resolutions": {
     "angular": "~1.3",
