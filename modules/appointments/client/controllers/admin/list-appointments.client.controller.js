@@ -111,13 +111,20 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
     };
     /* Change View */
     $scope.changeView = function(view,calendar) {
-      uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+      $timeout(function() {
+		console.log(calendar);
+		console.log(uiCalendarConfig.calendars);
+		uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
+	  });
     };
     /* Change View */
-    $scope.renderCalender = function(calendar) {
+    $scope.renderCalender = function(calendar, view) {
       $timeout(function() {
+        console.log(uiCalendarConfig.calendars);
+
         if(uiCalendarConfig.calendars[calendar]){
           uiCalendarConfig.calendars[calendar].fullCalendar('render');
+		  uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
         }
       });
     };
