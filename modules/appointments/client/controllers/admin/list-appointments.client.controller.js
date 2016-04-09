@@ -166,6 +166,9 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
     $scope.eventSources = [$scope.events, $scope.eventSource, $scope.eventsF];
     $scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
 
-	
+	angular.element(document).ready(function () {
+		$scope.changeView('agendaWeek','MainCalendar');
+		$scope.changeView('agendaDay','DayCalendar');
+	});
   }
 ]);
