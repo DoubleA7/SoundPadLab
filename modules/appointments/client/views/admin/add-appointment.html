@@ -3,13 +3,25 @@
   <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
     <form name="appointmentForm" ng-submit="addAppointment(appointmentForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
-        <div class="form-group" show-errors>
-          <label for="time">Time</label>
-          <input type="Date" id="Name" name="time" class="form-control" ng-model="credentials.time" placeholder="Appointment time" required>
-          <div ng-messages="appointmentForm.time.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Time is required.</p>
-          </div>
+<div class="container">
+    <div class="col-sm-6" style="height:130px;">
+        <div class="form-group">
+            <div class='input-group date' id='datetimepicker11'>
+                <input type='text' class="form-control" />
+                <span class="input-group-addon">
+                    <span class="glyphicon glyphicon-calendar">
+                    </span>
+                </span>
+            </div>
         </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $('#datetimepicker11').datetimepicker({
+            });
+        });
+    </script>
+</div>
         <div class="form-group" show-errors>
           <label for="participant">Participant</label>
 		  <select name="participant" ng-model="credentials.participant">
