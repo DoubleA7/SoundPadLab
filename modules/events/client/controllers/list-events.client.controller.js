@@ -7,7 +7,7 @@ angular.module('events').controller('EventListPublicController', ['$scope', '$fi
       $scope.events = data;
 
       for (var i = 0; i < $scope.events.length; i++) {
-        $scope.events[i].created_at = $scope.events[i].created_at.slice(0,10)
+        $scope.events[i].created_at = $scope.events[i].created_at.slice(0,10);
       }
 
       $scope.buildPager();
