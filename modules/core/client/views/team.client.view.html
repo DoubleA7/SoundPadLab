@@ -3,11 +3,11 @@
   <i class="header">At SoundPad, our lab members work together to acheive our lab's mission!</i>
   <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1">
 	<div class="teamSection row">
-		<div ng-repeat= "user in users" class="teamMember">
+		<div ng-repeat= "member in members" class="teamMember">
 			<div class="profileImgContainer">
-				<img class ="profileImg" ng-src= {{user.profileImageURL}}>
+				<img class ="profileImg" ng-src= {{member.profileImageURL}}>
 			</div>
-			<p class = "name">{{user.displayName}}</p>
+			<p class = "name">{{member.displayName}}</p>
 		</div>
 	</div>
   </div>

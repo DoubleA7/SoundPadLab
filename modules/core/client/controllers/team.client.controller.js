@@ -1,11 +1,12 @@
 'use strict';
-angular.module('core').controller('TeamController', ['$scope', '$state', 'Admin',
-  function ($scope, $state, Admin) {
+angular.module('core').controller('TeamController', ['$scope', '$state', 'Members',
+  function ($scope, $state, Members) {
     console.log('team list initialized!!');
-    Admin.query(function (data) {
-      $scope.users = data;
+    Members.query(function (data) {
+      $scope.members = data;
       console.log(JSON.stringify(data));
+      alert('Stringify data \n' + JSON.stringify(data));
+      alert('Raw data \n' + data);
     });
-    //console.log($scope.users);
   }
 ]);
