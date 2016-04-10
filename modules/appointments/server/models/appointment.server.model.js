@@ -11,7 +11,10 @@ var appointmentSchema = new Schema({
   //users: [ {type: Schema.Types.ObjectId, ref: 'User'} ],
   created_at: Date,
   updated_at: Date,
-  time: Date,
+  time: {
+    type: Date,
+    required: true
+  },
   tags: [String],
   comments: String
 });
