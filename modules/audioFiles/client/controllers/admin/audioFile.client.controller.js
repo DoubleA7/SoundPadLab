@@ -1,13 +1,15 @@
 'use strict';
 
 
-angular.module('audioFiles.admin').controller('AudioFileController', ['fs','$scope', '$state', 'Authentication', 'audioFileResolve',
-  function (fs,$scope, $state, Authentication, audioFileResolve) {
+angular.module('audioFiles.admin').controller('AudioFileController', ['$window', '$timeout', '$scope', '$state', 'Authentication', 'audioFileResolve',
+  function ($window, $timeout, $scope, $state, Authentication, audioFileResolve) {
     $scope.authentication = Authentication;
     $scope.audioFile = audioFileResolve;
-    console.log($scope.audioFile.filePath);
-    $scope.mp3URL = $scope.audioFile.filePath;
-    console.log($scope.mp3URL);
+    //$scope.audioFile = audio;
+    //console.log($scope.audioFile.filePath);
+    $scope.path = $scope.audioFile.filePath;
+    //$scope.mp3URL = $scope.audioFile.filePath;
+    console.log($scope.path);
     $scope.remove = function (audioFile) {
       if (confirm('Are you sure you want to delete this audioFile?')) {
         if (audioFile) {
@@ -39,6 +41,27 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['fs','$sco
         $scope.error = errorResponse.data.message;
       });
     };
+
+    $scope.readFile = function(){
+
+      var audioFile = $scope.audioFile;
+
+      //var fileReader = new $window.FileReader();
+        var file = new File([""],$scope.path);
+        console.log(file);
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = function (fileReaderEvent) {
+          $timeout(function () {
+            $scope.x = fileReaderEvent.target.result;
+            console.log($scope.x);
+          }, 0);
+        };
+      
+
+    }
+    $scope.readFile();
 
   }
 ]);
