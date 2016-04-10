@@ -10,7 +10,21 @@
             <p class="help-block error-text" ng-message="required">Name is required.</p>
           </div>
         </div>
-
+        <div class="form-group">
+         <!-- display the conditions for this experiment -->
+          <label for="expCond">Experiment Conditions</label>
+          <table>
+            <tr ng-repeat = "cond in localConditions">
+              <td><button type="button" class="btn btn-small" ng-click="deleteLocalCondition($index)" > X </button></td>
+              <td><p ng-bind="cond"></p></td>
+            </tr>
+          </table>
+          
+          <!-- Add one temporarily to the list -->
+          <input type="text" id="expCond" name="expCond" class="form-control" ng-model="new_condition_to_add" placeholder="Add a condition">
+          <button type="button" class="btn" ng-click="addLocalCondition()">+</button>
+        </div>
+        
         <div class="form-group" show-errors>
           <label for="firstName">Requires Eyeglasses?</label>
           <div class="radio">
@@ -19,6 +33,8 @@
           <div class="radio">
             <label><input type="radio" name="optradio" ng-model="credentials.requires_eyeglasses" ng-value="false">No</label>
           </div>
+         
+          
         </div>
         
         

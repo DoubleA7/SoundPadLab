@@ -11,7 +11,8 @@
   </div>
   <div class="list-group">
     <a ng-repeat="experiment in pagedItems" ui-sref="admin.experiment({experimentId: experiment._id})" class="list-group-item">
-      <h4 class="list-group-item-heading" ng-bind="experiment.experiment_name"></h4>
+      <h4 class="list-group-item-heading" >{{experiment.experiment_name}}</h4>
+        <h6 ng-repeat="exp_condition in experiment.experiment_conditions">{{exp_condition}}</h6>
       <p class="list-group-item-text small" ng-show="experiment.requires_eyeglasses"> Requires eyeglasses</p>
     </a>
   </div>

@@ -4,6 +4,24 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
   function ($scope, $state, Authentication, experimentResolve) {
     $scope.authentication = Authentication;
     $scope.experiment = experimentResolve;
+    
+    
+     /* handle updating the LIST of conditions per experiemnt */
+    $scope.localConditions = $scope.experiment.experiment_conditions;
+    $scope.new_condition_to_add = "";
+    $scope.resetLocalConditions = function() {      
+      $scope.localConditions = $scope.experiment.experiment_conditions;
+    }
+    $scope.addLocalCondition = function() {		
+      if(!($scope.new_condition_to_add === ""))
+        $scope.localConditions.push($scope.new_condition_to_add);
+      $scope.new_condition_to_add = "";
+      
+    };
+
+    $scope.deleteLocalCondition = function(index) {
+      $scope.localConditions.splice(index, 1);
+    };
 
     $scope.remove = function (experiment) {
       if (confirm('Are you sure you want to delete this experiment?')) {
@@ -25,7 +43,9 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
 
         return false;
       }
-
+      
+      /* Set the conditions array */
+      $scope.experiment.experiment_conditions = $scope.localConditions;
       var experiment = $scope.experiment;
 
       experiment.$update(function () {

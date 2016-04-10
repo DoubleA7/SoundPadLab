@@ -185,6 +185,7 @@ exports.update = function (req, res) {
   experiment.completed = req.body.completed;
   experiment.requires_eyeglasses = req.body.requires_eyeglasses;
   experiment.experiment_name = req.body.experiment_name;
+  experiment.experiment_conditions = req.body.experiment_conditions;
 
   experiment.save(function (err) {
     if (err) {
@@ -275,7 +276,7 @@ exports.delete = function (req, res) {
  * List of experiments
  */
 exports.list = function (req, res) {
-  Experiment.find().sort('experiment_name').exec(function (err, experiments) {  
+  Experiment.find().populate('participants', 'name email phone_number conditions').sort('experiment_name').exec(function (err, experiments) {  
   // Participant.findById({
         // "_id": "56f09dbc9c7c29e00eddca2c"
     // }).exec(function (err, participant) {
@@ -310,7 +311,7 @@ exports.experimentByID = function (req, res, next, id) {
   }
 
    // experiment.findById(id).populate('name', 'displayName').exec(function (err, experiment) {
-  Experiment.findById(id).populate('participants').populate('appointments').populate({ path: 'appointments', populate: { path: 'participant' } }).exec(function (err, experiment) {
+  Experiment.findById(id).populate('participants', 'name email phone_number conditions').populate('appointments').populate({ path: 'appointments', populate: { path: 'participant' } }).exec(function (err, experiment) {
     if (err) {
       return next(err);
     } else if (!experiment) {
