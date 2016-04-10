@@ -40,12 +40,12 @@
         </div>
         <div class="form-group" show-errors>
           <label for="experiment">Experiment</label>
-		  <select name="experiment" ng-model="credentials.experiment" required>
+		  <select name="experiment" ng-model="credentials.experiment" <!--required-->>
 		    <option ng-repeat="experiment in experiments" value="{{experiment._id}}">{{experiment.experiment_name}}</option>
 		  </select>
-          <div ng-messages="appointmentForm.experiment.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Experiemtn is required.</p>
-          </div>
+          <!--<div ng-messages="appointmentForm.experiment.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Experiment is required.</p
+          </div>-->
         </div>
 		
         <div class="text-center form-group">
