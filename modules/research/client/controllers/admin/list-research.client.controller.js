@@ -2,7 +2,7 @@
 
 angular.module('research.admin').controller('ResearchListController', ['$scope', '$filter', 'researchAdmin',
   function ($scope, $filter, researchAdmin) {
-    console.log("research list initialized!!");
+    console.log('research list initialized!!');
     researchAdmin.query(function (data) {
       $scope.researchs = data;
       $scope.buildPager();

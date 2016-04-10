@@ -2,7 +2,7 @@
 
 angular.module('research').controller('ResearchListPublicController', ['$scope', '$filter', 'researchPublic',
   function ($scope, $filter, researchPublic) {
-    console.log("research list initialized!!");
+    console.log('research list initialized!!');
     researchPublic.query(function (data) {
       $scope.researchs = data;
       $scope.buildPager();

@@ -62,7 +62,7 @@ exports.sendMail = function (req, res) {
     from: data.email, // sender address
     to: 'settlejonathen@gmail.com', // list of receivers
     subject: 'Message from ' + data.name + ' via SoundPadLab app', // Subject line
-    text: data.email + " sent some template message and " + data.msg, // plaintext body
+    text: data.email + ' sent some template message and ' + data.msg, // plaintext body
   };
 
   transporter.sendMail(mailOptions, function(error, info){

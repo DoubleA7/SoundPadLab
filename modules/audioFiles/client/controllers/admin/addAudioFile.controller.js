@@ -10,7 +10,7 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
 
 	
     $scope.addAudioFile = function (isValid) {
-      console.log("ADD AUDIO FILE");
+      console.log('ADD AUDIO FILE');
       $scope.error = null;
 
       if (!isValid) {
@@ -20,15 +20,13 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
       }
 
       $http.post('/api/audioFiles', $scope.credentials).success(function (response) {
-        console.log("ADDED AUDIO FILE");
+        console.log('ADDED AUDIO FILE');
         // And redirect to the previous or list of users 
         $state.go('admin.audioFiles', $state.previous.params);
       }).error(function (response) {
-        console.log("FAILED TO ADD AUDIO FILE");
+        console.log('FAILED TO ADD AUDIO FILE');
         $scope.error = response.message;
       });
     };
-
-  
   }
 ]);

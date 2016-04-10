@@ -8,16 +8,14 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
     participantsAdmin.query(function (data) {
       console.log(data);
       if(data.length === 0){
-		$scope.error = "No Participants to schedule!";
-	  }else{
-		$scope.error = null;
-		$scope.participants= data;
-	  }
+        $scope.error = 'No Participants to schedule!';
+      }else{
+        $scope.error = null;
+        $scope.participants= data;
+      }
     });
-        
-            $('#datetimepicker11').datetimepicker({
-            });
-        
+    $('#datetimepicker11').datetimepicker({ });
+
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
 
@@ -25,7 +23,7 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
     $scope.addAppointment = function (isValid) {
       console.log('ADD APPOINTMENT');
       $scope.error = null;
-	  $scope.credentials.time = $('#datetimepicker11').data("DateTimePicker").date();
+      $scope.credentials.time = $('#datetimepicker11').data('DateTimePicker').date();
       console.log($scope.credentials);
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'appointmentForm');
@@ -35,7 +33,7 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
       }
 
       $http.post('/api/appointments', $scope.credentials).success(function (response) {
-        console.log("Sucess!");
+        console.log('Sucess!');
         // And redirect to the previous or list of users 
         $state.go('admin.appointments', $state.previous.params);
       }).error(function (response) {

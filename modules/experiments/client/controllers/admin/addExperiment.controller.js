@@ -18,7 +18,6 @@ angular.module('experiments').controller('addExperimentController', ['$scope', '
 
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'experimentForm');
-
         return false;
       }
 

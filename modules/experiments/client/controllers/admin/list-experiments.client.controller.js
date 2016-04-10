@@ -2,7 +2,7 @@
 
 angular.module('experiments.admin').controller('ExperimentListController', ['$scope', '$filter', 'experimentsAdmin',
   function ($scope, $filter, experimentsAdmin) {
-    console.log("experiments list initialized!!");
+    console.log('experiments list initialized!');
     experimentsAdmin.query(function (data) {
       $scope.experiments = data;
       $scope.buildPager();

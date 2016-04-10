@@ -2,7 +2,7 @@
 
 angular.module('audioFiles').controller('AudioFileListPublicController', ['$scope', '$filter', 'audioFilePublic',
   function ($scope, $filter, audioFilePublic) {
-    console.log("audioFiles list initialized!!");
+    console.log('audioFiles list initialized!');
     audioFilePublic.query(function (data) {
       $scope.audioFiles = data;
       $scope.buildPager();

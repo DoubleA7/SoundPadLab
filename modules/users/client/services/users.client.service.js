@@ -38,7 +38,7 @@ angular.module('participants.admin').factory('participantsAdmin', ['$resource',
 
 angular.module('experiments.admin').factory('experimentsAdmin', ['$resource',
   function ($resource) {
-    console.log("experiments admin");
+    console.log('experiments admin');
     return $resource('api/experiments/:experimentId', {
       experimentId: '@_id'
     }, {

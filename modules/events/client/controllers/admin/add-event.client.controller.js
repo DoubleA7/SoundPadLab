@@ -10,7 +10,7 @@ angular.module('events').controller('addEventController', ['$scope', '$state', '
 
 
     $scope.addEvent = function (isValid) {
-      console.log("ADD EVENT");
+      console.log('ADD EVENT');
       $scope.error = null;
 
       if (!isValid) {

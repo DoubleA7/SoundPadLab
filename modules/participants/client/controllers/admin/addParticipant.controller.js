@@ -10,7 +10,7 @@ angular.module('participants').controller('addParticipantController', ['$scope',
 
 	
     $scope.addParticipant = function (isValid) {
-      console.log("ADD PARTICIPANT");
+      console.log('ADD PARTICIPANT');
       $scope.error = null;
 
       if (!isValid) {
@@ -18,7 +18,7 @@ angular.module('participants').controller('addParticipantController', ['$scope',
 
         return false;
       }
-      console.log("FORM IS VALID");
+      console.log('FORM IS VALID');
 
       $http.post('/api/participants', $scope.credentials).success(function (response) {
         // And redirect to the previous or list of users 

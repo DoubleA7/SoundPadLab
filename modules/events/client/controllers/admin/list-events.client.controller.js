@@ -2,7 +2,7 @@
 
 angular.module('events.admin').controller('EventListController', ['$scope', '$filter', 'eventsAdmin',
   function ($scope, $filter, eventsAdmin) {
-    console.log("events list initialized!!");
+    console.log('events list initialized!');
     eventsAdmin.query(function (data) {
       $scope.events = data;
       $scope.buildPager();
