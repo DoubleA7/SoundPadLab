@@ -9,12 +9,17 @@
       </div>
     </div>
   </div>
-  <div class="list-group">
-      <a ng-repeat="research in pagedItems" ui-sref="core.research({researchId: research._id})" class="list-group-item">
-          <h4 class="list-group-item-heading" ng-bind="research.title"></h4>
-          <p class="list-group-item-text pull-right small" ng-bind="research.image"></p>
-          <p class="list-group-item-text" ng-bind="research.content"></p>
-      </a>
+  <div class="col-xs-8 col-xs-offset-2 col-sm-8 col-sm-offset-2 col-md-10 col-md-offset-1">
+    <div class="researchSection row">
+      <div ng-repeat="research in pagedItems" ui-sref="core.research({researchId: research._id})" class="researchProject">
+        <h4 ng-bind="research.title"></h4>
+        <p ng-bind="research.created_at"></p>
+        <div class="researchImgContainer">
+          <img class ="researchImg" ng-src= {{research.image}}>
+        </div>
+        <p class = "content" ng-bind="research.content"></p>
+      </div>
+    </div>
   </div>
   <pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></pagination>
 
