@@ -12,36 +12,30 @@ var _ = require('lodash'),
   fs = require('fs'),
   multer = require('multer'),
   config = require(path.resolve('./config/config'));
+
+var gName = null;
 /**
  * Create an audio file
  */
 exports.create = function (req, res) {
-  var upload = multer(config.uploads.mp3Upload).single('mp3File');
-  var mp3UploadFilter = require(path.resolve('./config/lib/multer')).mp3UploadFilter;
   var audiofile = new AudioFile(req.body);
-  upload.fileFilter = mp3UploadFilter;
-  upload(req, res, function (uploadError) {
-    if(uploadError) {
+  console.log('Gname :' +gName);
+  if(gName !== null){
+    audiofile.filePath = gName;
+    console.log('file name');
+  }
+  audiofile.save(function (err) {
+    if (err) {
+      //console.log(err);
       return res.status(400).send({
-        message: 'Error occurred while uploading mp3'
+        message: errorHandler.getErrorMessage(err)
       });
     } 
     else {
-      audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
-      audiofile.title = 'testTitle';
-      audiofile.save(function (err) {
-        if (err) {
-          //console.log(err);
-          return res.status(400).send({
-            message: errorHandler.getErrorMessage(err)
-          });
-        } 
-        else {
-          res.json(audiofile);
-        }
-      });
+      res.json(audiofile);
     }
   });
+  gName = null;
 };
 
 //audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
@@ -137,57 +131,36 @@ exports.audioFileByID = function (req, res, next, id) {
 };
 
 exports.uploadMp3File = function (req, res) {
-  //var credentials = req.credentials;
-  var message = null;
   var upload = multer(config.uploads.mp3Upload).single('mp3File');
   var mp3UploadFilter = require(path.resolve('./config/lib/multer')).mp3UploadFilter;
-  var user = req.user;
-  console.log(JSON.stringify(req.body));
-  // Filtering to upload only images
+  var audiofile = new AudioFile(req.body);
   upload.fileFilter = mp3UploadFilter;
-
-  if (user) {
-    upload(req, res, function (uploadError) {
-      if(uploadError) {
-        return res.status(400).send({
-          message: 'Error occurred while uploading mp3'
-        });
-      } else {
-        //credentials.filePath = config.uploads.mp3Upload.dest + req.file.filename;
-        console.log(config.uploads.mp3Upload.dest + req.file.filename);
-        //alert('saved credentials');
-       /* var audiofile = new AudioFile(req.body);
-
-        audiofile.save(function (err) {
-         if (err) {
-        //console.log(err);
-        return res.status(400).send({
-        message: errorHandler.getErrorMessage(err)
-        });
-      } else {
-      res.json(audiofile);
-      }
-    });*/
-        /*user.save(function (saveError) {
-          if (saveError) {
-            return res.status(400).send({
-              message: errorHandler.getErrorMessage(saveError)
-            });
-          } else {
-            req.login(user, function (err) {
-              if (err) {
-                res.status(400).send(err);
-              } else {
-                res.json(user);
-              }
-            });
-          }
-        });*/
-      }
-    });
-  } else {
-    res.status(400).send({
-      message: 'User is not signed in'
-    });
-  }
+  //console.log(req.body);
+  audiofile.title = req.title;
+  upload(req, res, function (uploadError) {
+    //console.log(req);
+    if(uploadError) {
+      return res.status(400).send({
+        message: 'Error occurred while uploading mp3'
+      });
+    } 
+    else {
+      audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
+      gName = audiofile.filePath;
+      //audiofile.title = "test";
+      /*audiofile.save(function (err) {
+        if (err) {
+          //console.log(err);
+          return res.status(400).send({
+            message: errorHandler.getErrorMessage(err)
+          });
+        } 
+        else {
+          console.log(audiofile);
+          res.json(audiofile);
+          //return audiofile;
+        }
+      });*/
+    }
+  });
 };

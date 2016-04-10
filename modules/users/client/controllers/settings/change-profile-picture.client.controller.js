@@ -29,6 +29,7 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
         fileReader.onload = function (fileReaderEvent) {
           $timeout(function () {
             $scope.imageURL = fileReaderEvent.target.result;
+            console.log($scope.imageURL);
           }, 0);
         };
       }

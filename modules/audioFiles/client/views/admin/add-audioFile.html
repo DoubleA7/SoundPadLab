@@ -1,7 +1,7 @@
 <div>
   <h3 class="col-md-12 text-center">Add Audio File</h3>
   <div class="col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
-    <form name="audioFileForm" ng-submit="uploadMp3File()" class="signin" novalidate autocomplete="off">
+    <form name="audioFileForm" ng-submit="addAudioFile(audioFileForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
         <div class="form-group" show-errors>
           <label for="name">Audio File Name</label>
@@ -10,13 +10,13 @@
             <p class="help-block error-text" ng-message="required">File name is required.</p>
           </div>
         </div>
-        <div class="form-group" show-errors>
+        <!-- <div class="form-group" show-errors>
           <label for="filePath">File Path</label>
           <input type="text" id="filePath" name="filePath" class="form-control" ng-model="credentials.filePath" placeholder="File Path" required>
           <div ng-messages="audioFileForm.filePath.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Link is required.</p>
           </div>
-        </div>
+        </div> -->
 
         <div class="text-center form-group" ng-hide="uploader.queue.length">
           <span class="btn btn-default btn-file">

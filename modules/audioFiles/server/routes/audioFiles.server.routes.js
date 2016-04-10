@@ -18,7 +18,7 @@ module.exports = function (app) {
         .put(adminPolicy.isAllowed,audioFiles.update)
         .delete(adminPolicy.isAllowed,audioFiles.delete);
 
-  //app.route('/api/audioFiles/upload').post(audioFiles.uploadMp3File);
+  app.route('/api/audioFiles/upload').post(adminPolicy.isAllowed,audioFiles.uploadMp3File);
 
     // Finish by binding the participant middleware
   app.param('audioFileId', audioFiles.audioFileByID);

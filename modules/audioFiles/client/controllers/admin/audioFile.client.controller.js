@@ -1,10 +1,13 @@
 'use strict';
 
-angular.module('audioFiles.admin').controller('AudioFileController', ['$scope', '$state', 'Authentication', 'audioFileResolve',
-  function ($scope, $state, Authentication, audioFileResolve) {
+
+angular.module('audioFiles.admin').controller('AudioFileController', ['fs','$scope', '$state', 'Authentication', 'audioFileResolve',
+  function (fs,$scope, $state, Authentication, audioFileResolve) {
     $scope.authentication = Authentication;
     $scope.audioFile = audioFileResolve;
-
+    console.log($scope.audioFile.filePath);
+    $scope.mp3URL = $scope.audioFile.filePath;
+    console.log($scope.mp3URL);
     $scope.remove = function (audioFile) {
       if (confirm('Are you sure you want to delete this audioFile?')) {
         if (audioFile) {
@@ -36,5 +39,8 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$scope', 
         $scope.error = errorResponse.data.message;
       });
     };
+
   }
 ]);
+
+

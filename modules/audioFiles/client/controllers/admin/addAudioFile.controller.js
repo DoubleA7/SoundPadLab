@@ -4,13 +4,15 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
   function ($scope, $timeout, $state, $http, $location, $window, Authentication, PasswordValidator, FileUploader) {
     $scope.authentication = Authentication;
     $scope.popoverMsg = PasswordValidator.getPopoverMsg();
+    $scope.title = 'TESTt';
+    //$scope.audioFile = audioFileResolve;
 
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
 
     // Create file uploader instance
     $scope.uploader = new FileUploader({
-      url: 'api/audioFiles',
+      url: 'api/audioFiles/upload',
       alias: 'mp3File'
     });
 
@@ -30,7 +32,7 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
       $scope.success = true;
 
       // Populate user object
-      //$scope.user = Authentication.user = response;
+      $scope.title = response;
 
       // Clear upload buttons
       $scope.cancelUpload();
@@ -45,14 +47,32 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
       $scope.error = response.message;
     };
 
+    // Called after the user selected a new picture file
+    $scope.uploader.onAfterAddingFile = function (fileItem) {
+      if ($window.FileReader) {
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(fileItem._file);
+
+        fileReader.onload = function (fileReaderEvent) {
+          $timeout(function () {
+           // $scope.mp3URL = fileReaderEvent.target.result;
+            console.log(fileReaderEvent.target.result);
+          }, 0);
+        };
+      }
+    };
+
     // Change user profile picture
-    $scope.uploadMp3File = function () {
+    $scope.uploadMp3File = function (req,res) {
       // Clear messages
       $scope.success = $scope.error = null;
       console.log('inside uploadMp3File');
       // Start upload
       $scope.uploader.uploadAll();
-
+      console.log(res);
+      console.log(JSON.stringify($scope.credentials) + 'inside uploadmp3 function');
+      //$scope.credentials.ti = 
+      //addAudioFile();
 
     };
 
@@ -62,27 +82,35 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
 
     };
 	
-    /*$scope.addAudioFile = function (isValid) {
-      $scope.uploadMp3File();
-
-      console.log("ADD AUDIO FILE");
+    $scope.addAudioFile = function (isValid) {
       $scope.error = null;
-
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'audioForm');
 
         return false;
       }
+      /*$http.post('/api/audioFiles/', $scope.credentials).success(function (response) {
+          console.log('success');
+      }).error(function (response) {
+        console.log("FAILED TO ADD AUDIO FILE");
+        $scope.error = response.message;
+      });*/
+      $scope.uploadMp3File();
 
-      $http.post('/api/audioFiles', $scope.credentials).success(function (response) {
+      $http.post('/api/audioFiles/', $scope.credentials).success(function (response) {
         console.log("ADDED AUDIO FILE");
+        console.log(response);
+        //$scope.uploadMp3File();
         // And redirect to the previous or list of users 
         $state.go('admin.audioFiles', $state.previous.params);
       }).error(function (response) {
         console.log("FAILED TO ADD AUDIO FILE");
         $scope.error = response.message;
+        return;
       });
-    };*/
+      console.log("ADD AUDIO FILE");
+
+    };
 
   
   }
