@@ -14,7 +14,10 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
 		$scope.participants= data;
 	  }
     });
-
+        
+            $('#datetimepicker11').datetimepicker({
+            });
+        
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
 
@@ -22,7 +25,8 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
     $scope.addAppointment = function (isValid) {
       console.log('ADD APPOINTMENT');
       $scope.error = null;
-
+	  $scope.credentials.time = $('#datetimepicker11').data("DateTimePicker").date();
+      console.log($scope.credentials);
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'appointmentForm');
         console.log('NOT VALID');
