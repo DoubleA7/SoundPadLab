@@ -3,7 +3,7 @@
 	<section id="directives-calendar">
 		<div class="page-header">
 			<h1>Lab Calendar</h1>
-			<button type="button" class="btn btn-primary" ng-click="addEvent()">
+			<button type="button" class="btn btn-primary" ui-sref="admin.appointment-add">
 				Add Appointment 
 			</button>
 			<button class="btn btn-success" ng-click="changeView('agendaWeek', 'MainCalendar')">Week</button>
@@ -59,11 +59,6 @@
 						</div>
 
 						<pagination boundary-links="true" max-size="8" items-per-page="itemsPerPage" total-items="filterLength" ng-model="currentPage" ng-change="pageChanged()"></pagination>
-						<div class="container">
-							<div class="row">
-								<button class="btn-primary" ui-sref="admin.appointment-add">Add Appointment</button>
-							</div>
-						</div>
 						
 					</div>
 				</div>
