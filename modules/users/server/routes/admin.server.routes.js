@@ -12,15 +12,15 @@ module.exports = function (app) {
 
   // Users collection routes
   app.route('/api/users')
-    .get(admin.list);
+    .get(adminPolicy.isAllowed, admin.list);
 
-  // 
+  // Route for team page. Only post display name and img url
   app.route('/api/members')
     .get(admin.listMembers);
 
   // Single user routes
   app.route('/api/users/:userId')
-    .get(admin.read)
+    .get(adminPolicy.isAllowed, admin.read)
     .put(adminPolicy.isAllowed, admin.update)
     .delete(adminPolicy.isAllowed, admin.delete);
 
