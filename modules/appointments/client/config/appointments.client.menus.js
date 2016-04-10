@@ -4,7 +4,7 @@
 angular.module('appointments.admin').run(['Menus',
   function (Menus) {
     Menus.addSubMenuItem('topbar', 'admin', {
-      title: 'Manage Appointments',
+      title: 'Appointments',
       state: 'admin.appointments'
     });
   }

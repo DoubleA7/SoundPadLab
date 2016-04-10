@@ -3,6 +3,7 @@
 // Setting up route
 angular.module('audioFiles').config(['$stateProvider',
   function ($stateProvider) {
+      /*
     $stateProvider
       .state('audioFiles', {
         url: '/audioFiles',
@@ -20,7 +21,7 @@ angular.module('audioFiles').config(['$stateProvider',
             });
           }]
         }
-      });
+      }); */
   }
 ]);
 

@@ -97,7 +97,9 @@ var UserSchema = new Schema({
   },
   resetPasswordExpires: {
     type: Date
-  }
+  },
+  appointments: [{ type: Schema.Types.ObjectId, ref: 'Appointment' }],
+  experiments: [{ type: Schema.Types.ObjectId, ref: 'Experiment' }]
 });
 
 /**
@@ -123,7 +125,12 @@ UserSchema.pre('validate', function (next) {
       this.invalidate('password', error);
     }
   }
-
+  if(!this.experiments){
+    this.experiments = [];
+  }
+  if(!this.appointments){
+    this.appointments = [];
+  }
   next();
 });
 

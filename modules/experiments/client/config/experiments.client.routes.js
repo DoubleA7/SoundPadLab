@@ -14,8 +14,8 @@ angular.module('experiments.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/experiments/client/views/admin/view-experiment.client.view.html',
         controller: 'ExperimentController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
-            return Admin.get({
+          experimentResolve: ['$stateParams', 'experimentsAdmin', function ($stateParams, experimentsAdmin) {
+            return experimentsAdmin.get({
               experimentId: $stateParams.experimentId
             });
           }]
@@ -26,8 +26,8 @@ angular.module('experiments.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/experiments/client/views/admin/edit-experiment.client.view.html',
         controller: 'ExperimentController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
-            return Admin.get({
+          experimentResolve: ['$stateParams', 'experimentsAdmin', function ($stateParams, experimentsAdmin) {
+            return experimentsAdmin.get({
               experimentId: $stateParams.experimentId
             });
           }]

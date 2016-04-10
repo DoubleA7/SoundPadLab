@@ -1,0 +1,42 @@
+﻿<section>
+    <div class="page-header">
+        <div class="row">
+            <div class="col-md-6">
+                <h1 ng-bind="research.title"></h1>
+            </div>
+            <div class="col-md-4">
+                <a class="btn btn-primary" ui-sref="admin.research-edit({researchId: research._id})">
+                    <i class="glyphicon glyphicon-edit"></i>
+                </a>
+                <a class="btn btn-primary" ng-click="remove();" ng-if="research._id !== authentication.research._id">
+                    <i class="glyphicon glyphicon-trash"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-3"><strong>Title</strong></div>
+                <div class="col-md-6" ng-bind="research.title"></div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-3"><strong>Content</strong></div>
+                <div class="col-md-6" ng-bind="research.content"></div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-3"><strong>image</strong></div>
+                <div class="col-md-6" ng-bind="research.image"></div>
+            </div>
+            <hr />
+            <div class="row">
+                <div class="col-md-3"><strong>Created</strong></div>
+                <div class="col-md-6" ng-bind="research.created_at"></div>
+            </div>
+            <hr />
+        </div>
+    </div>
+</section>

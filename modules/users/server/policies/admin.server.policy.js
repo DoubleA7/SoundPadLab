@@ -21,10 +21,19 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/users/:userId',
       permissions: '*'
     }, {
+      resources: '/api/participants/:participantId',
+      permissions: '*'
+    },{
+      resources: '/api/experiments/:experimentId',
+      permissions: '*'
+    },{
       resources: '/api/participants',
       permissions: '*'
     }, {
       resources: '/api/appointments',
+      permissions: '*'
+    },{
+      resources: '/api/appointments/:appointmentId',
       permissions: '*'
     }, {
       resources: '/api/experiments',

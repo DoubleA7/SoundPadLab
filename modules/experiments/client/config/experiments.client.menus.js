@@ -4,7 +4,7 @@
 angular.module('experiments.admin').run(['Menus',
   function (Menus) {
     Menus.addSubMenuItem('topbar', 'admin', {
-      title: 'Manage Experiments',
+      title: 'Experiments',
       state: 'admin.experiments'
     });
   }

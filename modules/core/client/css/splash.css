@@ -12,6 +12,7 @@
   text-decoration: none; }
 
 #footer-nav a {
+  cursor: pointer;
   margin: 10px; }
 
 #rights a {
