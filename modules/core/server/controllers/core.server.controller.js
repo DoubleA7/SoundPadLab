@@ -65,55 +65,46 @@ exports.sendMail = function (req, res) {
 
   console.log(data.captcha);
 
-  var captchaData = ({
-      secret: PRIVATE_KEY, 
-      response: data.captcha,
-      remoteip: req.connection.remoteAddress
-  });
-
   request.post({
-      url: 'https://www.google.com/recaptcha/api/siteverify', 
-      form: { 
-        secret: PRIVATE_KEY, 
-        response: data.captcha
-      }
-    },
-    function (err, res, body) {
-
-      console.log(body);
-      console.log(body.success);
-
-      var parsedBody = JSON.parse(body);
-      console.log(parsedBody);
-      console.log(parsedBody.success);
-
-      if(err){
-        console.log('ERROR:\n',err);
-      }
-      //if the request to googles verification service returns a body which has false within it means server failed
-      //validation, if it doesnt verification passed
-      if (parsedBody.success) {
-        //console.log(res.error-codes);
-
-        var mailOptions = {
-          from: data.email, // sender address
-          to: 'settlejonathen@gmail.com', // list of receivers
-          subject: 'Message from ' + data.name + ' via SoundPadLab app', // Subject line
-          text: data.email + ' sent some template message and ' + data.msg, // plaintext body
-        };
-
-        transporter.sendMail(mailOptions, function(error, info){
-          if(error){
-            return console.log(error);
-          }
-          console.log('Message sent: ' + info.response);
-        });
-      } else {
-        //res.send(500);
-        console.log('CAPTCHA NOT VALID');
-      }
+    url: 'https://www.google.com/recaptcha/api/siteverify', 
+    form: { 
+      secret: PRIVATE_KEY, 
+      response: data.captcha
     }
-  );
+  },function (err, res, body) {
+    console.log(body);
+    console.log(body.success);
+
+    var parsedBody = JSON.parse(body);
+    console.log(parsedBody);
+    console.log(parsedBody.success);
+
+    if(err){
+      console.log('ERROR:\n',err);
+    }
+    //if the request to googles verification service returns a body which has false within it means server failed
+    //validation, if it doesnt verification passed
+    if (parsedBody.success) {
+      //console.log(res.error-codes);
+
+      var mailOptions = {
+        from: data.email, // sender address
+        to: 'settlejonathen@gmail.com', // list of receivers
+        subject: 'Message from ' + data.name + ' via SoundPadLab app', // Subject line
+        text: data.email + ' sent some template message and ' + data.msg, // plaintext body
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){
+        if(error){
+          return console.log(error);
+        }
+        console.log('Message sent: ' + info.response);
+      });
+    } else {
+      //res.send(500);
+      console.log('CAPTCHA NOT VALID');
+    }
+  });
 
   res.json(data);
 };
