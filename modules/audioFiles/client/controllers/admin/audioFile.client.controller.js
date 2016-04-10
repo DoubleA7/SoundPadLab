@@ -47,7 +47,7 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$window',
       var audioFile = $scope.audioFile;
 
       //var fileReader = new $window.FileReader();
-        var file = new File([""],"."$scope.path);
+        var file = new File([""],$scope.path);
         console.log(file);
         var fileReader = new FileReader();
         fileReader.readAsDataURL(file);
@@ -60,7 +60,7 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$window',
         };
       
 
-    }
+    };
     $scope.readFile();
 
   }

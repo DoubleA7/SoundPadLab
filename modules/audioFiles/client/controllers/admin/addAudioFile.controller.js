@@ -51,13 +51,12 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
     $scope.uploader.onAfterAddingFile = function (fileItem) {
       if ($window.FileReader) {
         var fileReader = new FileReader();
-        console.log(fileItem);
         fileReader.readAsDataURL(fileItem._file);
 
         fileReader.onload = function (fileReaderEvent) {
           $timeout(function () {
            // $scope.mp3URL = fileReaderEvent.target.result;
-            //console.log(fileReaderEvent.target.result);
+            console.log(fileReaderEvent.target.result);
           }, 0);
         };
       }

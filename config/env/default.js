@@ -39,7 +39,7 @@ module.exports = {
     mp3Upload: {
       dest: './modules/audioFiles/mp3Uploads/',
       limits:{
-        fileSize: 1*1024*1024
+        fileSize: 5*1024*1024
       }
     }
   }
