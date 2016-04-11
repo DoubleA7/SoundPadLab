@@ -14,6 +14,7 @@ var _ = require('lodash'),
   config = require(path.resolve('./config/config'));
 
 var gName = null;
+
 /**
  * Create an audio file
  */
@@ -32,10 +33,10 @@ exports.create = function (req, res) {
       });
     } 
     else {
+      gName = null;
       res.json(audiofile);
     }
   });
-  gName = null;
 };
 
 //audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
@@ -147,20 +148,28 @@ exports.uploadMp3File = function (req, res) {
     else {
       audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
       gName = audiofile.filePath;
-      //audiofile.title = "test";
-      /*audiofile.save(function (err) {
-        if (err) {
-          //console.log(err);
-          return res.status(400).send({
-            message: errorHandler.getErrorMessage(err)
-          });
-        } 
-        else {
-          console.log(audiofile);
-          res.json(audiofile);
-          //return audiofile;
-        }
-      });*/
     }
   });
+};
+
+exports.getMp3 = function (req,res){
+  var filePath;
+  if(req === null)
+    res.send('null request');
+  else{
+    filePath = req.body.filePath;
+    console.log(filePath);
+  }
+  //res.send('test');
+   fs.readFile(filePath,'base64', function (err, data) {
+     if (err) {
+        res.send('error while reading');
+        console.error(err);
+     }
+     console.log("Asynchronous read: " + data);
+     var d = "data:audio/mp3;base64," + data;
+     res.send(d);
+  });
+
+
 };

@@ -48,7 +48,7 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
     };
 
     // Called after the user selected a new picture file
-    $scope.uploader.onAfterAddingFile = function (fileItem) {
+    /*$scope.uploader.onAfterAddingFile = function (fileItem) {
       if ($window.FileReader) {
         var fileReader = new FileReader();
         fileReader.readAsDataURL(fileItem._file);
@@ -56,11 +56,11 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
         fileReader.onload = function (fileReaderEvent) {
           $timeout(function () {
            // $scope.mp3URL = fileReaderEvent.target.result;
-            console.log(fileReaderEvent.target.result);
+            console.log(fileReaderEvent.target.result)
           }, 0);
         };
       }
-    };
+    };*/
 
     // Change user profile picture
     $scope.uploadMp3File = function (req,res) {
