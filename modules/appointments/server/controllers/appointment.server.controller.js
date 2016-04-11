@@ -78,7 +78,7 @@ exports.create = function (req, res) {
     }
     else {
       addToExperiment(0, appointment);
-      addToUser(0, appointment);
+      //addToUser(0, appointment);
       Participant.findById(appointment.participant).exec(function(err,participant){
         if(participant.appointments.indexOf(appointment._id) === -1){//If a participant on the Database doesn't contain this appointment add this appointment his/her to its appointment list.
           participant.appointments.push(appointment._id);

@@ -14,11 +14,35 @@ angular.module('participants.admin').controller('ParticipantListController', ['$
       $scope.currentPage = 1;
       $scope.figureOutItemsToDisplay();
     };
+    
 
+    
     $scope.figureOutItemsToDisplay = function () {
+      
+      
+      if($scope.search ==="")
+        $scope.search = undefined;
+      if($scope.search2 ==="")
+        $scope.search2 = undefined;
+      if($scope.search3 ==="")
+        $scope.search3 = undefined;
       $scope.filteredItems = $filter('filter')($scope.participants, {
         $: $scope.search
       });
+      
+      if($scope.search2) //filter by experiment only if the field is filled. 
+      {
+        $scope.filteredItems = $filter('filter')($scope.filteredItems, {
+          experiments : { experiment_name: $scope.search2 }
+        });        
+      }
+      if($scope.search3) //filter by experiment only if the field is filled. 
+      {
+        $scope.filteredItems = $filter('filter')($scope.filteredItems, {
+          experiments : { experiment_conditions: $scope.search3 }
+        });        
+      }
+      
       $scope.filterLength = $scope.filteredItems.length;
       var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
       var end = begin + $scope.itemsPerPage;

@@ -54,10 +54,12 @@ var ParticipantSchema = new Schema({
   HRTF_assigned: String,
   tags: [String],
   gift_cards: [String],
-  appointments: [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
-  experiments: [ { type: Schema.Types.ObjectId, ref: 'Experiment' } ],
+  appointments:     [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
+  experiments:      [{ type: Schema.Types.ObjectId, ref: 'Experiment' }],
   comment: String
+
 });
+
 
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
