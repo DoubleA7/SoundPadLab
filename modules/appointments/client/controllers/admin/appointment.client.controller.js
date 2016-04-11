@@ -4,14 +4,22 @@ angular.module('appointments.admin').controller('AppointmentController', ['$scop
   function ($scope, $state, Authentication, appointmentResolve, participantsAdmin) {
     $scope.authentication = Authentication;
     $scope.appointment = appointmentResolve;
+    /*appointmentResolve.then(function($scope) {
+      // callback, executed on successful promise resolution
+      var j = new Date();
+      j.setTime(Date.parse($scope.appointment.time));
+      $scope.formattedTime = j.toLocaleString();   
+    });*/
     var j = new Date();
     j.setTime(Date.parse($scope.appointment.time));
-    $scope.formattedTime = j.toLocaleString();
+    $scope.formattedTime = j.toLocaleString();   
 
     console.log($state.current.name);
     
     if($state.current.name === 'admin.appointment-edit'){
-      $('#datetimepicker11').datetimepicker({ });
+      $('#datetimepicker11').datetimepicker({
+        sideBySide: true
+      });
     }
 
     participantsAdmin.query(function (data) {
