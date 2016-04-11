@@ -15,7 +15,8 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
       $scope.localConditions = angular.copy($scope.experiment.experiment_conditions);
     };
     
-    $scope.addLocalCondition = function() {		
+    $scope.addLocalCondition = function() {
+      console.log("$scope.new_condition_to_add ", angular.copy($scope.new_condition_to_add));
       if($scope.new_condition_to_add !== "")
       {
         if($scope.localConditions.indexOf($scope.new_condition_to_add) === -1)
@@ -24,7 +25,7 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
         }
       }  
       $scope.new_condition_to_add = '';
-      
+      console.log("angular.copy($scope.localConditions) ",angular.copy($scope.localConditions));
     };
 
     $scope.deleteLocalCondition = function(index) {
@@ -53,7 +54,9 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
       }
       
       /* Set the conditions array */
+      console.log("angular.copy($scope.localConditions) ",angular.copy($scope.localConditions));
       $scope.experiment.experiment_conditions = angular.copy($scope.localConditions);
+      console.log("$scope.experiment.experiment_conditions ",$scope.experiment.experiment_conditions);
       var experiment = $scope.experiment;
 
       experiment.$update(function () {
