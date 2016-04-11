@@ -1,11 +1,8 @@
 <section>
 <div>
 	<section id="directives-calendar">
-		<div class="page-header">
+		<div class="page-header" align="center">
 			<h1>Lab Calendar</h1>
-			<button type="button" class="btn btn-primary" ui-sref="admin.appointment-add">
-				Add Appointment 
-			</button>
 			<button class="btn btn-success" ng-click="changeView('agendaWeek', 'MainCalendar')">Week</button>
 			<button class="btn btn-success" ng-click="changeView('month', 'MainCalendar')">Month</button>
 		</div>
@@ -35,14 +32,15 @@
 					
 					<div class="col-md-6">
 						<div class="page-header">
-							<div class="row">
+							<button type="button" class="btn btn-primary" ui-sref="admin.appointment-add">Add Appointment</button>
+							<div class="row" align="center">
 								<h1>Appointments List</h1>
 							</div>
 							<div class="row">
 								<input class="form-control" type="text" ng-model="search" placeholder="Search" ng-change="figureOutItemsToDisplay()" />
 							</div>
 						</div>
-							<ul class="unstyled">
+							<!--<ul class="unstyled">
 								<li ng-repeat="e in events">
 									<div class="alert alert-info">
 										<a class="close" ng-click="remove($index)"><i class="glyphicon glyphicon-remove"></i></a>
@@ -50,7 +48,7 @@
 										{{e.start | date:"MMM dd"}} - {{e.end | date:"MMM dd"}}
 									</div>
 								</li>
-							</ul>
+							</ul>-->
 						<div class="list-group">
 							<a ng-repeat="appointment in pagedItems" ui-sref="admin.appointment({appointmentId: appointment._id})" class="list-group-item">
 							<p class="list-group-item-text pull-right small" ng-bind="appointment.time"></p>

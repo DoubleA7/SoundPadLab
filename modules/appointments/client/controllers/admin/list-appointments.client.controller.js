@@ -127,8 +127,8 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
         height: 'auto',
         editable: false,
         header:{
-          left: 'title',
-          center: '',
+          left: '',
+          center: 'title',
           right: 'today prev,next'
         },
         views: {
@@ -140,6 +140,12 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
             slotEventOverlap: false,
             minTime: { hours: 6, minutes: 0 },
             maxTime: { hours: 18, minutes: 0 }
+          },
+          week: {
+            titleFormat: "(MMMM D YYYY)"
+          },
+          month: {
+            titleFormat: "MMMM YYYY"
           }
         },
         dayClick: function(date, jsEvent, view) {
