@@ -1,3 +1,9 @@
+.appointmentSection{
+	background: rgba(242,246,247,1);
+	box-shadow: inset 0 0px 3px;
+	border-radius: 10px;
+	padding:20px;
+}
 
 /*** Calendar ***/
 #directives-calendar hr{
