@@ -19,6 +19,7 @@ var appointmentSchema = new Schema({
     type: Date,
     required: true
   },
+  location: String,
   email_sent: {
     type: Boolean,
 	default: false;
