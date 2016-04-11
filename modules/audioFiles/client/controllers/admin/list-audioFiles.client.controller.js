@@ -2,7 +2,7 @@
 
 angular.module('audioFiles.admin').controller('AudioFileListController', ['$scope', '$filter', 'audioFileAdmin',
   function ($scope, $filter, audioFileAdmin) {
-    console.log("audioFiles list initialized!!");
+    console.log('audioFiles list initialized!!');
     audioFileAdmin.query(function (data) {
       $scope.audioFiles = data;
       $scope.buildPager();

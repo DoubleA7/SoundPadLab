@@ -26,7 +26,7 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
       }
 
       $http.post('/api/appointments', $scope.credentials).success(function (response) {
-        console.log("Sucess!");
+        console.log('Sucess!');
         // And redirect to the previous or list of users 
         $state.go('admin.appointments', $state.previous.params);
       }).error(function (response) {

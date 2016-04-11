@@ -7,7 +7,7 @@ angular.module('research').controller('addResearchController', ['$scope', '$stat
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
     $scope.addResearch = function (isValid) {
-      console.log("ADD RESEARCH");
+      console.log('ADD RESEARCH');
       $scope.error = null;
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'researchForm');

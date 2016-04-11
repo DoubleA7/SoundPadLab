@@ -2,7 +2,7 @@
 
 angular.module('participants.admin').controller('ParticipantListController', ['$scope', '$filter', 'participantsAdmin',
   function ($scope, $filter, participantsAdmin) {
-    console.log("participants list initialized!!");
+    console.log('participants list initialized!!');
     participantsAdmin.query(function (data) {
       $scope.participants = data;
       $scope.buildPager();

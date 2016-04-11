@@ -10,7 +10,7 @@ angular.module('participants').controller('addParticipantController', ['$scope',
 
 	
     $scope.addParticipant = function (isValid) {
-      console.log("ADD PARTICIPANT");
+      console.log('ADD PARTICIPANT');
       $scope.error = null;
 
       if (!isValid) {

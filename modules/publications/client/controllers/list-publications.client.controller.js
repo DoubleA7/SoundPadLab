@@ -2,7 +2,7 @@
 
 angular.module('publications').controller('PublicationListPublicController', ['$scope', '$filter', 'publicationsPublic',
   function ($scope, $filter, publicationsPublic) {
-    console.log("publications list initialized!!");
+    console.log('publications list initialized!!');
     publicationsPublic.query(function (data) {
       $scope.publications = data;
       $scope.buildPager();
