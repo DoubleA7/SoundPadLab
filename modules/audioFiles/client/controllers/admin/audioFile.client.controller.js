@@ -51,11 +51,10 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$sce', '$
         console.log("SUCCESS mp3 http post");
         $scope.mp3URL = $sce.trustAsResourceUrl(response);
         //$scope.mp3URL = response;
-        console.log(response);
+        //console.log(response);
       }).error(function (response) {
         console.log("FAILED TO htpp post");
         $scope.error = response.message;
-        return;
       });
 
     /*  //var fileReader = new $window.FileReader();

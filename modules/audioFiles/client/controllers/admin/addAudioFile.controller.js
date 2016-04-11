@@ -30,7 +30,7 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
     $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
       // Show success message
       $scope.success = true;
-
+      console.log('success upload');
       // Populate user object
       $scope.title = response;
 
@@ -63,17 +63,17 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
     };*/
 
     // Change user profile picture
-    $scope.uploadMp3File = function (req,res) {
+    $scope.uploadMp3File = function () {
       // Clear messages
       $scope.success = $scope.error = null;
       console.log('inside uploadMp3File');
       // Start upload
       $scope.uploader.uploadAll();
-      console.log(res);
+      //$scope.success = true;
+      console.log($scope.success);
       console.log(JSON.stringify($scope.credentials) + 'inside uploadmp3 function');
       //$scope.credentials.ti = 
-      //addAudioFile();
-
+      //$scope.cancelUpload();
     };
 
     // Cancel the upload process
@@ -95,7 +95,7 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
         console.log("FAILED TO ADD AUDIO FILE");
         $scope.error = response.message;
       });*/
-      $scope.uploadMp3File();
+      //$scope.uploadMp3File();
 
       $http.post('/api/audioFiles/', $scope.credentials).success(function (response) {
         console.log("ADDED AUDIO FILE");

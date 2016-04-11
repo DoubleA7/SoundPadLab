@@ -134,10 +134,10 @@ exports.audioFileByID = function (req, res, next, id) {
 exports.uploadMp3File = function (req, res) {
   var upload = multer(config.uploads.mp3Upload).single('mp3File');
   var mp3UploadFilter = require(path.resolve('./config/lib/multer')).mp3UploadFilter;
-  var audiofile = new AudioFile(req.body);
+  /*var audiofile = new AudioFile(req.body);
   upload.fileFilter = mp3UploadFilter;
   //console.log(req.body);
-  audiofile.title = req.title;
+  audiofile.title = req.title;*/
   upload(req, res, function (uploadError) {
     //console.log(req);
     if(uploadError) {
@@ -146,8 +146,9 @@ exports.uploadMp3File = function (req, res) {
       });
     } 
     else {
-      audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
-      gName = audiofile.filePath;
+      gName = config.uploads.mp3Upload.dest + req.file.filename;
+      res.send(gName);
+      //gName = req.bod.filePath;
     }
   });
 };
@@ -161,14 +162,14 @@ exports.getMp3 = function (req,res){
     console.log(filePath);
   }
   //res.send('test');
-   fs.readFile(filePath,'base64', function (err, data) {
-     if (err) {
-        res.send('error while reading');
-        console.error(err);
-     }
-     console.log("Asynchronous read: " + data);
-     var d = "data:audio/mp3;base64," + data;
-     res.send(d);
+  fs.readFile(filePath,'base64', function (err, data) {
+    if (err) {
+      res.send('error while reading');
+      console.error(err);
+    }
+    //console.log("Asynchronous read: " + data);
+    var d = "data:audio/mp3;base64," + data;
+    res.send(d);
   });
 
 
