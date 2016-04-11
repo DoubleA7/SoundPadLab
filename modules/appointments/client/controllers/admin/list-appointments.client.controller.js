@@ -61,6 +61,8 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
     $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view){
       $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
     };
+
+
     /* add and removes an event source of choice */
     $scope.addRemoveEventSource = function(sources,source) {
       var canAdd = 0;
@@ -74,6 +76,8 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
         sources.push(source);
       }
     };
+
+
     /* add custom event*/
     $scope.addEvent = function() {
       $scope.events.push({
@@ -83,10 +87,13 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
         className: ['openSesame']
       });
     };
+
+
     /* remove event */
     $scope.remove = function(index) {
       $scope.events.splice(index,1);
     };
+
     /* Change View */
     $scope.changeView = function(view,calendar) {
       $timeout(function() {
@@ -95,7 +102,8 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
         uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
       });
     };
-    /* Change View */
+
+    /* Render View */
     $scope.renderCalender = function(calendar, view) {
       $timeout(function() {
         console.log(uiCalendarConfig.calendars);
@@ -106,11 +114,13 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
         }
       });
     };
+
      /* Render Tooltip */
     $scope.eventRender = function(event, element, view) {
       element.attr({ 'tooltip': event.title,'tooltip-append-to-body': false });
       $compile(element)($scope);
     };
+
     /* config object */
     $scope.uiConfig = {
       calendar:{
@@ -151,7 +161,7 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
       }
     };
 
-    $scope.changeLang = function() {
+    /*$scope.changeLang = function() {
       if($scope.changeTo === 'Hungarian'){
         $scope.uiConfig.calendar.dayNames = ['Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat'];
         $scope.uiConfig.calendar.dayNamesShort = ['Vas', 'Hét', 'Kedd', 'Sze', 'Csüt', 'Pén', 'Szo'];
@@ -161,7 +171,9 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
         $scope.uiConfig.calendar.dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         $scope.changeTo = 'Hungarian';
       }
-    };
+    };*/
+
+
     /* event sources array*/
     $scope.eventSources = [$scope.events];
     //$scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
@@ -171,22 +183,24 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
       $scope.changeView('agendaDay','DayCalendar');
     });
 
-
+	// Query appointments from DB
     appointmentAdmin.query(function (data) {
-      /*console.log(data);
-      console.log(data[0].participant);
-      console.log(data[1]);*/
       $scope.appointments = data;
       for(var i = 0; i< $scope.appointments.length; i++){
         console.log($scope.appointments[i]);
         console.log($scope.appointments[i].time);
+
         var j = new Date();
         console.log(Date.parse($scope.appointments[i].time));
         console.log(j);
         j.setTime(Date.parse($scope.appointments[i].time));
         console.log(j);
+
         var d = new Date();
-        d.setTime($scope.appointments[i].time + (30 * 60 * 1000));
+        d.setTime($scope.appointments[i].time + ($scope.appointments[i].duration * 60 * 1000));
+		console.log($scope.appointments[i].duration);
+		console.log(d);
+
         $scope.events.push({
           title: 'Appointment with ' + $scope.appointments[i].participant.name,
           start: j,
@@ -198,10 +212,6 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
       }
       $scope.buildPager();
     });
-    
-    $scope.getName = function () {
-        
-    };
 
     $scope.buildPager = function () {
       $scope.pagedItems = [];

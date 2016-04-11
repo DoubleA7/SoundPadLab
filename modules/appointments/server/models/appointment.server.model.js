@@ -11,6 +11,10 @@ var appointmentSchema = new Schema({
   //users: [ {type: Schema.Types.ObjectId, ref: 'User'} ],
   created_at: Date,
   updated_at: Date,
+  duration: {
+  	type: Number,
+  	required: true
+  },
   time: {
     type: Date,
     required: true
