@@ -33,13 +33,13 @@ angular.module('participants.admin').controller('ParticipantListController', ['$
       if($scope.search2) //filter by experiment only if the field is filled. 
       {
         $scope.filteredItems = $filter('filter')($scope.filteredItems, {
-          experiments : {experiment_name: $scope.search2}
+          experiments : { experiment_name: $scope.search2 }
         });        
       }
       if($scope.search3) //filter by experiment only if the field is filled. 
       {
         $scope.filteredItems = $filter('filter')($scope.filteredItems, {
-          experiments : {experiment_conditions: $scope.search3}
+          experiments : { experiment_conditions: $scope.search3 }
         });        
       }
       

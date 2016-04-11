@@ -31,8 +31,8 @@ var experimentSchema = new Schema({
   },
   // insert hook to check uniqueness (cant make nested objects unique apparently), otherwise up to the admin to be correct with naming.
   experiment_name: {
-      type: String,
-      required: true
+    type: String,
+    required: true
   },  
   experiment_conditions: [String]
   
