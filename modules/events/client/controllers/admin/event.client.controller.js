@@ -4,6 +4,10 @@ angular.module('events.admin').controller('EventController', ['$scope', '$state'
   function ($scope, $state, Authentication, eventResolve) {
     $scope.authentication = Authentication;
     $scope.event = eventResolve;
+    var da = new Date($scope.event.created_at)
+    $scope.event.created_at = da.toDateString();
+
+    
 
     $scope.remove = function (event) {
       if (confirm('Are you sure you want to delete this event?')) {
