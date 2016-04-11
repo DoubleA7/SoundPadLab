@@ -7,6 +7,8 @@ angular.module('events.admin').controller('EventController', ['$scope', '$state'
     var da = new Date($scope.event.created_at)
     $scope.event.created_at = da.toDateString();
 
+    
+
     $scope.remove = function (event) {
       if (confirm('Are you sure you want to delete this event?')) {
         if (event) {
