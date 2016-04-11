@@ -5,6 +5,11 @@ angular.module('research').controller('ResearchListPublicController', ['$scope',
     console.log('research list initialized!!');
     researchPublic.query(function (data) {
       $scope.researchs = data;
+
+      for (var i = 0; i < $scope.researchs.length; i++) {
+        $scope.researchs[i].created_at = $scope.researchs[i].created_at.slice(0,10);
+      }
+
       $scope.buildPager();
     });
 
