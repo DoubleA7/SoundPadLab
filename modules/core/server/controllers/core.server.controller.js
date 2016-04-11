@@ -71,7 +71,7 @@ exports.sendMail = function (req, res) {
       secret: PRIVATE_KEY, 
       response: data.captcha
     }
-  },function (err, res, body) {
+  },function (err, response, body) {
     console.log(body);
     console.log(body.success);
 
@@ -100,11 +100,13 @@ exports.sendMail = function (req, res) {
         }
         console.log('Message sent: ' + info.response);
       });
+	  res.send(parsedBody.success);
     } else {
       //res.send(500);
       console.log('CAPTCHA NOT VALID');
+      res.send(500, {error: 'CAPTCHA NOT VALID'});
     }
   });
 
-  res.json(data);
+  //res.json(data);
 };

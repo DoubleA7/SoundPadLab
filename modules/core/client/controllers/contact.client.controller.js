@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('core').controller('ContactController', ['$scope', '$http',
-  function($scope, $http) {
+angular.module('core').controller('ContactController', ['$scope', '$state', '$http',
+  function($scope, $state, $http) {
 
     $scope.name = '';
     $scope.email = '';
@@ -35,6 +35,7 @@ angular.module('core').controller('ContactController', ['$scope', '$http',
         url: '/postMail', 
         data: data
       }).then(function successCallback(response) {
+      	$state.go('core.home');	  
       }, function errorCallback(response) {
       });
     };
