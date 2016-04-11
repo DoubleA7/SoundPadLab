@@ -18,6 +18,7 @@ var experimentSchema = new Schema({
   appointments: [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
   tags: [String],
   requirements: [String],
+  display_name : String,
   completed: {
     type: Boolean,
     required: true,
@@ -56,11 +57,13 @@ experimentSchema.pre('save', function(next) {
   }
   
   if(!this.display_name && this.experiment_conditions){
-    this.display_name = this.experiment_name;
+    var temp = this.experiment_name;
     for(var i = 0; i < this.experiment_conditions.length; i++)
     {
-      this.display_name = ' ' + this.experiment_conditions[i];
+      temp = temp + ' ' + this.experiment_conditions[i];
     }
+    
+    this.display_name = temp;
   }
   
   next();

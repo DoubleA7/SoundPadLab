@@ -7,10 +7,16 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
     
     
      /* handle updating the LIST of conditions per experiemnt */
-    $scope.localConditions = $scope.experiment.experiment_conditions;
+     var pristine_conditions = angular.copy($scope.experiment.experiment_conditions);
+     console.log("tried to get pristine conditions");
+     console.log(angular.copy($scope.experiment));
+     
+    $scope.localConditions = angular.copy(pristine_conditions);
     $scope.new_condition_to_add = "";
     $scope.resetLocalConditions = function() {      
-      $scope.localConditions = $scope.experiment.experiment_conditions;
+      $scope.localConditions = angular.copy(pristine_conditions);
+      console.log("hi", $scope.localConditions);
+      console.log("hihi",pristine_conditions);
     }
     $scope.addLocalCondition = function() {		
       if(!($scope.new_condition_to_add === ""))
@@ -45,7 +51,7 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
       }
       
       /* Set the conditions array */
-      $scope.experiment.experiment_conditions = $scope.localConditions;
+      $scope.experiment.experiment_conditions = angular.copy($scope.localConditions);
       var experiment = $scope.experiment;
 
       experiment.$update(function () {
@@ -56,5 +62,7 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
         $scope.error = errorResponse.data.message;
       });
     };
+    
+    $scope.resetLocalConditions();
   }
 ]);
