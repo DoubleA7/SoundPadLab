@@ -138,10 +138,10 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
             maxTime: { hours: 18, minutes: 0 }
           },
           week: {
-            titleFormat: "(MMMM D YYYY)"
+            titleFormat: '(MMMM D YYYY)'
           },
           month: {
-            titleFormat: "MMMM YYYY"
+            titleFormat: 'MMMM YYYY'
           }
         },
         dayClick: function(date, jsEvent, view) {
@@ -197,7 +197,7 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
         //console.log(j);
         j.setTime(Date.parse($scope.appointments[i].time));
         //console.log(j);
-		$scope.appointments[i].time = j.toLocaleString();
+        $scope.appointments[i].time = j.toLocaleString();
 
         var d = new Date();
         d.setTime(Date.parse($scope.appointments[i].time) + ($scope.appointments[i].duration * 60 * 1000));

@@ -12,8 +12,8 @@ var appointmentSchema = new Schema({
   created_at: Date,
   updated_at: Date,
   duration: {
-  	type: Number,
-  	required: true
+    type: Number,
+    required: true
   },
   time: {
     type: Date,
