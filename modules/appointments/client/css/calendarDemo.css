@@ -1,5 +1,11 @@
 
 /*** Calendar ***/
+#directives-calendar hr{
+	border: 3px solid rgba(35,73,127,0.5);
+}
+#directives-calendar .pad-col{
+	padding: 10px;
+}
 
 .calAlert{
 	width: 595px; float: right; margin-bottom: 5px;

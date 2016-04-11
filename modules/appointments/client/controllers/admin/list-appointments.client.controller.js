@@ -31,11 +31,11 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
     
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, timezone, callback) {
-      var s = new Date(start).getTime() / 1000;
+      /*var s = new Date(start).getTime() / 1000;
       var e = new Date(end).getTime() / 1000;
       var m = new Date(start).getMonth();
       var events = [{ title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed'] }];
-      callback(events);
+      callback(events);*/
     };
 
     /*$scope.calEventsExt = {
@@ -181,7 +181,7 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
 
 
     /* event sources array*/
-    $scope.eventSources = [$scope.events];
+    $scope.eventSources = [$scope.events, $scope.eventsF];
     //$scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
 
     angular.element(document).ready(function () {
@@ -201,9 +201,10 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
         console.log(j);
         j.setTime(Date.parse($scope.appointments[i].time));
         console.log(j);
+		$scope.appointments[i].time = j.toLocaleString();
 
         var d = new Date();
-        d.setTime($scope.appointments[i].time + ($scope.appointments[i].duration * 60 * 1000));
+        d.setTime(Date.parse($scope.appointments[i].time) + ($scope.appointments[i].duration * 60 * 1000));
 		console.log($scope.appointments[i].duration);
 		console.log(d);
 
