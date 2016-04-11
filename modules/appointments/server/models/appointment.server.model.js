@@ -19,6 +19,10 @@ var appointmentSchema = new Schema({
     type: Date,
     required: true
   },
+  email_sent: {
+    type: Boolean,
+	default: false;
+  },
   tags: [String],
   prettyDate: String,
   comments: String
