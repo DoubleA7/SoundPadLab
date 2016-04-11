@@ -20,6 +20,7 @@ var appointmentSchema = new Schema({
     required: true
   },
   tags: [String],
+  prettyDate: String,
   comments: String
 });
 
@@ -30,6 +31,7 @@ appointmentSchema.pre('save', function (next) {
   if (!this.created_at) {
     this.created_at = currentTime;
   }
+  this.prettyDate = this.time.toLocaleString();
   next();
 });
 
