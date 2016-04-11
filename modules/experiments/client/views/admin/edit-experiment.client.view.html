@@ -15,10 +15,22 @@
             <p class="help-block error-text" ng-message="required">Name is required.</p>
           </div>
         </div>
-        <!-- experiment condition control -->
-        <div class="form-group" show-errors>
-          <label for="expCond">Experiment Conditions</label>
+        
+        <!--show the original conditions with a button to add, update, reset -->
+        <div ng-show="!edit_conditions" class="form-group" >
+          <label>Experiment Conditions:</label>
           <table>
+            <tr ng-repeat="co in experiment.experiment_conditions">
+              <td><span>{{co}}</span></tr>
+            </tr>
+          </table>
+          <button type="button" class="btn btn-small" ng-click="resetLocalConditions()">edit</button>
+        </div>
+        <!-- experiment condition control -->
+        <div ng-show="edit_conditions" class="form-group" >
+          <label for="expCond">Experiment Conditions</label>
+          
+          <table> <!-- ng-init="resetLocalConditions()" -->
             <tr ng-repeat = "cond in localConditions">
               <td><button type="button" class="btn btn-small" ng-click="deleteLocalCondition($index)" > X </button></td>
               <td><p ng-bind="cond"></p></td>
@@ -29,7 +41,7 @@
           <!-- Add one temporarily to the list -->
           <input type="text" id="expCond" name="expCond" class="form-control" ng-model="new_condition_to_add" placeholder="Add a condition">
           <button type="button" class="btn" ng-click="addLocalCondition()">+</button>
-          <button type="button" class="btn btn-danger" ng-click="resetLocalConditions()" > Reset </button>
+          
         </div>
 
         <div class="form-group" show-errors>
@@ -42,9 +54,8 @@
           </div>
         </div>
         
-        
         <div class="text-center form-group">
-          <button type="submit" class="btn btn-primary">Update Experiment</button>
+          <button type="submit" class="btn btn-primary">Update Experiment</button>          
         </div>
         <div ng-show="error" class="text-center text-danger">
           <strong ng-bind="error"></strong>

@@ -4,7 +4,16 @@ angular.module('publications.admin').controller('PublicationController', ['$scop
   function ($scope, $state, Authentication, publicationResolve) {
     $scope.authentication = Authentication;
     $scope.publication = publicationResolve;
-
+    
+    $scope.pub_copy = angular.copy($scope.publication);
+    $scope.r = function()
+    {
+      $scope.pub_copy = angular.copy($scope.publication);
+      console.log("copy = ", $scope.pub_copy);
+      console.log("publication = ", $scope.publication);
+    }
+    $scope.r();
+    
     $scope.remove = function (publication) {
       if (confirm('Are you sure you want to delete this publication?')) {
         if (publication) {

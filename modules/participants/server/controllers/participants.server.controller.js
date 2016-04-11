@@ -217,7 +217,7 @@ exports.delete = function (req, res) {
  * List of participants
  */
 exports.list = function (req, res) {
-  Participant.find().sort('-created').exec(function (err, participants) {
+  Participant.find().populate('experiments', 'display_name experiment_name experiment_conditions').sort('-created').exec(function (err, participants) {
     // Experiment.find().exec(function (err, experiments) {
       // if (err) {
         // console.log(err);

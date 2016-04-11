@@ -15,6 +15,8 @@ angular.module('experiments.admin').controller('ExperimentListController', ['$sc
       $scope.figureOutItemsToDisplay();
     };
 
+    
+    /* EDIT THE FOLLOWING TO ADD EVEN MORE FILTER CONTROL */
     $scope.figureOutItemsToDisplay = function () {
       
       /* for some reason, the third search parameter was not resetting the list on empty. */
@@ -27,9 +29,7 @@ angular.module('experiments.admin').controller('ExperimentListController', ['$sc
         experiment_name: $scope.search2
         
       });
-      console.log($scope.search);
-      console.log($scope.search2);
-      console.log(typeof($scope.search3));
+      
       $scope.filterLength = $scope.filteredItems.length;
       var begin = (($scope.currentPage - 1) * $scope.itemsPerPage);
       var end = begin + $scope.itemsPerPage;

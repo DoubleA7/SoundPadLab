@@ -14,7 +14,12 @@ angular.module('experiments').controller('addExperimentController', ['$scope', '
     $scope.new_condition_to_add = "";
     $scope.addLocalCondition = function() {		
       if(!($scope.new_condition_to_add === ""))
-        $scope.localConditions.push($scope.new_condition_to_add);
+      {
+        if($scope.localConditions.indexOf($scope.new_condition_to_add) == -1)
+        {
+          $scope.localConditions.push($scope.new_condition_to_add);
+        }
+      }  
       $scope.new_condition_to_add = "";
       
     };

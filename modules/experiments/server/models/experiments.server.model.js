@@ -56,15 +56,19 @@ experimentSchema.pre('save', function(next) {
     this.appointments = [];
   }
   
-  if(!this.display_name && this.experiment_conditions){
-    var temp = this.experiment_name;
+  
+  var temp = this.experiment_name;
+  if(this.experiment_conditions)
+  {
     for(var i = 0; i < this.experiment_conditions.length; i++)
     {
       temp = temp + ' ' + this.experiment_conditions[i];
     }
     
-    this.display_name = temp;
   }
+  
+  this.display_name = temp;
+  
   
   next();
 });
