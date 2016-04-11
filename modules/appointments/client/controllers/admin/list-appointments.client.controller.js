@@ -31,11 +31,11 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
     
     /* event source that calls a function on every view switch */
     $scope.eventsF = function (start, end, timezone, callback) {
-      /*var s = new Date(start).getTime() / 1000;
-      var e = new Date(end).getTime() / 1000;
-      var m = new Date(start).getMonth();
-      var events = [{ title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed'] }];
-      callback(events);*/
+      //var s = new Date(start).getTime() / 1000;
+      //var e = new Date(end).getTime() / 1000;
+      //var m = new Date(start).getMonth();
+      //var events = [{ title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed'] }];
+      callback($scope.events);
     };
 
     /*$scope.calEventsExt = {
@@ -97,8 +97,6 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
     /* Change View */
     $scope.changeView = function(view,calendar) {
       $timeout(function() {
-        console.log(calendar);
-        console.log(uiCalendarConfig.calendars);
         uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
       });
     };
@@ -106,8 +104,6 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
     /* Render View */
     $scope.renderCalender = function(calendar, view) {
       $timeout(function() {
-        console.log(uiCalendarConfig.calendars);
-
         if(uiCalendarConfig.calendars[calendar]){
           uiCalendarConfig.calendars[calendar].fullCalendar('render');
           uiCalendarConfig.calendars[calendar].fullCalendar('changeView',view);
@@ -149,11 +145,11 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
           }
         },
         dayClick: function(date, jsEvent, view) {
-          console.log('Clicked on a day! ' + view.name);
+          //console.log('Clicked on a day! ' + view.name);
           for(var i in uiCalendarConfig.calendars){
-            console.log('For Loop Running!\n');
+            //console.log('For Loop Running!\n');
             var v = uiCalendarConfig.calendars[i].fullCalendar('getView');
-            console.log(v);
+            //console.log(v);
             if(v.name === 'agendaDay'){
               uiCalendarConfig.calendars[i].fullCalendar('gotoDate', date);
             }
@@ -193,20 +189,20 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
     appointmentAdmin.query(function (data) {
       $scope.appointments = data;
       for(var i = 0; i< $scope.appointments.length; i++){
-        console.log($scope.appointments[i]);
-        console.log($scope.appointments[i].time);
+        //console.log($scope.appointments[i]);
+        //console.log($scope.appointments[i].time);
 
         var j = new Date();
-        console.log(Date.parse($scope.appointments[i].time));
-        console.log(j);
+        //console.log(Date.parse($scope.appointments[i].time));
+        //console.log(j);
         j.setTime(Date.parse($scope.appointments[i].time));
-        console.log(j);
+        //console.log(j);
 		$scope.appointments[i].time = j.toLocaleString();
 
         var d = new Date();
         d.setTime(Date.parse($scope.appointments[i].time) + ($scope.appointments[i].duration * 60 * 1000));
-		console.log($scope.appointments[i].duration);
-		console.log(d);
+		//console.log($scope.appointments[i].duration);
+		//console.log(d);
 
         $scope.events.push({
           title: 'Appointment with ' + $scope.appointments[i].participant.name,
