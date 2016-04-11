@@ -2,7 +2,7 @@
 
 angular.module('events').controller('EventListPublicController', ['$scope', '$filter', 'eventsPublic',
   function ($scope, $filter, eventsPublic) {
-    console.log("events list initialized!!");
+    console.log('events list initialized!!');
     eventsPublic.query(function (data) {
       $scope.events = data;
 

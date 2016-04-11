@@ -40,8 +40,7 @@ angular.module('appointments.admin.routes').config(['$stateProvider',
         data: {
           roles: ['admin']
         }
-      });
-*/
+      });*/
   }
 ]);
 

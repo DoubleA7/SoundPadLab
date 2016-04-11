@@ -135,6 +135,43 @@ exports.list = function (req, res) {
 };
 
 /**
+ * List of Users
+ */
+exports.listMembers = function (req, res) {
+  console.log('HERRE AT LIST');
+  User.find({}, '-salt -password').sort('-created').populate('user', 'displayName').exec(function (err, users) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    /*var displayNames = [];
+
+    for (var i = 0; i < users.length; i++) {
+      displayNames.push(users[i].displayName);
+    }
+
+    var profileImgs = [];
+
+    for (var j = 0; j < users.length; j++) {
+      profileImgs.push(users[j].profileImageURL);
+    }*/
+
+    var members = [];
+
+    for (var i = 0; i < users.length; i++) {
+      members[i] = {
+        displayName: users[i].displayName,
+        profileImageURL: users[i].profileImageURL
+      };
+    }
+
+    res.json(members);
+  });
+};
+
+/**
  * User middleware
  */
 exports.userByID = function (req, res, next, id) {

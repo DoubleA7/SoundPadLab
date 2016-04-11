@@ -47,3 +47,20 @@ a:hover .header-profile-image {
 .spaced-out{
 	letter-spacing: 1pt;
 }
+
+
+#footer{
+  padding: 15px;
+  clear: both;
+}
+#footer span{
+  text-align:center;
+}
+#footer a{
+  text-decoration: none;
+}
+
+#footer-nav a{
+  cursor: pointer;
+  margin: 10px;
+}
