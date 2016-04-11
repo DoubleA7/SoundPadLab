@@ -23,24 +23,19 @@ angular.module('core').controller('ContactController', ['$scope', '$http',
 
     $scope.setResponse = function (response) {
       data.captcha = response;
-      alert('CAPTCHA SUCCESS ' + data.captcha);
     };
 
     $scope.cbExpiration = function() {
-      //alert('CAPTCHA EXPIRE');
       console.log('CAPTCHA EXPIRE');
     };
 
     $scope.sendMail = function () {
-      alert(data.captcha);
       $http({
         method: 'POST',
         url: '/postMail', 
         data: data
       }).then(function successCallback(response) {
-        //alert('successCallback');
       }, function errorCallback(response) {
-        //alert('errorCallback');
       });
     };
   }

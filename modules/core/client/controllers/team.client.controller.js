@@ -5,8 +5,6 @@ angular.module('core').controller('TeamController', ['$scope', '$state', 'Member
     Members.query(function (data) {
       $scope.members = data;
       console.log(JSON.stringify(data));
-      alert('Stringify data \n' + JSON.stringify(data));
-      alert('Raw data \n' + data);
     });
   }
 ]);
