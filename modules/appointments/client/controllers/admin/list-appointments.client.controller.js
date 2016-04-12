@@ -185,7 +185,7 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
       $scope.changeView('agendaDay','DayCalendar');
     });
 
-	// Query appointments from DB
+    // Query appointments from DB
     appointmentAdmin.query(function (data) {
       $scope.appointments = data;
       for(var i = 0; i< $scope.appointments.length; i++){
@@ -201,14 +201,14 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
 
         var d = new Date();
         d.setTime(Date.parse($scope.appointments[i].time) + ($scope.appointments[i].duration * 60 * 1000));
-		//console.log($scope.appointments[i].duration);
-		//console.log(d);
+        //console.log($scope.appointments[i].duration);
+        //console.log(d);
 
-		var appointmentTitle = $scope.appointments[i].participant.name + '\n';
-		console.log($scope.appointments[i]);
-		appointmentTitle = appointmentTitle.concat($scope.appointments[i].experiment.experiment_name + '\n');
-		appointmentTitle = appointmentTitle.concat($scope.appointments[i].location);
-		console.log($scope.appointments[i].experiments);
+        var appointmentTitle = $scope.appointments[i].participant.name + '\n';
+        console.log($scope.appointments[i]);
+        appointmentTitle = appointmentTitle.concat($scope.appointments[i].experiment.experiment_name + '\n');
+        appointmentTitle = appointmentTitle.concat($scope.appointments[i].location);
+        console.log($scope.appointments[i].experiments);
 
         $scope.events.push({
           title: appointmentTitle,

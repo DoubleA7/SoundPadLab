@@ -20,11 +20,11 @@ angular.module('participants.admin').controller('ParticipantListController', ['$
     $scope.figureOutItemsToDisplay = function () {
       
       
-      if($scope.search ==="")
+      if($scope.search ==='')
         $scope.search = undefined;
-      if($scope.search2 ==="")
+      if($scope.search2 ==='')
         $scope.search2 = undefined;
-      if($scope.search3 ==="")
+      if($scope.search3 ==='')
         $scope.search3 = undefined;
       $scope.filteredItems = $filter('filter')($scope.participants, {
         $: $scope.search

@@ -20,7 +20,7 @@ angular.module('experiments.admin').controller('ExperimentListController', ['$sc
     $scope.figureOutItemsToDisplay = function () {
       
       /* for some reason, the third search parameter was not resetting the list on empty. */
-      if($scope.search3 ==="")
+      if($scope.search3 ==='')
         $scope.search3 = undefined;
       
       $scope.filteredItems = $filter('filter')($scope.experiments, {
