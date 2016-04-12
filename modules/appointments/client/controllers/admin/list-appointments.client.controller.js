@@ -204,8 +204,14 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
 		//console.log($scope.appointments[i].duration);
 		//console.log(d);
 
+		var appointmentTitle = $scope.appointments[i].participant.name + '\n';
+		console.log($scope.appointments[i]);
+		appointmentTitle = appointmentTitle.concat($scope.appointments[i].experiment.experiment_name + '\n');
+		appointmentTitle = appointmentTitle.concat($scope.appointments[i].location);
+		console.log($scope.appointments[i].experiments);
+
         $scope.events.push({
-          title: 'Appointment with ' + $scope.appointments[i].participant.name,
+          title: appointmentTitle,
           start: j,
           end: d,
           className: ['openSesame'],

@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
 //Schema
 var appointmentSchema = new Schema({
   participant: { type: Schema.Types.ObjectId, ref: 'Participant' },
-  experiments: [ { type: Schema.Types.ObjectId, ref: 'Experiment' } ],
+  experiment: { type: Schema.Types.ObjectId, ref: 'Experiment' },
   //users: [ {type: Schema.Types.ObjectId, ref: 'User'} ],
   created_at: Date,
   updated_at: Date,

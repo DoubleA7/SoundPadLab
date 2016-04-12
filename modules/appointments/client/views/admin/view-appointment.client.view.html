@@ -17,6 +17,11 @@
       </div>
       <hr/>
       <div class="row">
+        <div class="col-md-3"><strong>Location</strong></div>
+		<div class="col-md-6">{{appointment.location}}</div>
+      </div>
+      <hr/>
+      <div class="row">
         <div class="col-md-3"><strong>Duration</strong></div>
 		<div class="col-md-6">{{appointment.duration}} minutes</div>
       </div>
@@ -28,7 +33,7 @@
       <hr/>
       <div class="row">
         <div class="col-md-3"><strong>Experiment</strong></div>
-        <div class="col-md-6" ng-bind="appointment.experiment.experiment_name"></div>
+		<div class="col-md-6">{{appointment.experiment.experiment_name}}: {{appointment.experiment.experiment_conditions}}</div>
       </div>
       <hr/>
     </div>

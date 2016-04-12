@@ -12,6 +12,13 @@
 				</span>
 			</div>
 		</div>
+        <div class="form-group" show-errors>
+          <label for="location">Appointment Location:</label>
+          <input type="text" id="location" name="location" class="form-control" ng-model="credentials.location" placeholder="Location" required>
+          <div ng-messages="appointmentForm.location.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Location is required.</p>
+          </div>
+        </div>
 		<div class="form-group" show_errors>
 			<label for="duration">Duration:</label>
 			<select name="duration" ng-model="credentials.duration" required>
@@ -36,8 +43,10 @@
         </div>
         <div class="form-group" show-errors>
           <label for="experiment">Experiment</label>
-		  <select name="experiment" ng-model="credentials.experiment" <!--required-->>
-		    <option ng-repeat="experiment in experiments" value="{{experiment._id}}">{{experiment.experiment_name}}</option>
+		  <select name="experiment" ng-model="credentials.experiment" required>
+			<option ng-repeat="experiment in experiments" value="{{experiment._id}}">
+			{{experiment.experiment_name}}: {{experiment.experiment_conditions}}
+			</option>
 		  </select>
           <!--<div ng-messages="appointmentForm.experiment.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Experiment is required.</p
