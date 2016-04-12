@@ -41,6 +41,7 @@ angular.module('experiments', ['nya.bootstrap.select']).controller('addExperimen
     
     
     $scope.addExperiment = function (isValid) {
+      console.log($scope.credentials);
       if(!$scope.credentials.requires_eyeglasses) {
         $scope.credentials.requires_eyeglasses=false;
       }
@@ -51,6 +52,10 @@ angular.module('experiments', ['nya.bootstrap.select']).controller('addExperimen
         return false;
       }
       
+      var temp = [];
+      /*for(var i in $scope.credentials.users)
+        temp.push(mongoose.Types.ObjectId($scope.credentials.users[i]));
+      $scope.credentials.users = temp;*/
       // Add the updated condition list
       $scope.credentials.experiment_conditions = $scope.localConditions;
       

@@ -69,10 +69,15 @@ function removeFromAppointment(i, experiment) {
 }
 
 function addToUser(i, experiment) {
+  console.log('In add to user');
   if(i<experiment.users.length) {
+    console.log('Trying to find user');
     User.findById(experiment.users[i]).exec(function(err,user){
       if(user.experiments.indexOf(experiment._id) === -1){//If a user on the Database doesn't contain this experiment add this experiment ID to his/her experiment list.
         user.experiments.push(experiment._id);
+        console.log(user);
+        console.log('Trying to add to user');
+        console.log(user);
         user.save();
       }	  
       addToUser(i+1,experiment);
@@ -117,6 +122,15 @@ exports.create = function (req, res) {
     if (err) {
   	*/
   console.log(experiment);
+  console.log(experiment.users);
+  console.log(experiment.users.length);
+    var temp0 = [];
+    /*for(var j = 0; j < experiment.users.length; j++){
+      if(typeof experiment.users[j]=== 'string')
+        temp0.push(mongoose.mongo.ObjectId(experiment.users[j]));
+    }
+    console.log(temp0);
+    experiment.users = temp0;*/
       
   experiment.save(function (err) {
     if (err) {
@@ -126,6 +140,8 @@ exports.create = function (req, res) {
       });
     }
     else {
+      console.log('Made it inside save\n');
+      console.log(experiment);
       //for(var i=0;i < experiment.participants.length;i++){
         //console.log('\nID: ' + experiment._id);
 		//console.log('\nexperients.participants: ' + experiment.participants);
@@ -157,6 +173,8 @@ exports.create = function (req, res) {
       addToParticipant(0, experiment);
       addToAppointment(0, experiment);
       addToUser(0, experiment);
+      console.log('Made it past addtoUser\n');
+      console.log(experiment);
       res.json(experiment);
     }
   });

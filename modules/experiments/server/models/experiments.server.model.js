@@ -14,7 +14,7 @@ var experimentSchema = new Schema({
   created_at: Date,
   updated_at: Date,
   participants: [ { type: Schema.Types.ObjectId, ref: 'Participant' } ],
-  //users: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  users: [{type: Schema.Types.ObjectId, ref: 'User'}],
   appointments: [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
   tags: [String],
   requirements: [String],
@@ -48,6 +48,7 @@ experimentSchema.pre('save', function(next) {
   }
   if(!this.users){
     this.users = [];
+    console.log('users empty');
   }
   if(!this.participants){
     this.participants = [];

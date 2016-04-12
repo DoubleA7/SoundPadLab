@@ -36,7 +36,7 @@
         </div>
 		<div>
 		  <ol class="nya-bs-select" ng-model="credentials.users" multiple="true" live-search="true" ng-required="true">
-			<li nya-bs-option="user in users">
+			<li nya-bs-option="user in users" data-value="user._id">
 			  <a>
 				{{user.displayName}}
 				<span class="glyphicon glyphicon-ok check-mark"></span>
