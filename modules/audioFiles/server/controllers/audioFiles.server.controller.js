@@ -155,11 +155,12 @@ exports.uploadMp3File = function (req, res) {
 
 exports.getMp3 = function (req,res){
   var filePath;
+  //console.log(req.body);
   if(req === null)
     res.send('null request');
   else{
     filePath = req.body.filePath;
-    console.log(filePath);
+    console.log('file path in get mp3' +filePath);
   }
   //res.send('test');
   fs.readFile(filePath,'base64', function (err, data) {
@@ -171,6 +172,5 @@ exports.getMp3 = function (req,res){
     var d = "data:audio/mp3;base64," + data;
     res.send(d);
   });
-
-
 };
+

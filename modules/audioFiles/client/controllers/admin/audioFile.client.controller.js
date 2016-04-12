@@ -7,9 +7,9 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$sce', '$
     $scope.audioFile = audioFileResolve;
     //$scope.audioFile = audio;
     //console.log($scope.audioFile.filePath);
-    //$scope.path = $scope.audioFile.filePath;
+    var path= $scope.audioFile.filePath;
     //$scope.mp3URL = $scope.audioFile.filePath;
-    //console.log($scope.path);
+    console.log(path);
     $scope.remove = function (audioFile) {
       if (confirm('Are you sure you want to delete this audioFile?')) {
         if (audioFile) {
@@ -46,7 +46,7 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$sce', '$
       var audioFile = $scope.audioFile;
       //var path = $scope.audioFile.filePath;
       //console.log($scope.path);
-
+      console.log('before reading file' +audioFile.filePath);
       $http.post('/api/audioFiles/mp3', audioFile).success(function (response) {
         console.log("SUCCESS mp3 http post");
         $scope.mp3URL = $sce.trustAsResourceUrl(response);
@@ -56,23 +56,8 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$sce', '$
         console.log("FAILED TO htpp post");
         $scope.error = response.message;
       });
-
-    /*  //var fileReader = new $window.FileReader();
-        var file = new File([""],$scope.path);
-        console.log(file);
-        var fileReader = new FileReader();
-        fileReader.readAsDataURL(file);
-
-        fileReader.onload = function (fileReaderEvent) {
-          $timeout(function () {
-            $scope.x = fileReaderEvent.target.result;
-            console.log($scope.x);
-          }, 0);
-        };
-      */
-
     };
-    $scope.readFile();
+    //$scope.readFile();
 
   }
 ]);
