@@ -41,7 +41,7 @@ module.exports = {
       limits:{
         fileSize: 5*1024*1024
       }*/
-	},
+    },
     eventUpload: {
       dest: './modules/events/client/img/', // Profile upload destination path
       limits: {
