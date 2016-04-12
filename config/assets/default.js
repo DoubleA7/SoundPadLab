@@ -7,7 +7,8 @@ module.exports = {
         'public/lib/bootstrap/dist/css/bootstrap.css',
         'public/lib/bootstrap/dist/css/bootstrap-theme.css',
         'public/lib/fullcalendar/dist/fullcalendar.min.css',
-        'public/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
+        'public/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css',
+        'public/lib/nya-bootstrap-select/dist/css/nya-bs-select.min.css'
       ],
       js: [
         'public/lib/jquery/dist/jquery.min.js',
@@ -25,7 +26,8 @@ module.exports = {
         'public/lib/angular-ui-calendar/src/calendar.js',
         'public/lib/fullcalendar/dist/fullcalendar.min.js',
         'public/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
-        'public/lib/angular-recaptcha/release/angular-recaptcha.js'
+        'public/lib/angular-recaptcha/release/angular-recaptcha.js',
+        'public/lib/nya-bootstrap-select/dist/js/nya-bs-select.min.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },
