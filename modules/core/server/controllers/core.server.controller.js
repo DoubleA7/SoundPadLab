@@ -100,11 +100,11 @@ exports.sendMail = function (req, res) {
         }
         console.log('Message sent: ' + info.response);
       });
-	  res.send(parsedBody.success);
+      res.send(parsedBody.success);
     } else {
       //res.send(500);
       console.log('CAPTCHA NOT VALID');
-      res.send(500, {error: 'CAPTCHA NOT VALID'});
+      res.send(500, { error: 'CAPTCHA NOT VALID' });
     }
   });
 

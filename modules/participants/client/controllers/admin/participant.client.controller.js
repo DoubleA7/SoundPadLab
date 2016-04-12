@@ -5,7 +5,7 @@ angular.module('participants.admin').controller('ParticipantController', ['$scop
     $scope.authentication = Authentication;
     $scope.participant = participantResolve;
     var da = new Date($scope.participant.dob);
-    var dab = new Date($scope.participant.lastPaid)
+    var dab = new Date($scope.participant.lastPaid);
     $scope.participant.dob = da.toDateString();
     $scope.participant.lastPaid = dab.toDateString();
     $scope.remove = function (participant) {
