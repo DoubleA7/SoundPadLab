@@ -15,6 +15,10 @@ var _ = require('lodash'),
 
 var gName = null;
 
+var deleteMp3 = function(audiofile){
+  fs.unlink(audiofile.filePath);
+};
+
 /**
  * Create an audio file
  */
@@ -176,6 +180,3 @@ exports.getMp3 = function (req,res){
 
 };
 
-var deleteMp3 = function(audiofile){
-  fs.unlink(audiofile.filePath);
-}

@@ -37,10 +37,10 @@ module.exports = {
       }
     },
     mp3Upload: {
-      dest: './modules/audioFiles/mp3Uploads/',
+      dest: './modules/audioFiles/mp3Uploads/'/*,
       limits:{
         fileSize: 5*1024*1024
-      }
+      }*/
     }
   }
 };
