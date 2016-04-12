@@ -5,9 +5,13 @@ module.exports = {
     lib: {
       css: [
         'public/lib/bootstrap/dist/css/bootstrap.css',
-        'public/lib/bootstrap/dist/css/bootstrap-theme.css'
+        'public/lib/bootstrap/dist/css/bootstrap-theme.css',
+        'public/lib/fullcalendar/dist/fullcalendar.min.css',
+        'public/lib/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css'
       ],
       js: [
+        'public/lib/jquery/dist/jquery.min.js',
+        'public/lib/moment/min/moment.min.js',
         'public/lib/angular/angular.js',
         'public/lib/angular-resource/angular-resource.js',
         'public/lib/angular-animate/angular-animate.js',
@@ -18,6 +22,9 @@ module.exports = {
         'public/lib/angular-file-upload/angular-file-upload.js',
         'public/lib/owasp-password-strength-test/owasp-password-strength-test.js',
         'public/lib/ngmap/build/scripts/ng-map.min.js',
+        'public/lib/angular-ui-calendar/src/calendar.js',
+        'public/lib/fullcalendar/dist/fullcalendar.min.js',
+        'public/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
         'public/lib/angular-recaptcha/release/angular-recaptcha.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']

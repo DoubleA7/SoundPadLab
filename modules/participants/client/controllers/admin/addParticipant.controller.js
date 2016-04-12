@@ -18,6 +18,7 @@ angular.module('participants').controller('addParticipantController', ['$scope',
 
         return false;
       }
+      console.log('FORM IS VALID');
 
       $http.post('/api/participants', $scope.credentials).success(function (response) {
         // And redirect to the previous or list of users 

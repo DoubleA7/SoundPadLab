@@ -4,7 +4,7 @@ angular.module('events.admin').controller('EventController', ['$scope', '$state'
   function ($scope, $state, Authentication, eventResolve, FileUploader,$timeout, $window) {
     $scope.authentication = Authentication;
     $scope.event = eventResolve;
-    var da = new Date($scope.event.created_at)
+    var da = new Date($scope.event.created_at);
     $scope.event.created_at = da.toDateString();
 
 

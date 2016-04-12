@@ -14,7 +14,7 @@ exports.create = function (req, res) {
   console.log(event);
   event.save(function (err) {
     if (err) {
-      console.log("ERR",err);
+      console.log('ERR',err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -38,17 +38,16 @@ exports.changePicture = function (req, res) {
   // Filtering to upload only images
   upload.fileFilter = profileUploadFileFilter;
 
-    upload(req, res, function (uploadError) {
-      if(uploadError) {
-        console.log(uploadError);
-        return res.status(400).send({
-          message: 'Error occurred while uploading profile picture'
-        });
-      } else {
-        res.json(config.uploads.eventUpload.dest + req.file.filename);
-
-      }
-    });
+  upload(req, res, function (uploadError) {
+    if(uploadError) {
+      console.log(uploadError);
+      return res.status(400).send({
+        message: 'Error occurred while uploading profile picture'
+      });
+    } else {
+      res.json(config.uploads.eventUpload.dest + req.file.filename);
+    }
+  });
 };
 
 

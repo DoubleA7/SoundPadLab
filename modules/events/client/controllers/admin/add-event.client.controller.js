@@ -9,7 +9,7 @@ angular.module('events').controller('addEventController', ['$scope','$timeout', 
     $scope.error = $location.search().err;
 
     $scope.user = Authentication.user;
-    $scope.imageURL = "./modules/users/client/img/profile/default.png";
+    $scope.imageURL = './modules/users/client/img/profile/default.png';
 
     // Create file uploader instance
     $scope.uploader = new FileUploader({

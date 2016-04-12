@@ -35,7 +35,7 @@ angular.module('core').controller('ContactController', ['$scope', '$state', '$ht
         url: '/postMail', 
         data: data
       }).then(function successCallback(response) {
-      	$state.go('core.home');	  
+        $state.go('core.home');	  
       }, function errorCallback(response) {
       });
     };

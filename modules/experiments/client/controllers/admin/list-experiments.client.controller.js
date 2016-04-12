@@ -2,7 +2,7 @@
 
 angular.module('experiments.admin').controller('ExperimentListController', ['$scope', '$filter', 'experimentsAdmin',
   function ($scope, $filter, experimentsAdmin) {
-    console.log('experiments list initialized!!');
+    console.log('experiments list initialized!');
     experimentsAdmin.query(function (data) {
       $scope.experiments = data;
       $scope.buildPager();
@@ -20,7 +20,7 @@ angular.module('experiments.admin').controller('ExperimentListController', ['$sc
     $scope.figureOutItemsToDisplay = function () {
       
       /* for some reason, the third search parameter was not resetting the list on empty. */
-      if($scope.search3 ==="")
+      if($scope.search3 ==='')
         $scope.search3 = undefined;
       
       $scope.filteredItems = $filter('filter')($scope.experiments, {

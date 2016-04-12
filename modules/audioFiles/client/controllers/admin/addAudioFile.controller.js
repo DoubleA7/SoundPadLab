@@ -28,7 +28,5 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
         $scope.error = response.message;
       });
     };
-
-  
   }
 ]);
