@@ -56,6 +56,7 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
       var today = new Date();
       var duration = $scope.credentials.duration;
       var location = $scope.credentials.location;
+	  var participant = $scope.credentials.participant;
 
       // Verify that date is not in the past
       if(time < today){
@@ -73,7 +74,11 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
         console.log(time.getTime());
         console.log($scope.appointments[i].location);
         if ((time >= startTime) && (time < endTime)){
-          console.log('Potential time conflict, checking location');
+          console.log('Potential time conflict, checking participant and location');
+          if ($scope.appointments[i].participant._id === participant){
+			$scope.error = 'This participant is already scheduled at this time!';
+			return;
+		  }
           if (location === $scope.appointments[i].location){
             $scope.error = 'There is a time conflict at this location';
             return;
