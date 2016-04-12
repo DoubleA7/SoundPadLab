@@ -1,7 +1,18 @@
 'use strict';
 
-angular.module('experiments').controller('addExperimentController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator',
-  function ($scope, $state, $http, $location, $window, Authentication, PasswordValidator) {
+angular.module('experiments', ['nya.bootstrap.select']).controller('addExperimentController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator', 'Admin',
+  function ($scope, $state, $http, $location, $window, Authentication, PasswordValidator, Admin) {
+
+    Admin.query(function (data) {
+      console.log(data);
+      if(data.length === 0){
+        $scope.error = 'No users to assign!';
+      }else{
+        $scope.error = null;
+        $scope.users = data;
+      }
+    });
+
     $scope.authentication = Authentication;
     $scope.popoverMsg = PasswordValidator.getPopoverMsg();
 

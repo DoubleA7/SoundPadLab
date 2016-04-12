@@ -33,9 +33,17 @@
           <div class="radio">
             <label><input type="radio" name="optradio" ng-model="credentials.requires_eyeglasses" ng-value="false">No</label>
           </div>
-         
-          
         </div>
+		<div>
+		  <ol class="nya-bs-select" ng-model="credentials.users" multiple="true" live-search="true" ng-required="true">
+			<li nya-bs-option="user in users">
+			  <a>
+				{{user.displayName}}
+				<span class="glyphicon glyphicon-ok check-mark"></span>
+			  </a>
+			</li>
+		  </ol>
+		</div>
         
         
         <div class="text-center form-group">
