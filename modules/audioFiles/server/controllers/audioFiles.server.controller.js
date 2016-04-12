@@ -84,6 +84,7 @@ exports.delete = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      deleteMp3(audiofile);
       res.json(audiofile);
     }
   });
@@ -174,3 +175,7 @@ exports.getMp3 = function (req,res){
 
 
 };
+
+var deleteMp3 = function(audiofile){
+  fs.unlink(audiofile.filePath);
+}

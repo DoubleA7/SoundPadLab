@@ -45,7 +45,7 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$sce', '$
     $scope.readFile = function(){
       var audioFile = $scope.audioFile;
       //var path = $scope.audioFile.filePath;
-      //console.log($scope.path);
+      console.log(audioFile.filePath);
 
       $http.post('/api/audioFiles/mp3', audioFile).success(function (response) {
         console.log("SUCCESS mp3 http post");
@@ -72,7 +72,7 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$sce', '$
       */
 
     };
-    $scope.readFile();
+    //$scope.readFile();
 
   }
 ]);
