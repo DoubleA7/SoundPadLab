@@ -36,6 +36,12 @@ module.exports = {
         fileSize: 1*1024*1024 // Max file size in bytes (1 MB)
       }
     },
+    mp3Upload: {
+      dest: './modules/audioFiles/mp3Uploads/'/*,
+      limits:{
+        fileSize: 5*1024*1024
+      }*/
+	},
     eventUpload: {
       dest: './modules/events/client/img/', // Profile upload destination path
       limits: {

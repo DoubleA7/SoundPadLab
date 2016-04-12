@@ -1,10 +1,16 @@
 'use strict';
 
-angular.module('audioFiles.admin').controller('AudioFileController', ['$scope', '$state', 'Authentication', 'audioFileResolve',
-  function ($scope, $state, Authentication, audioFileResolve) {
+
+angular.module('audioFiles.admin').controller('AudioFileController', ['$sce', '$http', '$window', '$timeout', '$scope', '$state', 'Authentication', 'audioFileResolve',
+  function ($sce, $http, $window, $timeout, $scope, $state, Authentication, audioFileResolve) {
     $scope.authentication = Authentication;
     $scope.audioFile = audioFileResolve;
-
+    $scope.path = null;
+    //$scope.audioFile = audio;
+    //console.log($scope.audioFile.filePath);
+    //$scope.path = $scope.audioFile.filePath;
+    //$scope.mp3URL = $scope.audioFile.filePath;
+    //console.log($scope.path);
     $scope.remove = function (audioFile) {
       if (confirm('Are you sure you want to delete this audioFile?')) {
         if (audioFile) {
@@ -36,5 +42,52 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$scope', 
         $scope.error = errorResponse.data.message;
       });
     };
+
+    $scope.readFile = function(){
+      var audioFile = $scope.audioFile;
+      //var path = $scope.audioFile.filePath;
+      //console.log(audioFile.filePath);
+      audioFile.$promise.then(function(response){
+        $scope.path = response;
+        console.log(response);
+        $http.post('/api/audioFiles/mp3', response).success(function (response) {
+          console.log("SUCCESS mp3 http post");
+          $scope.mp3URL = $sce.trustAsResourceUrl(response);
+          //$scope.mp3URL = response;
+          //console.log(response);
+          }).error(function (response) {
+          console.log("FAILED TO htpp post");
+          $scope.error = response.message;
+        });
+      });
+      /*$http.post('/api/audioFiles/mp3', audioFile).success(function (response) {
+        console.log("SUCCESS mp3 http post");
+        $scope.mp3URL = $sce.trustAsResourceUrl(response);
+        //$scope.mp3URL = response;
+        //console.log(response);
+      }).error(function (response) {
+        console.log("FAILED TO htpp post");
+        $scope.error = response.message;
+      });*/
+
+    /*  //var fileReader = new $window.FileReader();
+        var file = new File([""],$scope.path);
+        console.log(file);
+        var fileReader = new FileReader();
+        fileReader.readAsDataURL(file);
+
+        fileReader.onload = function (fileReaderEvent) {
+          $timeout(function () {
+            $scope.x = fileReaderEvent.target.result;
+            console.log($scope.x);
+          }, 0);
+        };
+      */
+
+    };
+    //$scope.readFile();
+
   }
 ]);
+
+

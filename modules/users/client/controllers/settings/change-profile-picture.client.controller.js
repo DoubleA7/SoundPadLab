@@ -29,6 +29,7 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
         fileReader.onload = function (fileReaderEvent) {
           $timeout(function () {
             $scope.imageURL = fileReaderEvent.target.result;
+            //console.log($scope.imageURL);
           }, 0);
         };
       }
@@ -38,7 +39,7 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
     $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
       // Show success message
       $scope.success = true;
-
+      console.log('SUCCESS pic');
       // Populate user object
       $scope.user = Authentication.user = response;
 

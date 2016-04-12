@@ -8,24 +8,42 @@ var path = require('path'),
   AudioFile = require('../models/audioFiles.server.model.js'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+var _ = require('lodash'),
+  fs = require('fs'),
+  multer = require('multer'),
+  config = require(path.resolve('./config/config'));
+
+var gName = null;
+
+var deleteMp3 = function(audiofile){
+  fs.unlink(audiofile.filePath);
+};
+
 /**
- * Create a participant
+ * Create an audio file
  */
 exports.create = function (req, res) {
   var audiofile = new AudioFile(req.body);
-    
+  console.log('Gname :' +gName);
+  if(gName !== null){
+    audiofile.filePath = gName;
+    console.log('file name');
+  }
   audiofile.save(function (err) {
     if (err) {
       //console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
-    } else {
+    } 
+    else {
+      gName = null;
       res.json(audiofile);
     }
   });
 };
 
+//audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
 /**
  * Show the current audiofile
  */
@@ -42,7 +60,7 @@ exports.update = function (req, res) {
   var audiofile = req.audiofile;
     
   audiofile.title= req.body.title;
-  audiofile.download_link = req.body.download_link;
+  audiofile.filePath = req.body.filePath;
   
     
     //subject_id not being updated 
@@ -70,6 +88,7 @@ exports.delete = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      deleteMp3(audiofile);
       res.json(audiofile);
     }
   });
@@ -116,3 +135,48 @@ exports.audioFileByID = function (req, res, next, id) {
     next();
   });
 };
+
+exports.uploadMp3File = function (req, res) {
+  var upload = multer(config.uploads.mp3Upload).single('mp3File');
+  var mp3UploadFilter = require(path.resolve('./config/lib/multer')).mp3UploadFilter;
+  /*var audiofile = new AudioFile(req.body);
+  upload.fileFilter = mp3UploadFilter;
+  //console.log(req.body);
+  audiofile.title = req.title;*/
+  upload(req, res, function (uploadError) {
+    //console.log(req);
+    if(uploadError) {
+      return res.status(400).send({
+        message: 'Error occurred while uploading mp3'
+      });
+    } 
+    else {
+      gName = config.uploads.mp3Upload.dest + req.file.filename;
+      res.send(gName);
+      //gName = req.bod.filePath;
+    }
+  });
+};
+
+exports.getMp3 = function (req,res){
+  var filePath;
+  if(req === null)
+    res.send('null request');
+  else{
+    filePath = req.body.filePath;
+    console.log(filePath);
+  }
+  //res.send('test');
+  fs.readFile(filePath,'base64', function (err, data) {
+    if (err) {
+      res.send('error while reading');
+      console.error(err);
+    }
+    //console.log("Asynchronous read: " + data);
+    var d = "data:audio/mp3;base64," + data;
+    res.send(d);
+  });
+
+
+};
+

@@ -26,6 +26,7 @@ coverage/
 public/dist/
 uploads
 modules/users/client/img/profile/uploads
+modules/audioFiles/mp3Uploads
 config/env/local.js
 *.pem
 
