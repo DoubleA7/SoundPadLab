@@ -24,7 +24,8 @@ module.exports = {
         'public/lib/ngmap/build/scripts/ng-map.min.js',
         'public/lib/angular-ui-calendar/src/calendar.js',
         'public/lib/fullcalendar/dist/fullcalendar.min.js',
-        'public/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js'
+        'public/lib/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js',
+        'public/lib/angular-recaptcha/release/angular-recaptcha.js'
       ],
       tests: ['public/lib/angular-mocks/angular-mocks.js']
     },

@@ -19,12 +19,13 @@
         </div>
         <div class="form-group" show-errors>
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" class="form-control" ng-model="credentials.email" placeholder="Email" lowercase required>
+          <input type="email" id="email" name="email" class="form-control" ng-model="credentials.email" placeholder="Email"  required>
           <div ng-messages="participantForm.email.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Email address is required.</p>
             <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
           </div>
         </div>
+
         <div class="form-group" show-errors>
           <label for="dob">Date of birth</label>
           <input type="Date" id="dob" class="form-control" ng-model="credentials.dob" placeholder="Date of Birth" lowercase >
@@ -32,7 +33,16 @@
             <p class="help-block error-text" ng-message="required">Date of Birth is required.</p>
             <p class="help-block error-text" ng-message="dob">Date of Birth is invalid.</p>
           </div>
+	     </div>
+
+         <div class="form-group" show-errors>
+          <label for="dob">Last Paid:</label>
+          <input type="Date" id="lastPaid" class="form-control" ng-model="credentials.lastPaid" placeholder="Last Paid" >
+          <div ng-messages="participantForm.lastPaid.$error" role="alert">
+            <p class="help-block error-text" ng-message="lastPaid">Date is invalid for last paid.</p>
+          </div>
         </div>
+
         <div class="form-group" show-errors>
           <label for="gender">Gender (m/f)</label>
             <input type="text" id="gender" name="gender" class="form-control" ng-model="credentials.gender" placeholder="gender" lowercase >
@@ -74,6 +84,12 @@
             <label><input type="radio" name="optradio" ng-model="credentials.contact_lenses" ng-value="false">No</label>
           </div>
         </div>
+
+        <div class="form-group" show-errors>
+          <label for="HRTF">HRTF assigned:</label>
+          <input type="text" id="subjectid" name="subid" class="form-control" ng-model="credentials.HRTF_assigned" placeholder="HRTF" >
+        </div>
+
 
         <div class="form-group" show-errors>
           <label for="corrective_lenses">Corrective Lenses?</label>

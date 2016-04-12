@@ -22,7 +22,7 @@ var appointmentSchema = new Schema({
   location: String,
   email_sent: {
     type: Boolean,
-	default: false;
+	default: false
   },
   tags: [String],
   prettyDate: String,
