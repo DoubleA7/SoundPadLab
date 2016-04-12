@@ -133,6 +133,8 @@ exports.update = function (req, res) {
     
   var participant = req.participant;
 
+  console.log(participant);
+
   participant.name = req.body.name;
   participant.phone_number = req.body.phone_number;
   participant.email = req.body.email;
@@ -141,6 +143,7 @@ exports.update = function (req, res) {
   //dob stored as dob.month, dob.day, dob.year
   participant.dob = req.body.dob;
   participant.vision_test = req.body.vision_test;
+  participant.card_info = req.body.card_info;
   participant.corrective_lenses = req.body.corrective_lenses;
   participant.contact_lenses = req.body.contact_lenses;
   participant.took_audiogram = req.body.took_audiogram;
@@ -217,7 +220,7 @@ exports.delete = function (req, res) {
  * List of participants
  */
 exports.list = function (req, res) {
-  Participant.find().sort('-created').exec(function (err, participants) {
+  Participant.find().populate('experiments', 'display_name experiment_name experiment_conditions').sort('-created').exec(function (err, participants) {
     // Experiment.find().exec(function (err, experiments) {
       // if (err) {
         // console.log(err);
@@ -250,7 +253,7 @@ exports.participantByID = function (req, res, next, id) {
     });
   }
 
-  Participant.findById(id).populate('experiments').populate('appointments').exec(function (err, participant) {
+  Participant.findById(id).populate('experiments').exec(function (err, participant) {
     if (err) {
       return next(err);
     } else if (!participant) {

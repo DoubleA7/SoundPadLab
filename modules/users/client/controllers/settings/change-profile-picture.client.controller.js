@@ -49,6 +49,8 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
 
     // Called after the user has failed to uploaded a new picture
     $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
+      console.log(response);
+      console.log(status);
       // Clear upload buttons
       $scope.cancelUpload();
 

@@ -5,9 +5,6 @@
         <h1 ng-bind="audioFile.name"></h1>
       </div>
       <div class="col-md-4">
-        <a class="btn btn-primary" ui-sref="admin.audioFile-edit({audioFileId: audioFile._id})">
-          <i class="glyphicon glyphicon-edit"></i>
-        </a>
         <a class="btn btn-primary" ng-click="remove();" ng-if="audioFile._id !== authentication.audioFile._id">
           <i class="glyphicon glyphicon-trash"></i>
         </a>

@@ -13,5 +13,7 @@ module.exports = function (app) {
     .put(adminPolicy.isAllowed,events.update)
     .delete(adminPolicy.isAllowed,events.delete);
 
+  app.route('/api/events/picture').post(events.changePicture);
+
   app.param('eventId', events.eventByID);
 };

@@ -9,7 +9,7 @@ var mongoose = require('mongoose'),
 /**
  * Experiment Schema
  */
- 
+
 var experimentSchema = new Schema({
   created_at: Date,
   updated_at: Date,
@@ -18,6 +18,7 @@ var experimentSchema = new Schema({
   appointments: [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
   tags: [String],
   requirements: [String],
+  display_name : String,
   completed: {
     type: Boolean,
     required: true,
@@ -28,16 +29,19 @@ var experimentSchema = new Schema({
     required: true,
     default: false
   },
+  // insert hook to check uniqueness (cant make nested objects unique apparently), otherwise up to the admin to be correct with naming.
   experiment_name: {
     type: String,
-    unique: true,
     required: true
-  },
+  },  
+  experiment_conditions: [String]
+  
 });
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
 experimentSchema.pre('save', function(next) {
   var currentTime = new Date();
+  var fields = 
   this.updated_at = currentTime;
   if(!this.created_at){
     this.created_at = currentTime;
@@ -51,6 +55,21 @@ experimentSchema.pre('save', function(next) {
   if(!this.appointments){
     this.appointments = [];
   }
+  
+  
+  var temp = this.experiment_name;
+  if(this.experiment_conditions)
+  {
+    for(var i = 0; i < this.experiment_conditions.length; i++)
+    {
+      temp = temp + ' ' + this.experiment_conditions[i];
+    }
+    
+  }
+  
+  this.display_name = temp;
+  
+  
   next();
 });
 var Experiment = mongoose.model('Experiment', experimentSchema);

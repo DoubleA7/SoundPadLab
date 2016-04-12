@@ -23,10 +23,6 @@ angular.module('core.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/core/client/views/admin/admin.client.view.html',
         controller: 'AdminController'
       })
-      .state('home', {
-        url: '/',
-        templateUrl: 'modules/core/client/views/home.client.view.html'
-      })
       .state('admin.appointments', {
         url: '/appointments',
         templateUrl: 'modules/appointments/client/views/admin/list-appointments.client.view.html',
