@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('experiments', ['nya.bootstrap.select']).controller('addExperimentController', ['$scope', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator', 'Admin',
-  function ($scope, $state, $http, $location, $window, Authentication, PasswordValidator, Admin) {
-
+  function ($scope, $state, $http, $location, $window, Authentication, PasswordValidator, Admin, partcipantsAdmin) {
+    //Retrieve list of all users
     Admin.query(function (data) {
-      console.log(data);
       if(data.length === 0){
         $scope.error = 'No users to assign!';
       }else{
@@ -18,7 +17,7 @@ angular.module('experiments', ['nya.bootstrap.select']).controller('addExperimen
 
     // Get an eventual error defined in the URL query string:
     $scope.error = $location.search().err;
-    //$scope.credentials.requires_eyeglasses.type=false;
+
     
    /* handle updating the LIST of conditions per experiemnt */
     $scope.localConditions = [];
@@ -41,21 +40,16 @@ angular.module('experiments', ['nya.bootstrap.select']).controller('addExperimen
     
     
     $scope.addExperiment = function (isValid) {
-      console.log($scope.credentials);
+      if (!isValid) {
+        $scope.$broadcast('show-errors-check-validity', 'experimentForm');
+        return false;
+      }
       if(!$scope.credentials.requires_eyeglasses) {
         $scope.credentials.requires_eyeglasses=false;
       }
       $scope.error = null;
       
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'experimentForm');
-        return false;
-      }
-      
-      var temp = [];
-      /*for(var i in $scope.credentials.users)
-        temp.push(mongoose.Types.ObjectId($scope.credentials.users[i]));
-      $scope.credentials.users = temp;*/
+
       // Add the updated condition list
       $scope.credentials.experiment_conditions = $scope.localConditions;
       

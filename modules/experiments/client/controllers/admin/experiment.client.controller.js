@@ -7,7 +7,7 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
     $scope.edit_conditions = false;
     $scope.experiment = experimentResolve;     
      /* handle updating the list of conditions per experiemnt */
-     
+     /* Handle coniditions locally before saving to DB*/
     $scope.new_condition_to_add = '';
     $scope.resetLocalConditions = function() {     
       $scope.edit_conditions = true;

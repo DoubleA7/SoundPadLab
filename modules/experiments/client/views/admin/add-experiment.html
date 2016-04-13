@@ -5,8 +5,8 @@
       <fieldset>
         <div class="form-group" show-errors>
           <label for="firstName">Experiment Name</label>
-          <input type="text" id="Name" name="Name" class="form-control" ng-model="credentials.experiment_name" placeholder="Name" required>
-          <div ng-messages="experimentForm.firstName.$error" role="alert">
+          <input type="text" id="Name" name="Name" class="form-control" ng-model="credentials.experiment_name" placeholder="Name" ng-required="required">
+          <div ng-messages="experimentForm.Name.$invalid" role="alert">
             <p class="help-block error-text" ng-message="required">Name is required.</p>
           </div>
         </div>
@@ -26,7 +26,7 @@
         </div>
         
         <div class="form-group" show-errors>
-          <label for="firstName">Requires Eyeglasses?</label>
+          <label for="glasses">Requires Eyeglasses?</label>
           <div class="radio">
             <label><input type="radio" name="optradio" ng-model="credentials.requires_eyeglasses" ng-value="true">Yes</label>
           </div>
@@ -34,8 +34,8 @@
             <label><input type="radio" name="optradio" ng-model="credentials.requires_eyeglasses" ng-value="false">No</label>
           </div>
         </div>
-		<div>
-		  <ol class="nya-bs-select" ng-model="credentials.users" multiple="true" live-search="true" ng-required="true">
+		<div class="form-group" ng-class="{'has-error': experimentForm.users.$invalid}" show errors>
+		  <ol class="nya-bs-select" ng-model="credentials.users" multiple="true" live-search="true" title="Researchers" data-size="5" multiple="true" required multiple name="experiment.users">
 			<li nya-bs-option="user in users" data-value="user._id">
 			  <a>
 				{{user.displayName}}
@@ -43,9 +43,11 @@
 			  </a>
 			</li>
 		  </ol>
+		   <p class="text-danger" ng-show="experimentForm.users.$invalid">Please select at least one option</p>
+           <div ng-messages="experimentForm.users.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">At least one is required.</p>
+          </div>
 		</div>
-        
-        
         <div class="text-center form-group">
           <button type="submit" class="btn btn-primary">Add Experiment</button>
         </div>

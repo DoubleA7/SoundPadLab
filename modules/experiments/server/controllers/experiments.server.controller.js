@@ -19,7 +19,7 @@ function addToParticipant(i, experiment) {
         participant.experiments.push(experiment._id);
         participant.save();
       }	  
-      addToParticipant(i+1,experiment);
+      addToParticipant(i+1,experiment); //Recursion-based code must execute recursively
     });
   } else {
     return;
@@ -142,8 +142,6 @@ exports.update = function (req, res) {
   experiment.participants = req.body.participants;
   experiment.users = req.body.users;
   experiment.appointments = req.body.appointments;
-  experiment.tags = req.body.tags;
-  experiment.requirements = req.body.requirements;
   experiment.completed = req.body.completed;
   experiment.requires_eyeglasses = req.body.requires_eyeglasses;
   experiment.experiment_name = req.body.experiment_name;
