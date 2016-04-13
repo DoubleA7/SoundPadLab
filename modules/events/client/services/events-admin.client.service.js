@@ -1,5 +1,6 @@
 'use strict';
 
+//creates admin event factory
 angular.module('events.admin').factory('eventsAdmin', ['$resource',
   function ($resource) {
 

@@ -54,8 +54,6 @@ angular.module('events').controller('addEventController', ['$scope','$timeout', 
 
     // Called after the user has failed to uploaded a new picture
     $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
-      console.log(response);
-      console.log(status);
       // Clear upload buttons
       $scope.cancelUpload();
 
@@ -79,12 +77,10 @@ angular.module('events').controller('addEventController', ['$scope','$timeout', 
     };
 
 
+    //adds event to site database
     $scope.addEvent = function (isValid) {
-      console.log('ADD EVENT');
       $scope.error = null;
 
-
-      console.log($scope.credentials);
 
       $http.post('/api/events', $scope.credentials).success(function (response) {
 
