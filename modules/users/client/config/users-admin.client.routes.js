@@ -1,6 +1,6 @@
 'use strict';
 
-// Setting up route
+// Setting up routes for editing users
 angular.module('users.admin.routes').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
@@ -14,7 +14,7 @@ angular.module('users.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/admin/view-user.client.view.html',
         controller: 'UserController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
+          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) { // Resolve to get User object
             return Admin.get({
               userId: $stateParams.userId
             });
@@ -26,7 +26,7 @@ angular.module('users.admin.routes').config(['$stateProvider',
         templateUrl: 'modules/users/client/views/admin/edit-user.client.view.html',
         controller: 'UserController',
         resolve: {
-          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) {
+          userResolve: ['$stateParams', 'Admin', function ($stateParams, Admin) { // Resolve to get User object
             return Admin.get({
               userId: $stateParams.userId
             });
