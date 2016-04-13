@@ -59,7 +59,7 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
       var duration = $scope.credentials.duration;
       console.log(duration);
       var location = $scope.credentials.location;
-	  var participant = $scope.credentials.participant;
+      var participant = $scope.credentials.participant;
 
 
 	  // Time Conflict Verification
@@ -76,9 +76,9 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
         if ((time >= startTime) && (time < endTime)){
           console.log('Potential time conflict, checking participant and location');
           if ($scope.appointments[i].participant._id === participant){
-			$scope.error = 'This participant is already scheduled at this time!';
-			return;
-		  }
+            $scope.error = 'This participant is already scheduled at this time!';
+            return;
+          }
           if (location === $scope.appointments[i].location){
             $scope.error = 'There is a time conflict at this location';
             return;
@@ -98,10 +98,10 @@ angular.module('appointments.admin').controller('addAppointmentController', ['$s
       }
 
 	  // Check that appointment has minimum duration
-	  if ($scope.credentials.duration < 15 ){
-		$scope.error = "Appointment must be at least 15 minutes long";
-		return;
-	  }
+      if ($scope.credentials.duration < 15){
+        $scope.error = 'Appointment must be at least 15 minutes long';
+        return;
+      }
 
       // Clear error
       $scope.error = null;

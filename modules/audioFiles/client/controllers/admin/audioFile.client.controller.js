@@ -26,11 +26,11 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$sce', '$
         console.log(response);
         //request to retreive audio data
         $http.post('/api/audioFiles/mp3', response).success(function (response) {
-          console.log("SUCCESS mp3 http post");
+          console.log('SUCCESS mp3 http post');
           //set audio src
           $scope.mp3URL = $sce.trustAsResourceUrl(response);
-          }).error(function (response) {
-          console.log("FAILED TO htpp post");
+        }).error(function (response) {
+          console.log('FAILED TO htpp post');
           $scope.error = response.message;
         });
       });

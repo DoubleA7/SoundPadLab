@@ -63,7 +63,7 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/events/:eventId',
       permissions: '*'
     }]
-  },  {
+  },{
     roles: ['admin'],
     allows: [{
       resources: '/api/users',

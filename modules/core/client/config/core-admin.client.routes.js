@@ -86,7 +86,8 @@ angular.module('core.admin.routes').config(['$stateProvider',
         controller: 'addAppointmentController',
         templateUrl: 'modules/appointments/client/views/admin/add-appointment.html',
       })
-		.state('admin.experiments', {
+		.state('admin.experiments', 
+      {
         url: '/experiments',
         templateUrl: 'modules/experiments/client/views/admin/list-experiments.client.view.html',
         controller: 'ExperimentListController'
@@ -122,7 +123,8 @@ angular.module('core.admin.routes').config(['$stateProvider',
           roles: ['admin']
         }
       })
-		.state('admin.participants', {
+		.state('admin.participants', 
+      {
         url: '/participants',
         templateUrl: 'modules/participants/client/views/admin/list-participants.client.view.html',
         controller: 'ParticipantListController'

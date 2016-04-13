@@ -38,7 +38,7 @@ module.exports = {
     },
     mp3Upload: {
       dest: './modules/audioFiles/mp3Uploads/' //mp3 upload destination
-  	},
+    },
     eventUpload: {
       dest: './modules/events/client/img/', // Profile upload destination path
       limits: {

@@ -18,7 +18,7 @@ angular.module('participants').controller('addParticipantController', ['$scope',
       $scope.error = null;
       $scope.credentials.dob = $('#datetimepicker12').data('DateTimePicker').date().toDate();
       var temp = $scope.credentials.dob = $('#datetimepicker13').data('DateTimePicker').date().toDate();
-      if(temp.toString() == 'Invalid Date')
+      if(temp.toString() === 'Invalid Date')
         $scope.credentials.lastPaid = temp;
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'participantForm');

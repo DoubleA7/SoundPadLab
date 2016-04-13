@@ -27,14 +27,14 @@ describe('Publication Model Unit Tests:', function () {
       password: 'M3@n.jsI$Aw3$0m3',
       roles: ['admin']
     });
-  user.save(function () {
-    publication = new Publication({
-      title: 'Publication Title',
-      information: 'Publication Information',
-      url: 'Publication Url'
-    });
+    user.save(function () {
+      publication = new Publication({
+        title: 'Publication Title',
+        information: 'Publication Information',
+        url: 'Publication Url'
+      });
 
-    done();
+      done();
 
     });
   });

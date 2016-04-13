@@ -165,7 +165,7 @@ exports.getMp3 = function (req,res){
       console.error(err);
     }
     //data pre populated with right encoding
-    var d = "data:audio/mp3;base64," + data;
+    var d = 'data:audio/mp3;base64,' + data;
     res.send(d);
   });
 

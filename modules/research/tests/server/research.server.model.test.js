@@ -1,15 +1,15 @@
-"use strict";
+'use strict';
 
 var should = require('should'), 
-    mongoose = require('mongoose'), 
-    Research = mongoose.model('Research');
+  mongoose = require('mongoose'), 
+  Research = mongoose.model('Research');
 
 var research, id;
 
-research =  {
-  title: "RESEARCH_TITLE", 
-  image: "./sdfa/asdf/asdf/asd/f/asdf", 
-  content: "RESEARCH_CONTENT" 
+research = {
+  title: 'RESEARCH_TITLE', 
+  image: './sdfa/asdf/asdf/asd/f/asdf', 
+  content: 'RESEARCH_CONTENT' 
 };
 
 describe('Research Schema Unit Tests', function() {

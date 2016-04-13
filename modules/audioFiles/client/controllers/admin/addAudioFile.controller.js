@@ -63,7 +63,7 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
       }
       //send http request with data to add audioFile to database
       $http.post('/api/audioFiles/', $scope.credentials).success(function (response) {
-        console.log("ADDED AUDIO FILE");
+        console.log('ADDED AUDIO FILE');
         // And redirect to the previous or list of users 
         $state.go('admin.audioFiles', $state.previous.params);
       }).error(function (response) {

@@ -1,10 +1,11 @@
-"use strict";
+'use strict';
 
 var should = require('should'), 
-    request = require('supertest'), 
-    path = require('path'),
-    express = require(path.resolve('./config/lib/express'));
-    Research = require('../models/research.server.model.js');
+  mongoose = require('mongoose'),
+  request = require('supertest'), 
+  path = require('path'),
+  express = require(path.resolve('./config/lib/express')),
+  Research = mongoose.model('Research');
 
 /* Global variables */
 var app, agent, research, id;
@@ -32,7 +33,7 @@ describe('Researches CRUD tests', function() {
       });
   });
   it('should be able to retrieve a single research', function(done) {
-    Research.findOne({title: 'Research1'}, function(err, research) {
+    Research.findOne({ title: 'Research1' }, function(err, research) {
       if(err) {
         console.log(err);
       } else {
@@ -109,13 +110,13 @@ describe('Researches CRUD tests', function() {
 
   after(function(done) {
     if(id) {
-      Research.remove({_id: id}, function(err){
+      Research.remove({ _id: id }, function(err){
         if(err) throw err;
         done();
       });
     }
     else {
-        done();
+      done();
     }
   });
 });

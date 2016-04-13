@@ -30,7 +30,7 @@ angular.module('participants.admin').controller('ParticipantController', ['$scop
       var temp = $scope.participant.dob = $('#datetimepicker15').data('DateTimePicker').date().toDate();
       if(temp.toString() !== 'Invalid Date')
         $scope.participant.lastPaid = temp;
-      if($scope.participant.dob.toString() == 'Invalid Date')
+      if($scope.participant.dob.toString() === 'Invalid Date')
         isValid = false;
       console.log($scope.participant.dob);
       if (!isValid) {

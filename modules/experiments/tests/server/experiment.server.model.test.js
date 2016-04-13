@@ -31,19 +31,19 @@ describe('Experiment Model Unit Tests:', function () {
       username: 'username',
       password: 'M3@n.jsI$Aw3$0m3'
     });
-  user.save(function () {
+    user.save(function () {
 
-    experiment = new Experiment({
-      tags: 'Exp tag',
-      requirements: 'Exp requirements',
-      display_name : 'Display name',
-      completed: true,
-      requires_eyeglasses: true,
-      experiment_name: 'Exp Name',
-      experiment_conditions: 'Exp conditions'
-    });
+      experiment = new Experiment({
+        tags: 'Exp tag',
+        requirements: 'Exp requirements',
+        display_name : 'Display name',
+        completed: true,
+        requires_eyeglasses: true,
+        experiment_name: 'Exp Name',
+        experiment_conditions: 'Exp conditions'
+      });
 
-    done();
+      done();
 
     });
   });

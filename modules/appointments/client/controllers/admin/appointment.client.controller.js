@@ -7,8 +7,8 @@ angular.module('appointments.admin').controller('AppointmentController', ['$scop
 
     // Get specific appointment to view, edit or delete
     $scope.appointment = appointmentResolve;
-	$scope.prevExperimentName = $scope.appointment.experiment.experiment_name;
-	$scope.prevExperimentConditions = $scope.appointment.experiment.experiment_conditions;
+    $scope.prevExperimentName = $scope.appointment.experiment.experiment_name;
+    $scope.prevExperimentConditions = $scope.appointment.experiment.experiment_conditions;
 
 
     // Query appointments from DB
@@ -90,15 +90,15 @@ angular.module('appointments.admin').controller('AppointmentController', ['$scop
         var endTime = new Date(startTime.getTime() + ($scope.appointments[i].duration*60000));
 
         //Appointment shouldn't conflict with itself during update
-        if ( $scope.appointment._id !== $scope.appointments[i]._id){
-		  if ((time >= startTime) && (time < endTime)){
-			console.log('Potential time conflict, checking location');
-			if (location === $scope.appointments[i].location){
-				$scope.error = 'There is a time conflict at this location';
-				return;
-			}
-		  }
-		}
+        if ($scope.appointment._id !== $scope.appointments[i]._id){
+          if ((time >= startTime) && (time < endTime)){
+            console.log('Potential time conflict, checking location');
+            if (location === $scope.appointments[i].location){
+              $scope.error = 'There is a time conflict at this location';
+              return;
+            }
+          }
+        }
       }
 
       if (!isValid) {
@@ -108,14 +108,14 @@ angular.module('appointments.admin').controller('AppointmentController', ['$scop
       }
 
 	  // Check that appointment has minimum duration
-	  if ($scope.appointment.duration < 15 ){
-		$scope.error = "Appointment must be at least 15 minutes long";
-		return;
-	  }
+      if ($scope.appointment.duration < 15){
+        $scope.error = 'Appointment must be at least 15 minutes long';
+        return;
+      }
 
       // Get appointment to assign valid time and update
       var appointment = $scope.appointment;
-	  appointment.time = time;
+      appointment.time = time;
 
       // Update the appointment!
       appointment.$update(function () {
