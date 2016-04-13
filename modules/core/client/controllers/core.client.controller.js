@@ -2,12 +2,13 @@
 
 angular.module('core').controller('CoreController', ['$scope', '$state',
   function ($scope, $state) {
-    $scope.showHeader = true;
+
+    // Add references to $state to the $scope so that you can access it from any scope
     $scope.$state = $state;
+
     console.log('Inside core controller');
-    //console.log($scope);
-    $scope.init = function() {
-    };
+    
+    // Define navigation functions
     $scope.goToContact = function() {
       $state.go('core.contact');
     };
