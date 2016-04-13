@@ -2,8 +2,10 @@
 
 angular.module('core').controller('HomeController', ['$scope', '$state', 'Authentication',
   function ($scope, $state, Authentication) {
-    // This provides Authentication context.
-    $scope.authentication = Authentication;
+    
+    $scope.authentication = Authentication; // This provides Authentication context.
+
+    //Navigation functions
     $scope.goToContact = function() {
       $state.go('core.contact');
     };
