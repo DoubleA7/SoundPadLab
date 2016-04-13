@@ -1,7 +1,7 @@
 ﻿<div>
     <h3 class="col-md-12 text-center">Edit Research <span ng-bind="research.title"></span></h3>
     <div class="col-xs-offset-2 col-xs-8 col-md-offset-2 col-md-8">
-        <form name="researchForm" ng-submit="update(researchForm.$valid)" class="signin" novalidate autocomplete="off">
+        <form name="researchForm" ng-submit="uploadProfilePicture()" class="signin" autocomplete="off">
             <fieldset>
                 <div class="form-group" show-errors>
                     <label for="title">Title</label>
@@ -26,7 +26,7 @@
                   </span>
                 </div>
                 <div class="text-center form-group">
-                    <button ng-click="uploadProfilePicture()" class="btn btn-primary">Edit Research</button>
+                    <button type="submit" class="btn btn-primary">Edit Research</button>
                 </div>
                 <div ng-show="error" class="text-center text-danger">
                     <strong ng-bind="error"></strong>

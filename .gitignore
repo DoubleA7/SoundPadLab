@@ -27,6 +27,7 @@ public/dist/
 uploads
 modules/users/client/img/profile/uploads
 modules/audioFiles/mp3Uploads
+modules/events/client/img
 config/env/local.js
 *.pem
 

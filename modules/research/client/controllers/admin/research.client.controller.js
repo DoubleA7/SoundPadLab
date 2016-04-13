@@ -100,16 +100,6 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
 
     $scope.update = function (isValid) {
       
-      //check form here:
-      /* Check elsewhere for form validity!
-      NOTE: (did not work in uploadProfilePicture)
-      */
-      /*
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'researchForm');
-        return;
-      }
-      */
       var research = $scope.research;
       research.$update(function () {
         $state.go('admin.research', {
