@@ -73,7 +73,7 @@ angular.module('events').controller('addEventController', ['$scope','$timeout', 
     // Cancel the upload process
     $scope.cancelUpload = function () {
       $scope.uploader.clearQueue();
-      $scope.imageURL = $scope.user.profileImageURL;
+      $scope.imageURL = $scope.credentials.image;
     };
 
 
