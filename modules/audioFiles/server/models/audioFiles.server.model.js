@@ -32,10 +32,6 @@ AudioFileSchema.pre('save', function(next) {
   {
     this.created_at = currentTime;
   }
-  
-  //var dob_str = new Date(Date.UTC(this.dob.year, , day, 0, 0, 0)); testing this.
-  
-  
   next();
 });
 

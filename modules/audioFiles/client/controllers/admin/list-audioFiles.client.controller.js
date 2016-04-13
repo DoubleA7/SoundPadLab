@@ -8,7 +8,6 @@ angular.module('audioFiles.admin').controller('AudioFileListController', ['$scop
       $scope.buildPager();
     });
 
-    //console.log($scope.audioFiles);
     $scope.buildPager = function () {
       $scope.pagedItems = [];
       $scope.itemsPerPage = 15;

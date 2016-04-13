@@ -14,7 +14,7 @@ module.exports = function (app) {
 
     // Single participant routes
   app.route('/api/audioFiles/:audioFileId')
-        .get(/*adminPolicy.isAllowed,*/audioFiles.read)
+        .get(audioFiles.read)
         .put(adminPolicy.isAllowed,audioFiles.update)
         .delete(adminPolicy.isAllowed,audioFiles.delete);
 

@@ -7,7 +7,7 @@ var path = require('path'),
   config = require(path.resolve('./config/config'));
 
 /**
- * Participants module init function.
+ * Audio File module init function.
  */
 module.exports = function (app, db) {
 

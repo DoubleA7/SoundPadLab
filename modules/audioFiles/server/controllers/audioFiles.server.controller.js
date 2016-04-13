@@ -27,11 +27,9 @@ exports.create = function (req, res) {
   console.log('Gname :' +gName);
   if(gName !== null){
     audiofile.filePath = gName;
-    console.log('file name');
   }
   audiofile.save(function (err) {
     if (err) {
-      //console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -42,8 +40,6 @@ exports.create = function (req, res) {
     }
   });
 };
-
-//audiofile.filePath = config.uploads.mp3Upload.dest + req.file.filename;
 /**
  * Show the current audiofile
  */
@@ -61,9 +57,6 @@ exports.update = function (req, res) {
     
   audiofile.title= req.body.title;
   audiofile.filePath = req.body.filePath;
-  
-    
-    //subject_id not being updated 
     
   audiofile.save(function (err) {
     if (err) {
@@ -122,7 +115,6 @@ exports.audioFileByID = function (req, res, next, id) {
     });
   }
 
-    //audiofile.findById(id).populate('name', 'displayName').exec(function (err, audiofile) {
   AudioFile.findById(id).exec(function (err, audiofile) {
     if (err) {
       return next(err);
@@ -139,12 +131,7 @@ exports.audioFileByID = function (req, res, next, id) {
 exports.uploadMp3File = function (req, res) {
   var upload = multer(config.uploads.mp3Upload).single('mp3File');
   var mp3UploadFilter = require(path.resolve('./config/lib/multer')).mp3UploadFilter;
-  /*var audiofile = new AudioFile(req.body);
-  upload.fileFilter = mp3UploadFilter;
-  //console.log(req.body);
-  audiofile.title = req.title;*/
   upload(req, res, function (uploadError) {
-    //console.log(req);
     if(uploadError) {
       return res.status(400).send({
         message: 'Error occurred while uploading mp3'
@@ -153,7 +140,6 @@ exports.uploadMp3File = function (req, res) {
     else {
       gName = config.uploads.mp3Upload.dest + req.file.filename;
       res.send(gName);
-      //gName = req.bod.filePath;
     }
   });
 };
@@ -166,13 +152,11 @@ exports.getMp3 = function (req,res){
     filePath = req.body.filePath;
     console.log(filePath);
   }
-  //res.send('test');
   fs.readFile(filePath,'base64', function (err, data) {
     if (err) {
       res.send('error while reading');
       console.error(err);
     }
-    //console.log("Asynchronous read: " + data);
     var d = "data:audio/mp3;base64," + data;
     res.send(d);
   });
