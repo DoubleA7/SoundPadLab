@@ -2,9 +2,11 @@
 
 angular.module('research.admin').controller('ResearchListController', ['$scope', '$filter', 'researchAdmin',
   function ($scope, $filter, researchAdmin) {
-    console.log("research list initialized!!");
+    console.log('research list initialized!!');
     researchAdmin.query(function (data) {
+      //populate resource
       $scope.researchs = data;
+      //pagination
       $scope.buildPager();
     });
     $scope.buildPager = function () {
@@ -13,6 +15,8 @@ angular.module('research.admin').controller('ResearchListController', ['$scope',
       $scope.currentPage = 1;
       $scope.figureOutItemsToDisplay();
     };
+    
+    //filter function
     $scope.figureOutItemsToDisplay = function () {
       $scope.filteredItems = $filter('filter')($scope.researchs, {
         $: $scope.search

@@ -23,9 +23,12 @@ var PublicationSchema = new Schema({
     required: true },
       
     
-  tags: [String]
+  tags: [String],
     
-
+  url: {
+    type: String,
+    default: ''
+  }
 });
 
 

@@ -12,7 +12,7 @@
 	}
 }
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-	background-color: rgb(50,50,50);
+	background-color: rgb(200,200,200);
 	background-image: none;
 }
 
@@ -34,4 +34,8 @@
 
 .nav>li>a:hover{
 	background-color: rgba(100%,100%,100%, 0.4);
+}
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .active > a {
+	background-image: none;
 }

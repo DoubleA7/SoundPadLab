@@ -42,6 +42,7 @@ exports.update = function (req, res) {
   var publication = req.publication;
   publication.title = req.body.title;
   publication.information = req.body.information;
+  publication.url = req.body.url;
   
     
     //subject_id not being updated 

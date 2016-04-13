@@ -11,7 +11,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 	// If user is signed in, redirect to admin if state is signin
     if ($scope.authentication.user) {
       if ($state.$current.name === 'authentication.signin') {
-        $location.path('/admin');
+        $location.path('/admin/appointments');
       }
     }
     // Guests get redirected to home if they attempt to signup
@@ -41,7 +41,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 
     $scope.signin = function (isValid) {
       $scope.error = null;
-      console.log("sign in!");
+      console.log('sign in!');
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'userForm');
 			
@@ -53,7 +53,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
         $scope.authentication.user = response;
 
         // And redirect to the previous or admin-home page
-        $state.go($state.previous.state.name || 'admin.home', $state.previous.params);
+        $state.go($state.previous.state.name || 'admin.appointments', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });

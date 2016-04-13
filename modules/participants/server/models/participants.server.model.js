@@ -41,26 +41,25 @@ var ParticipantSchema = new Schema({
   },
 
   gender: String,
+  card_info: String,
 
-  last_paid: Date,
+  lastPaid: Date,
 
-  dob: {
-    day: Number,
-    month: Number,
-    year: Number
-  },
-  //subject_id: Number,
+  dob: Date,
+  subject_id: Number,
   vision_test: Boolean,
   corrective_lenses: Boolean,
   contact_lenses: Boolean,
   took_audiogram: Boolean,
-  HRTF_assigned: Boolean,
+  HRTF_assigned: String,
   tags: [String],
   gift_cards: [String],
-  appointments: [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
-  experiments: [ { type: Schema.Types.ObjectId, ref: 'Experiment' } ],
+  appointments:     [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
+  experiments:      [{ type: Schema.Types.ObjectId, ref: 'Experiment' }],
   comment: String
+
 });
+
 
 
 /* create a 'pre' function that adds the updated_at (and created_at if not already there) property */

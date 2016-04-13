@@ -24,12 +24,17 @@
 				</div>
 				<div class="row">
 					<form id="emailForm" class="form-group" ng-submit="sendMail()">
-							<label class="col-md-12">Name:
-								<input  class="form-control" type="text" placeholder="John Doe" ng-model="name">
-							</label>
-							<label class="col-md-12">Email:
-								<input  class="form-control" type="text" placeholder="here@example.com"  ng-model="email">
-							</label>
+                        <div vc-recaptcha 
+                             key="'6LdW_hwTAAAAAN1J8l7A3gniCRA930e0OtvIf7j8'"
+                             ng-model="captcha"
+                             on-success="setResponse(response)"
+                        ></div>
+						<label class="col-md-12">Name:
+							<input  class="form-control" type="text" placeholder="John Doe" ng-model="name">
+						</label>
+						<label class="col-md-12">Email:
+							<input  class="form-control" type="text" placeholder="here@example.com"  ng-model="email">
+						</label>
 						<p class="message">
 							<label class="col-md-12">Message:
 							<textarea class="form-control" placeholder="Enter your message here" ng-model="msg"></textarea>
@@ -42,16 +47,5 @@
 				</div>
 			</div>
         </div>
-    </div>
-
-    <div id="footer" class="row">
-        <span id="footer-nav" class="col-md-12 col-sm-12 col-xs-12">
-            <a ng-click="goToContact()">Contact Us</a>
-            <a ng-click="goToTeam()">The Team</a>
-        </span>
-        <span id="rights" class="col-md-12 col-sm-12 col-xs-12">
-            <a href="http://www.ufl.edu">&copy; University of Florida</a>,
-            <a href="http://www.cise.ufl.edu">Department of Computer & Information Science & Engineering</a>
-        </span>
     </div>
 </section>

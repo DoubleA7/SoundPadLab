@@ -35,6 +35,24 @@ module.exports = {
       limits: {
         fileSize: 1*1024*1024 // Max file size in bytes (1 MB)
       }
+    },
+    mp3Upload: {
+      dest: './modules/audioFiles/mp3Uploads/'/*,
+      limits:{
+        fileSize: 5*1024*1024
+      }*/
+	},
+    eventUpload: {
+      dest: './modules/events/client/img/', // Profile upload destination path
+      limits: {
+        fileSize: 1*1024*1024 // Max file size in bytes (1 MB)
+      }
+    },
+    researchUpload: {
+      dest: './modules/research/client/img/', // research tile image upload destination path
+      limits: {
+        fileSize: 1*1024*1024 // Max file size in bytes (1 MB)
+      }
     }
   }
 };

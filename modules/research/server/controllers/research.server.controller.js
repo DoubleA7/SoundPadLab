@@ -4,8 +4,9 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Research = require('../models/research.server.model.js'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
-
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  multer = require('multer'),
+  config = require(path.resolve('./config/config'));
 //Create
 exports.create = function (req, res) {
   var research = new Research(req.body);
@@ -23,6 +24,31 @@ exports.create = function (req, res) {
   });
 };
 
+/**
+ * Update profile picture
+ */
+exports.changePicture = function (req, res) {
+  var user = req.user;
+  var message = null;
+  var upload = multer(config.uploads.researchUpload).single('newResearchPicture');
+  var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+  
+  // Filtering to upload only images
+  upload.fileFilter = profileUploadFileFilter;
+
+  upload(req, res, function (uploadError) {
+    if(uploadError) {
+      console.log(uploadError);
+      return res.status(400).send({
+        message: 'Error occurred while uploading profile picture'
+      });
+    } else {
+      res.json(config.uploads.researchUpload.dest + req.file.filename);
+    }
+  });
+};
+
+
 //Read
 exports.read = function (req, res) {
   res.json(req.research);
@@ -31,7 +57,7 @@ exports.read = function (req, res) {
 //Update
 exports.update = function (req, res) {
   var research = req.research;
-
+  console.log(req.body);
   research.title = req.body.title;
   research.image = req.body.image;
   research.content = req.body.content;
