@@ -8,14 +8,17 @@ angular.module('users').controller('EditProfileController', ['$scope', '$http', 
     $scope.updateUserProfile = function (isValid) {
       $scope.success = $scope.error = null;
 
+      // Check form
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'userForm');
 
         return false;
       }
 
+      // Store changes made
       var user = new Users($scope.user);
 
+      // Update database
       user.$update(function (response) {
         $scope.$broadcast('show-errors-reset', 'userForm');
 

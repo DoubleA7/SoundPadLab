@@ -8,7 +8,7 @@ var path = require('path'),
   multer = require('multer'),
   config = require(path.resolve('./config/config'));
 
-//Create
+//Create event
 exports.create = function (req, res) {
   var event = new Event_t(req.body);
   console.log(event);
@@ -26,13 +26,16 @@ exports.create = function (req, res) {
 };
 
 /**
- * Update profile picture
+ * Update event picture
  */
 exports.changePicture = function (req, res) {
-  console.log(req.user);
-  var user = req.user;
+  //to record errors later on
   var message = null;
+
+  //event uploader
   var upload = multer(config.uploads.eventUpload).single('newEventPicture');
+
+  //selects path for images to save to
   var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
   
   // Filtering to upload only images
@@ -40,11 +43,11 @@ exports.changePicture = function (req, res) {
 
   upload(req, res, function (uploadError) {
     if(uploadError) {
-      console.log(uploadError);
       return res.status(400).send({
-        message: 'Error occurred while uploading profile picture'
+        message: 'Error occurred while uploading event picture'
       });
     } else {
+      //returns location of photo for saving event
       res.json(config.uploads.eventUpload.dest + req.file.filename);
     }
   });

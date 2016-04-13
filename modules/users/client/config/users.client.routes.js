@@ -1,11 +1,12 @@
 'use strict';
 
-// Setting up route
+// Setting up routing for Users
 angular.module('users').config(['$stateProvider',
   function ($stateProvider) {
     // Users state routing
     $stateProvider
-      .state('settings', {
+      // Abstract view to hold different settings
+      .state('settings', { 
         abstract: true,
         url: '/settings',
         templateUrl: 'modules/users/client/views/settings/settings.client.view.html',
@@ -13,6 +14,7 @@ angular.module('users').config(['$stateProvider',
           roles: ['user', 'admin']
         }
       })
+      // Specific settings for users
       .state('settings.profile', {
         url: '/profile',
         templateUrl: 'modules/users/client/views/settings/edit-profile.client.view.html'
@@ -29,11 +31,13 @@ angular.module('users').config(['$stateProvider',
         url: '/picture',
         templateUrl: 'modules/users/client/views/settings/change-profile-picture.client.view.html'
       })
-      .state('authentication', {
+      // Abstract view to hold sign-in related activities
+      .state('authentication', { 
         abstract: true,
         url: '/auth',
         templateUrl: 'modules/users/client/views/authentication/authentication.client.view.html'
       })
+      // Signup and Signin states extend authentication
       .state('authentication.signup', {
         url: '/signup',
         templateUrl: 'modules/users/client/views/authentication/signup.client.view.html',
@@ -45,20 +49,24 @@ angular.module('users').config(['$stateProvider',
         url: '/signin?err',
         templateUrl: 'modules/users/client/views/authentication/signin.client.view.html'
       })
+      // Abstract view for password management
       .state('password', {
         abstract: true,
         url: '/password',
         template: '<ui-view/>'
       })
+      // Forget and reset extend password state
       .state('password.forgot', {
         url: '/forgot',
         templateUrl: 'modules/users/client/views/password/forgot-password.client.view.html'
       })
+      // Abstract view handles different reset outcomes
       .state('password.reset', {
         abstract: true,
         url: '/reset',
         template: '<ui-view/>'
       })
+      // Specific password reset views
       .state('password.reset.invalid', {
         url: '/invalid',
         templateUrl: 'modules/users/client/views/password/reset-password-invalid.client.view.html'

@@ -21,7 +21,8 @@
     "fullcalendar": "~2.3.2",
     "moment": "~2.10.3",
     "eonasdan-bootstrap-datetimepicker": "^4.17.37",
-    "angular-recaptcha": "~3.0.2"
+    "angular-recaptcha": "~3.0.2",
+    "nya-bootstrap-select": "^2.1.5"
   },
   "resolutions": {
     "angular": "~1.3",

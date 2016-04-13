@@ -1,3 +1,31 @@
+[![Soundpad Logo](./public/images/logo.png)]
+
+## About SoundpadLab
+The SoundPad Lab uses 3D audio to create assistive technology, universally accessible interfaces, multi-modal interfaces, and to discover patterns in big data. We also research the perceptual requirements necessary to render realistic spatial sound using headphones in virtual environments.
+
+Our research interests include Human Computer Interaction in the contexts of 3D Audio Processing, Multi-modal Interfaces, Psycho-acoustics, and Virtual Environments.
+
+## To run site locally:
+
+To run site:
+* Download Repository from Github
+* Navigate to project folder
+* Run NPM install 
+* Run Bower install
+* set environment variables:
+* export MONGOLAB_URI='XXXXXX'; (this is to set mongo database url)
+* export emailAddress='XXXX'(this is email to send notifications too)
+* export PASSWORD='XXXX'(put your email password)
+* export PRIVATE_KEY='XXX'(use private api key from google reCAPTCHA)
+* run grunt
+
+
+
+
+
+
+This site runs using the Mean.js stack, described below:
+
 [![MEAN.JS Logo](http://meanjs.org/img/logo-small.png)](http://meanjs.org/)
 
 ## Prerequisites

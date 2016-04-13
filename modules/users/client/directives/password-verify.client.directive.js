@@ -1,5 +1,6 @@
 'use strict';
 
+// Directive to make sure passwords match
 angular.module('users')
   .directive('passwordVerify', [function() {
     return {
