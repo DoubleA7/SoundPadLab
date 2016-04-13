@@ -82,7 +82,7 @@
           <th>Experiments</th>
           <th></th>
         </tr>
-        <tr ng-repeat="experiment in participant.experiments"><!-- ui-sref="listings.view({ listingId: listing._id })"-->
+        <tr ng-repeat="experiment in participant.experiments">
           <td>{{experiment.display_name}}</td>
         </tr>
       </table>
@@ -94,8 +94,8 @@
           <th>Appointments</th>
           <th></th>
         </tr>
-        <tr ng-repeat="appointment in participant.appointments"><!-- ui-sref="listings.view({ listingId: listing._id })"-->
-          <td>{{appointment.time}}</td>
+        <tr ng-repeat="appointment in participant.appointments">
+          <td>{{appointment.prettyDate}}</td>
         </tr>
       </table>
     </div>
