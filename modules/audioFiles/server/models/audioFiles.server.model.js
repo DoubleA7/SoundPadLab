@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * Participant Schema
+ * AudioFile Schema
  */
 
 var AudioFileSchema = new Schema({
@@ -18,7 +18,7 @@ var AudioFileSchema = new Schema({
   },
   
   title: { type: String,required:true },
-  download_link: { type: String, required:true }
+  filePath: { type: String, required:true }
     
 
 });

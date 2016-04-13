@@ -5,7 +5,7 @@ angular.module('core').controller('CoreController', ['$scope', '$state',
     $scope.showHeader = true;
     $scope.$state = $state;
     console.log('Inside core controller');
-    console.log($scope);
+    //console.log($scope);
     $scope.init = function() {
     };
     $scope.goToContact = function() {

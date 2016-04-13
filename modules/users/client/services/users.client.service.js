@@ -11,6 +11,16 @@ angular.module('users').factory('Users', ['$resource',
   }
 ]);
 
+angular.module('users').factory('Members', ['$resource',
+  function ($resource) {
+    return $resource('api/members', {}, {
+      update: {
+        method: 'PUT'
+      }
+    });
+  }
+]);
+
 //TODO this should be Users service
 angular.module('users.admin').factory('Admin', ['$resource',
   function ($resource) {
@@ -23,6 +33,7 @@ angular.module('users.admin').factory('Admin', ['$resource',
     });
   }
 ]);
+
 
 angular.module('participants.admin').factory('participantsAdmin', ['$resource',
   function ($resource) {
@@ -38,7 +49,7 @@ angular.module('participants.admin').factory('participantsAdmin', ['$resource',
 
 angular.module('experiments.admin').factory('experimentsAdmin', ['$resource',
   function ($resource) {
-    console.log("experiments admin");
+    console.log('experiments admin');
     return $resource('api/experiments/:experimentId', {
       experimentId: '@_id'
     }, {
