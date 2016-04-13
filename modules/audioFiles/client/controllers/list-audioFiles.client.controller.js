@@ -3,12 +3,12 @@
 angular.module('audioFiles').controller('AudioFileListPublicController', ['$scope', '$filter', 'audioFilePublic',
   function ($scope, $filter, audioFilePublic) {
     console.log('audioFiles list initialized!!');
+    //get the audioFiles list
     audioFilePublic.query(function (data) {
       $scope.audioFiles = data;
       $scope.buildPager();
     });
     //build the pager
-    console.log($scope.audioFiles);
     $scope.buildPager = function () {
       $scope.pagedItems = [];
       $scope.itemsPerPage = 15;
