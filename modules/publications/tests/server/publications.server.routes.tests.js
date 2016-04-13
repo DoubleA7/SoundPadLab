@@ -4,13 +4,10 @@ var should = require('should'),
   request = require('supertest'),
   path = require('path'),
   mongoose = require('mongoose'),
-  //Publication = require('../models/publications.server.model.js'),
-  //User = mongoose.model('User'),
-  express = require(path.resolve('./config/lib/express'));
+  express = require(path.resolve('./config/lib/express')),
+  Publication = mongoose.model('Publication'),
+  User = mongoose.model('User');
 
-//mongoose.model('User', new mongoose.Schema());
-var Publication = mongoose.model('Publication');
-var User = mongoose.model('User');
 /**
  * Globals
  */
@@ -32,8 +29,9 @@ describe('Publication CRUD tests', function () {
   beforeEach(function (done) {
     // Create user credentials
     credentials = {
-      username: 'username',
-      password: 'M3@n.jsI$Aw3$0m3'
+      username: 'ryanwolf',
+      password: 'password',
+      roles: ['admin']
     };
 
     // Create a new user
@@ -44,7 +42,8 @@ describe('Publication CRUD tests', function () {
       email: 'test@test.com',
       username: credentials.username,
       password: credentials.password,
-      provider: 'local'
+      provider: 'local',
+      roles: credentials.roles
     });
 
     // Save a user to the test db and create new publication
@@ -232,7 +231,7 @@ describe('Publication CRUD tests', function () {
     request(app).get('/api/publications/test')
       .end(function (req, res) {
         // Set assertion
-        res.body.should.be.instanceof(Object).and.have.property('message', 'Publication is invalid');
+        res.body.should.be.instanceof(Object).and.have.property('message', 'publication is invalid');
 
         // Call the assertion callback
         done();
@@ -251,7 +250,7 @@ describe('Publication CRUD tests', function () {
       });
   });
 
-  it('should be able to delete an publication if signed in', function (done) {
+  it('should be able to delete a publication if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)
@@ -294,7 +293,7 @@ describe('Publication CRUD tests', function () {
       });
   });
 
-  it('should not be able to delete an publication if not signed in', function (done) {
+  it('should not be able to delete a publication if not signed in', function (done) {
     // Set publication user
     publication.user = user;
 

@@ -4,14 +4,9 @@
  * Module dependencies.
  */
 var should = require('should'),
-  mongoose = require('mongoose');
-  //User = require('/modules/users/server/models/user.server.model.js'),
-  //Publication = require('../server/models/publications.server.model.js');
-  //config = require('../config/publication.server.config');
-
-//mongoose.model('User', new mongoose.Schema());
-var Publication = mongoose.model('Publication');
-var User = mongoose.model('User');
+  mongoose = require('mongoose'),
+  Publication = mongoose.model('Publication'),
+  User = mongoose.model('User');
 
 /**
  * Globals
@@ -49,14 +44,6 @@ describe('Publication Model Unit Tests:', function () {
         should.not.exist(err);
         done();
       });
-      /*new Publication({
-        title: publication.title, 
-        information: publication.information,
-        url: publication.url
-      }).save(function(err){
-          should.not.exist(err);
-          done();
-      });*/
     });
   
 
@@ -66,14 +53,6 @@ describe('Publication Model Unit Tests:', function () {
         should.exist(err);
         done();
       });
-      /*
-      new Publication({
-        information: publication.information,
-        url: publication.url
-      }).save(function (err) {
-        should.exist(err);
-        done();
-      })*/
     });
     it('should be able to show an error when try to save without information', function (done) {
       publication.title = 'Publication Title';
@@ -82,13 +61,6 @@ describe('Publication Model Unit Tests:', function () {
         should.exist(err);
         done();
       });
-      /*new Publication({
-        title: publication.title,
-        url: publication.url
-      }).save(function (err) {
-        should.exist(err);
-        done();
-      })*/
     });
   });
 
