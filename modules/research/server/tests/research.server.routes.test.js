@@ -1,4 +1,4 @@
-
+"use strict";
 
 var should = require('should'), 
     request = require('supertest'), 
@@ -104,7 +104,7 @@ describe('Researches CRUD tests', function() {
             id = undefined;
             done();
           });
-      })
+      });
   });
 
   after(function(done) {
@@ -112,7 +112,7 @@ describe('Researches CRUD tests', function() {
       Research.remove({_id: id}, function(err){
         if(err) throw err;
         done();
-      })
+      });
     }
     else {
         done();

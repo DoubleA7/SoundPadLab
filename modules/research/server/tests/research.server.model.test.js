@@ -1,3 +1,5 @@
+"use strict";
+
 var should = require('should'), 
     mongoose = require('mongoose'), 
     Research = require('../models/research.server.model'), 
@@ -9,7 +11,7 @@ research =  {
   title: "RESEARCH_TITLE", 
   image: "./sdfa/asdf/asdf/asd/f/asdf", 
   content: "RESEARCH_CONTENT" 
-}
+};
 
 describe('Research Schema Unit Tests', function() {
 
@@ -51,7 +53,7 @@ describe('Research Schema Unit Tests', function() {
       }).save(function(err){
         should.exist(err);
         done();
-      })
+      });
     });
 
     it('throws an error when content not provided', function(done){
@@ -61,7 +63,7 @@ describe('Research Schema Unit Tests', function() {
       }).save(function(err){
         should.exist(err);
         done();
-      })
+      });
     });
 
   });
