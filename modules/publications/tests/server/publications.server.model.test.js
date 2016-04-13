@@ -24,7 +24,8 @@ describe('Publication Model Unit Tests:', function () {
       displayName: 'Full Name',
       email: 'test@test.com',
       username: 'username',
-      password: 'M3@n.jsI$Aw3$0m3'
+      password: 'M3@n.jsI$Aw3$0m3',
+      roles: ['admin']
     });
   user.save(function () {
     publication = new Publication({
