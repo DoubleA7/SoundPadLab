@@ -3,7 +3,7 @@
         <h1>Moment <span ng-bind="event.title"></span></h1>
     </div>
     <div class="col-md-12">
-        <form name="eventForm" novalidate>
+        <form name="eventForm" ng-submit="uploadProfilePicture()">
             <fieldset>
                 <div class="form-group" show-errors>
                     <label for="title">Title</label>
@@ -29,7 +29,7 @@
                 </div>
                
                 <div class="text-center form-group">
-                    <button ng-click="uploadProfilePicture();" class="btn btn-primary">Edit Event</button>
+                    <button type="submit" class="btn btn-primary">Edit Event</button>
                 </div>
                 <div ng-show="error" class="text-center text-danger">
                     <strong ng-bind="error"></strong>

@@ -7,8 +7,18 @@ var mongoose = require('mongoose'),
 //Schema
 var eventSchema = new Schema({
   image: String,
-  description: String,
-  title: String,
+  description: {
+    type: String,
+    default: '',
+    trim: true,
+    required: 'description cannot be blank'
+  },
+  title: {
+    type: String,
+    default: '',
+    trim: true,
+    required: 'Title cannot be blank'
+  },
   created_at: Date,
   updated_at: Date
 });
