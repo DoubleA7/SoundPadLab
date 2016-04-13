@@ -34,6 +34,7 @@ angular.module('users.admin').factory('Admin', ['$resource',
   }
 ]);
 
+
 angular.module('participants.admin').factory('participantsAdmin', ['$resource',
   function ($resource) {
     return $resource('api/participants/:participantId', {

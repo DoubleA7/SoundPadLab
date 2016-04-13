@@ -13,14 +13,8 @@ acl = new acl(new acl.memoryBackend());
  */
 exports.invokeRolesPolicies = function () {
   acl.allow([{
-    roles: ['admin'],
+    roles: ['admin', 'user'],
     allows: [{
-      resources: '/api/users',
-      permissions: '*'
-    }, {
-      resources: '/api/users/:userId',
-      permissions: '*'
-    }, {
       resources: '/api/participants/:participantId',
       permissions: '*'
     },{
@@ -67,6 +61,15 @@ exports.invokeRolesPolicies = function () {
       permissions: '*'
     }, {
       resources: '/api/events/:eventId',
+      permissions: '*'
+    }]
+  },  {
+    roles: ['admin'],
+    allows: [{
+      resources: '/api/users',
+      permissions: '*'
+    }, {
+      resources: '/api/users/:userId',
       permissions: '*'
     }]
   }]);

@@ -9,6 +9,7 @@ var path = require('path'),
   User = mongoose.model('User'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
   
+// TO DO: make this function support one-to-many
 function addToExperiment(i, appointment) {
   if(i<appointment.experiments.length) {
     Experiment.findById(appointment.experiments[i]).exec(function(err,experiment){
@@ -23,6 +24,7 @@ function addToExperiment(i, appointment) {
   }
 }
 
+// TO DO: make this function support one-to-many
 function removeFromExperiment(i, appointment) {
   if(i<appointment.experiments.length) {
     Experiment.findById(appointment.experiments[i]).exec(function(err,experiment){
@@ -37,6 +39,7 @@ function removeFromExperiment(i, appointment) {
   }
 }
 
+// TO DO: make this functions support one-to-many
 function addToUser(i, appointment) {
   if(i<appointment.users.length) {
     User.findById(appointment.users[i]).exec(function(err,user){
@@ -51,6 +54,7 @@ function addToUser(i, appointment) {
   }
 }
 
+// TO DO: make this functions support one-to-many
 function removeFromUser(i, appointment) {
   if(i<appointment.users.length) {
     User.findById(appointment.users[i]).exec(function(err,user){
@@ -66,7 +70,7 @@ function removeFromUser(i, appointment) {
 }
 
 
-//Create
+//Create Appointment
 exports.create = function (req, res) {
   var appointment = new Appointment(req.body);
 
@@ -77,10 +81,11 @@ exports.create = function (req, res) {
       });
     }
     else {
+	  // TO DO: make one-to-many
       //addToExperiment(0, appointment);
       //addToUser(0, appointment);
-      console.log(appointment);
-      console.log(appointment.experiment);
+
+      // Add appointment to respective experiment
       Experiment.findById(appointment.experiment).exec(function(err,experiment){
         console.log(err);
         console.log(experiment);
@@ -89,7 +94,8 @@ exports.create = function (req, res) {
           experiment.save();
         }	  
       });
-      console.log(appointment.participant);
+
+      // Add appointment to respective participant
       Participant.findById(appointment.participant).exec(function(err,participant){
         console.log(err);
         console.log(participant);
@@ -115,6 +121,7 @@ exports.update = function (req, res) {
   appointment.participant = req.body.participant;
   appointment.experiments = req.body.experiments;
   appointment.time = req.body.time;
+  appointment.duration= req.body.duration;
   appointment.tags = req.body.tags;
   appointment.comments = req.body.comments;
   appointment.users = req.body.users;
@@ -126,22 +133,31 @@ exports.update = function (req, res) {
       });
     }
     else {
-      removeFromExperiment(0, req.appointment);
-      addToExperiment(0, appointment);
+	  // ON SUCESS, update respective references
+
+      // THESE COMMENTED OUT FUNCTIONS MAY BE USED LATER
+      // FOR ONE TO MANY RELATIONSHIPS
+      //removeFromExperiment(0, req.appointment);
+      //addToExperiment(0, appointment);
       //removeFromUser(0, req.appointment);
       //addToUser(0, appointment);
-      Participant.findById(req.appointment.participant).exec(function(err,participant){
-        if(participant.appointments.indexOf(req.appointment._id) !== -1){//If a participant on the Database does contain this appointment remove this appointment his/her from its appointment list.
-          participant.appointments.splice(participant.appointments.indexOf(req.appointment._id), 1);
-          participant.save();
+
+      // Remove appointment from previous experiment
+      Experiment.findById(req.appointment.experiment).exec(function(err,experiment){
+        if(experiment.appointments.indexOf(req.appointment._id) !== -1){//If an experiment on the Database does contain this appointment remove this appointment his/her from its appointment list.
+          experiment.appointments.splice(experiment.appointments.indexOf(req.appointment._id), 1);
+          experiment.save();
         }	  
       });
-      Participant.findById(appointment.participant).exec(function(err,participant){
-        if(participant.appointments.indexOf(appointment._id) === -1){//If a participant on the Database doesn't contain this appointment add this appointment his/her to its appointment list.
-          participant.appointments.push(appointment._id);
-          participant.save();
+
+      // Add appointment to new experiment
+      Experiment.findById(appointment.experiment).exec(function(err,experiment){
+        if(experiment.appointments.indexOf(appointment._id) === -1){//If an experiment on the Database doesn't contain this appointment add this appointment his/her to its appointment list.
+          experiment.appointments.push(appointment._id);
+          experiment.save();
         }	  
       });
+
       res.json(appointment);
     }
   });
@@ -158,12 +174,16 @@ exports.delete = function (req, res) {
     else {
       //removeFromExperiment(0, appointment);
       //removeFromUser(0, appointment);
+
+      // Remove appointment from respective experiment
       Experiment.findById(appointment.experiment).exec(function(err,experiment){
         if(experiment.appointments.indexOf(appointment._id) !== -1){//If a participant on the Database does contain this appointment remove this appointment his/her from its appointment list.
           experiment.appointments.splice(experiment.appointments.indexOf(appointment._id), 1);
           experiment.save();
         }	  
       });
+
+      // Remove appointment from respective participant
       Participant.findById(appointment.participant).exec(function(err,participant){
         if(participant.appointments.indexOf(appointment._id) !== -1){//If a participant on the Database does contain this appointment remove this appointment his/her from its appointment list.
           participant.appointments.splice(participant.appointments.indexOf(appointment._id), 1);
@@ -189,6 +209,7 @@ exports.list = function (req, res) {
 
 //Middleware
 exports.appointmentByID = function (req, res, next, id) {
+  // Populate the schema, closest thing to an SQL join
   Appointment.findById(id).populate('participant').populate('experiment').exec(function (err, appointment) {
     if (err) {
       res.status(400).send(err);
