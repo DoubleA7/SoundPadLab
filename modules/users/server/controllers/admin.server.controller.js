@@ -11,6 +11,7 @@ var path = require('path'),
   Participant = mongoose.model('Participant'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+// Add user to experiment
 function addToExperiment(i, user) {
   if(i<user.experiments.length) {
     Experiment.findById(user.experiments[i]).exec(function(err,experiment){
@@ -25,6 +26,7 @@ function addToExperiment(i, user) {
   }
 }
 
+// Remove user from experiment
 function removeFromExperiment(i, user) {
   if(i<user.experiments.length) {
     Experiment.findById(user.experiments[i]).exec(function(err,experiment){
@@ -38,7 +40,8 @@ function removeFromExperiment(i, user) {
     return;
   }
 }  
-  
+
+// Add user to appointment  
 function addToAppointment(i, user) {
   if(i<user.appointments.length) {
     Appointment.findById(user.appointments[i]).exec(function(err,appointment){
@@ -53,6 +56,7 @@ function addToAppointment(i, user) {
   }
 }
 
+// Remove user from appointment
 function removeFromAppointment(i, user) {
   if(i <user.appointments.length) {
     Appointment.findById(user.appointments[i]).exec(function(err,appointment){
@@ -145,18 +149,6 @@ exports.listMembers = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     }
-
-    /*var displayNames = [];
-
-    for (var i = 0; i < users.length; i++) {
-      displayNames.push(users[i].displayName);
-    }
-
-    var profileImgs = [];
-
-    for (var j = 0; j < users.length; j++) {
-      profileImgs.push(users[j].profileImageURL);
-    }*/
 
     var members = [];
 
