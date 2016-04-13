@@ -4,12 +4,12 @@ var should = require('should'),
   request = require('supertest'),
   path = require('path'),
   mongoose = require('mongoose'),
-  Publication = require('../models/publications.server.model.js'),
+  //Publication = require('../models/publications.server.model.js'),
   //User = mongoose.model('User'),
   express = require(path.resolve('./config/lib/express'));
 
-mongoose.model('User', new mongoose.Schema());
-
+//mongoose.model('User', new mongoose.Schema());
+var Publication = mongoose.model('Publication');
 var User = mongoose.model('User');
 /**
  * Globals
@@ -104,7 +104,7 @@ describe('Publication CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an publication if not logged in', function (done) {
+  it('should not be able to save a publication if not logged in', function (done) {
     agent.post('/api/publications')
       .send(publication)
       .expect(403)
@@ -114,7 +114,7 @@ describe('Publication CRUD tests', function () {
       });
   });
 
-  it('should not be able to save an publication if no title is provided', function (done) {
+  it('should not be able to save a publication if no title is provided', function (done) {
     // Invalidate title field
     publication.title = '';
 
@@ -144,7 +144,7 @@ describe('Publication CRUD tests', function () {
       });
   });
 
-  it('should be able to update an publication if signed in', function (done) {
+  it('should be able to update a publication if signed in', function (done) {
     agent.post('/api/auth/signin')
       .send(credentials)
       .expect(200)

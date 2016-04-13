@@ -4,13 +4,13 @@
  * Module dependencies.
  */
 var should = require('should'),
-  mongoose = require('mongoose'),
+  mongoose = require('mongoose');
   //User = require('/modules/users/server/models/user.server.model.js'),
-  Publication = require('../server/models/publications.server.model.js');
+  //Publication = require('../server/models/publications.server.model.js');
   //config = require('../config/publication.server.config');
 
-mongoose.model('User', new mongoose.Schema());
-
+//mongoose.model('User', new mongoose.Schema());
+var Publication = mongoose.model('Publication');
 var User = mongoose.model('User');
 
 /**
