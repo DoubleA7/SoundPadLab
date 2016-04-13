@@ -20,7 +20,7 @@ angular.module('audioFiles.admin.routes').config(['$httpProvider',
                 // Add unauthorized behaviour
                 break;
             }
-
+            //return the reject object
             return $q.reject(rejection);
           }
         };

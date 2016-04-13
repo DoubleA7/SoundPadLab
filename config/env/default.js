@@ -37,11 +37,8 @@ module.exports = {
       }
     },
     mp3Upload: {
-      dest: './modules/audioFiles/mp3Uploads/'/*,
-      limits:{
-        fileSize: 5*1024*1024
-      }*/
-	},
+      dest: './modules/audioFiles/mp3Uploads/' //mp3 upload destination
+  	},
     eventUpload: {
       dest: './modules/events/client/img/', // Profile upload destination path
       limits: {
