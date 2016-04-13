@@ -17,8 +17,9 @@ module.exports = function (app) {
         .get(audioFiles.read)
         .put(adminPolicy.isAllowed,audioFiles.update)
         .delete(adminPolicy.isAllowed,audioFiles.delete);
-
+  //route for uploading audio to server
   app.route('/api/audioFiles/upload').post(adminPolicy.isAllowed,audioFiles.uploadMp3File);
+  //route to retrieve audio from server
   app.route('/api/audioFiles/mp3').post(adminPolicy.isAllowed,audioFiles.getMp3);
     // Finish by binding the participant middleware
   app.param('audioFileId', audioFiles.audioFileByID);

@@ -7,7 +7,7 @@ angular.module('audioFiles').controller('AudioFileListPublicController', ['$scop
       $scope.audioFiles = data;
       $scope.buildPager();
     });
-
+    //build the pager
     console.log($scope.audioFiles);
     $scope.buildPager = function () {
       $scope.pagedItems = [];
@@ -15,7 +15,7 @@ angular.module('audioFiles').controller('AudioFileListPublicController', ['$scop
       $scope.currentPage = 1;
       $scope.figureOutItemsToDisplay();
     };
-
+    //figure out items to display based on search filter
     $scope.figureOutItemsToDisplay = function () {
       $scope.filteredItems = $filter('filter')($scope.audioFiles, {
         $: $scope.search
@@ -25,11 +25,9 @@ angular.module('audioFiles').controller('AudioFileListPublicController', ['$scop
       var end = begin + $scope.itemsPerPage;
       $scope.pagedItems = $scope.filteredItems.slice(begin, end);
     };
-
+    //readjust page when page is changed
     $scope.pageChanged = function () {
       $scope.figureOutItemsToDisplay();
     };
-  }
-  
-  
+  }  
 ]);

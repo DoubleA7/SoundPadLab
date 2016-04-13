@@ -1,5 +1,5 @@
 'use strict';
-
+//Controller to add audio File to database and server
 angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope', '$timeout', '$state', '$http', '$location', '$window', 'Authentication', 'PasswordValidator', 'FileUploader',
   function ($scope, $timeout, $state, $http, $location, $window, Authentication, PasswordValidator, FileUploader) {
     $scope.authentication = Authentication;
@@ -10,11 +10,11 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
 
     // Create audio uploader instance
     $scope.uploader = new FileUploader({
-      url: 'api/audioFiles/upload',
+      url: 'api/audioFiles/upload', //where to upload the audio (location)
       alias: 'mp3File'
     });
 
-    // Set audio filter for uploader
+    // Set audio filter for uploader currently supporting .mp3 and .wav
     $scope.uploader.filters.push({
       name: 'mp3Filter',
       fn: function (item, options) {
@@ -22,7 +22,6 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
         return '|mp3|wav|'.indexOf(type) !== -1;
       }
     });
-
 
      // Called after the user has successfully uploaded audio
     $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
@@ -42,7 +41,6 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
       $scope.error = response.message;
     };
 
-
     // upload audio file to server
     $scope.uploadMp3File = function () {
       // Clear messages
@@ -51,13 +49,14 @@ angular.module('audioFiles.admin').controller('addAudioFileController', ['$scope
       $scope.uploader.uploadAll();
     };
 
-    // Cancel the upload process
+    // Cancel the upload process and clear the queue
     $scope.cancelUpload = function () {
       $scope.uploader.clearQueue();
     };
 	  //add the audio file to the database
     $scope.addAudioFile = function (isValid) {
       $scope.error = null;
+      //if error return false and don't add audioFile to database
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'audioForm');
         return false;

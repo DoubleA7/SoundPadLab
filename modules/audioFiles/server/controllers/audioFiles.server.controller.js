@@ -24,7 +24,7 @@ var deleteMp3 = function(audiofile){
  */
 exports.create = function (req, res) {
   var audiofile = new AudioFile(req.body);
-  console.log('Gname :' +gName);
+  //set file path to previously uploaded file
   if(gName !== null){
     audiofile.filePath = gName;
   }
@@ -35,6 +35,7 @@ exports.create = function (req, res) {
       });
     } 
     else {
+      //reset file name
       gName = null;
       res.json(audiofile);
     }
@@ -81,6 +82,7 @@ exports.delete = function (req, res) {
         message: errorHandler.getErrorMessage(err)
       });
     } else {
+      //call delteMp3 to delete associated file from the server
       deleteMp3(audiofile);
       res.json(audiofile);
     }
@@ -127,7 +129,9 @@ exports.audioFileByID = function (req, res, next, id) {
     next();
   });
 };
-
+/**
+ * Upload mp3 file to server
+ */
 exports.uploadMp3File = function (req, res) {
   var upload = multer(config.uploads.mp3Upload).single('mp3File');
   var mp3UploadFilter = require(path.resolve('./config/lib/multer')).mp3UploadFilter;
@@ -138,25 +142,29 @@ exports.uploadMp3File = function (req, res) {
       });
     } 
     else {
+      //save file path in a variable
       gName = config.uploads.mp3Upload.dest + req.file.filename;
       res.send(gName);
     }
   });
 };
-
+/**
+ * Get mp3 file from server
+ */
 exports.getMp3 = function (req,res){
   var filePath;
   if(req === null)
     res.send('null request');
   else{
     filePath = req.body.filePath;
-    console.log(filePath);
   }
+  //read file from file path on server
   fs.readFile(filePath,'base64', function (err, data) {
     if (err) {
       res.send('error while reading');
       console.error(err);
     }
+    //data pre populated with right encoding
     var d = "data:audio/mp3;base64," + data;
     res.send(d);
   });
