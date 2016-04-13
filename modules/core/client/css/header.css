@@ -10,7 +10,7 @@
     padding: 20px 0; }
 
 .navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .open > a:hover, .navbar-inverse .navbar-nav > .open > a:focus {
-  background-color: #323232;
+  background-color: #c8c8c8;
   background-image: none; }
 
 .nav > li > a.dropdown-toggle {
@@ -29,5 +29,8 @@
 
 .nav > li > a:hover {
   background-color: rgba(255, 255, 255, 0.4); }
+
+.navbar-inverse .navbar-nav > .open > a, .navbar-inverse .navbar-nav > .active > a {
+  background-image: none; }
 
 /*# sourceMappingURL=header.css.map */
