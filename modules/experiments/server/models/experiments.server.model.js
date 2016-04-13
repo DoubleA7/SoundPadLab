@@ -13,11 +13,9 @@ var mongoose = require('mongoose'),
 var experimentSchema = new Schema({
   created_at: Date,
   updated_at: Date,
-  participants: [ { type: Schema.Types.ObjectId, ref: 'Participant' } ],
-  //users: [{type: Schema.Types.ObjectId, ref: 'User'}],
+  participants: [ { type: Schema.Types.ObjectId, ref: 'Participant' } ], //Allows you to save references
+  users: [{ type: Schema.Types.ObjectId, ref: 'User' }],
   appointments: [ { type: Schema.Types.ObjectId, ref: 'Appointment' } ],
-  tags: [String],
-  requirements: [String],
   display_name : String,
   completed: {
     type: Boolean,
@@ -48,6 +46,7 @@ experimentSchema.pre('save', function(next) {
   }
   if(!this.users){
     this.users = [];
+    console.log('users empty');
   }
   if(!this.participants){
     this.participants = [];

@@ -1,6 +1,6 @@
 'use strict';
 
-// Setting up route
+// Setting up routes for audioFiles
 angular.module('audioFiles.admin.routes').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
