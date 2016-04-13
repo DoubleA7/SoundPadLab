@@ -8,6 +8,7 @@ var mongoose = require('mongoose'),
 var researchSchema = new Schema({
   image: {
     type: String,
+    required: true
   },
   title: {
     type: String,

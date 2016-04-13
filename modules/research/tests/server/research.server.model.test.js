@@ -2,8 +2,7 @@
 
 var should = require('should'), 
     mongoose = require('mongoose'), 
-    Research = require('../models/research.server.model'), 
-    config = require('../config/config');
+    Research = mongoose.model('Research');
 
 var research, id;
 
@@ -15,10 +14,10 @@ research =  {
 
 describe('Research Schema Unit Tests', function() {
 
-  before(function(done) {
-    mongoose.connect(config.db.uri);
-    done();
-  });
+  // before(function(done) {
+    // mongoose.connect(config.db.uri);
+    // done();
+  // });
 
   describe('Saving to database', function() {
     /*
@@ -27,10 +26,9 @@ describe('Research Schema Unit Tests', function() {
      */
     this.timeout(10000);
 
-    it('throws an error when title and image provided', function(done){
+    it('throws an error when image not provided', function(done){
       new Research({
-        title: research.title, 
-        image: research.image,
+        title: research.title,
         content: research.content
       }).save(function(err){
         should.exist(err);        
