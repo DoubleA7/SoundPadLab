@@ -1,40 +1,57 @@
-<section>
-  <div class="page-header">
-    <h1>Appointment<span ng-bind="user.username"></span></h1>
-  </div>
-  <div class="col-md-12">
-    <form name="userForm" ng-submit="update(userForm.$valid)" novalidate>
+<div>
+	<h3 class="col-md-12 text-center">Edit {{appointment.participant.name}}'s Appointment</h3>
+  <div class="appointmentSection col-xs-offset-2 col-xs-8 col-md-offset-4 col-md-4">
+    <form name="appointmentForm" ng-submit="update(appointmentForm.$valid)" class="signin" novalidate autocomplete="off">
       <fieldset>
+		<div class="form-group">
+			<div class='input-group date' id='datetimepicker11'>
+				<input type='text' class="form-control" ng-model="appointment.time"/>
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar">
+					</span>
+				</span>
+			</div>
+			<p><strong>Previous Time: </strong>{{appointment.prettyDate}}</p>
+		</div>
+		<div class="form-group" show_errors>
+			<label for="duration">Duration:</label>
+			<select name="duration" ng-model="appointment.duration" required>
+				<option ng-value=15>15 minutes</option>
+				<option ng-value=30>30 minutes</option>
+				<option ng-value=45>45 minutes</option>
+				<option ng-value=60>60 minutes</option>
+				<option ng-value=75>75 minutes</option>
+				<option ng-value=90>90 minutes</option>
+				<option ng-value=105>105 minutes</option>
+				<option ng-value=120>120 minutes</option>
+			</select>
+		</div>
         <div class="form-group" show-errors>
-          <label for="firstName">First Name</label>
-          <input type="text" id="firstName" name="firstName" class="form-control" ng-model="user.firstName" placeholder="First Name" required />
-          <div ng-messages="userForm.firstName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">First name is required.</p>
+          <label for="participant">Participant</label>
+		  <select name="participant" ng-model="appointment.participant" required>
+		    <option ng-repeat="participant in participants" value="{{participant._id}}">{{participant.name}}</option>
+		  </select>
+          <div ng-messages="appointmentForm.participant.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Participant is required.</p>
           </div>
         </div>
         <div class="form-group" show-errors>
-          <label for="lastName">Last Name</label>
-          <input type="text" id="lastName" name="lastName" class="form-control" ng-model="user.lastName" placeholder="Last Name" required />
-          <div ng-messages="userForm.lastName.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Last name is required.</p>
-          </div>
+          <label for="experiment">Experiment</label>
+		  <select name="experiment" ng-model="appointment.experiment" <!--required-->>
+		    <option ng-repeat="experiment in experiments" value="{{experiment._id}}">{{experiment.experiment_name}}</option>
+		  </select>
+          <!--<div ng-messages="appointmentForm.experiment.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Experiment is required.</p
+          </div>-->
         </div>
-        <div class="form-group" show-errors>
-          <label class="control-label" for="roles">Roles</label>
-          <div class="controls">
-            <input class="form-control" type="text" name="roles" ng-model="user.roles" id="roles" ng-list required />
-            <div ng-messages="userForm.roles.$error" role="alert">
-              <p class="help-block error-text" ng-message="required">At least one role is required.</p>
-            </div>
-          </div>
+		
+        <div class="text-center form-group">
+          <button type="submit" class="btn btn-primary">Update Appointment</button>
         </div>
-        <div class="form-group">
-          <input type="submit" value="Update" class="btn btn-default">
-        </div>
-        <div ng-show="error" class="text-danger">
+        <div ng-show="error" class="text-center text-danger">
           <strong ng-bind="error"></strong>
         </div>
       </fieldset>
     </form>
   </div>
-</section>
+</div>

@@ -4,7 +4,7 @@
 angular.module('publications.admin.routes').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
-      .state('admin.publications', {
+/*      .state('admin.publications', {
         url: '/publications',
         templateUrl: 'modules/publications/client/views/admin/list-publications.client.view.html',
         controller: 'PublicationListController'
@@ -20,19 +20,7 @@ angular.module('publications.admin.routes').config(['$stateProvider',
             });
           }]
         }
-      })
-      .state('admin.publication-edit', {
-        url: '/publications/:publicationId/edit',
-        templateUrl: 'modules/publications/client/views/admin/edit-publication.client.view.html',
-        controller: 'PublicationController',
-        resolve: {
-          publicationResolve: ['$stateParams', 'publicationsAdmin', function ($stateParams, publicationsAdmin) {
-            return publicationsAdmin.get({
-              publicationId: $stateParams.publicationId
-            });
-          }]
-        }
-      })
+      })*/
       .state('authentication.addPublication', {
         url: '/addPublication',
         controller: 'addPublicationController',

@@ -3,7 +3,7 @@
 // Setting up route
 angular.module('appointments.admin.routes').config(['$stateProvider',
   function ($stateProvider) {
-/*    $stateProvider
+    /*$stateProvider
       .state('admin.appointments', {
         url: '/appointments',
         templateUrl: 'modules/appointments/client/views/admin/list-appointments.client.view.html',
@@ -40,7 +40,7 @@ angular.module('appointments.admin.routes').config(['$stateProvider',
         data: {
           roles: ['admin']
         }
-      });
-*/  }
+      });*/
+  }
 ]);
 

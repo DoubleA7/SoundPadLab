@@ -7,12 +7,25 @@ var mongoose = require('mongoose'),
 //Schema
 var appointmentSchema = new Schema({
   participant: { type: Schema.Types.ObjectId, ref: 'Participant' },
-  experiments: [ { type: Schema.Types.ObjectId, ref: 'Experiment' } ],
+  experiment: { type: Schema.Types.ObjectId, ref: 'Experiment' },
   //users: [ {type: Schema.Types.ObjectId, ref: 'User'} ],
   created_at: Date,
   updated_at: Date,
-  time: Date,
+  duration: {
+    type: Number,
+    required: true
+  },
+  time: {
+    type: Date,
+    required: true
+  },
+  location: String,
+  email_sent: {
+    type: Boolean,
+    default: false
+  },
   tags: [String],
+  prettyDate: String,
   comments: String
 });
 
@@ -23,6 +36,7 @@ appointmentSchema.pre('save', function (next) {
   if (!this.created_at) {
     this.created_at = currentTime;
   }
+  this.prettyDate = this.time.toLocaleString();
   next();
 });
 
