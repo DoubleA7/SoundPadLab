@@ -34,7 +34,7 @@ angular.module('events.admin').controller('EventController', ['$scope', '$state'
 
         fileReader.onload = function (fileReaderEvent) {
           $timeout(function () {
-            $scope.imageURL = fileReaderEvent.target.result;
+            $scope.event.image = fileReaderEvent.target.result;
           }, 0);
         };
       }
