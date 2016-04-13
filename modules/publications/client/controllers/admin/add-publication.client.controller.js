@@ -10,7 +10,7 @@ angular.module('publications').controller('addPublicationController', ['$scope',
 
 
     $scope.addPublication = function (isValid) {
-      console.log("ADD publication");
+      console.log('ADD publication');
       $scope.error = null;
 
       if (!isValid) {

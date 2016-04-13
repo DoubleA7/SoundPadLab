@@ -45,6 +45,12 @@ exports.invokeRolesPolicies = function () {
       resources: '/api/audioFiles/:audioFileId',
       permissions: '*'
     }, {
+      resources: '/api/audioFiles/upload',
+      permissions: '*'
+    }, {
+      resources: '/api/audioFiles/mp3',
+      permissions: '*'
+    }, {
       resources: '/api/publications',
       permissions: '*'
     }, {

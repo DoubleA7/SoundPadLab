@@ -4,7 +4,8 @@ angular.module('publications.admin').controller('PublicationController', ['$scop
   function ($scope, $state, Authentication, publicationResolve) {
     $scope.authentication = Authentication;
     $scope.publication = publicationResolve;
-
+    
+    
     $scope.remove = function (publication) {
       if (confirm('Are you sure you want to delete this publication?')) {
         if (publication) {
