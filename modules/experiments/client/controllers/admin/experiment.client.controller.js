@@ -13,7 +13,7 @@ angular.module('experiments.admin').controller('ExperimentController', ['$scope'
       $scope.edit_conditions = true;
       $scope.localConditions = angular.copy($scope.experiment.experiment_conditions);
     };
-    
+    console.log($scope.experiment);
     $scope.addLocalCondition = function() {
       if($scope.new_condition_to_add !== '')
       {
