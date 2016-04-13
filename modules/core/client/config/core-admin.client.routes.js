@@ -85,9 +85,6 @@ angular.module('core.admin.routes').config(['$stateProvider',
         url: '/addAppointment',
         controller: 'addAppointmentController',
         templateUrl: 'modules/appointments/client/views/admin/add-appointment.html',
-        data: {
-          roles: ['admin']
-        }
       });
   }
 ]);
