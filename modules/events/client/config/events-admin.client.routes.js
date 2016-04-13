@@ -5,12 +5,12 @@ angular.module('events.admin.routes').config(['$stateProvider',
   function ($stateProvider) {
     $stateProvider
       .state('admin.events', {
-        url: '/events',
+        url: '/moments',
         templateUrl: 'modules/events/client/views/admin/list-events.client.view.html',
         controller: 'EventListController'
       })
       .state('admin.event', {
-        url: '/events/:eventId',
+        url: '/moments/:eventId',
         templateUrl: 'modules/events/client/views/admin/view-event.client.view.html',
         controller: 'EventController',
         resolve: {
@@ -22,7 +22,7 @@ angular.module('events.admin.routes').config(['$stateProvider',
         }
       })
       .state('admin.event-edit', {
-        url: '/events/:eventId/edit',
+        url: '/moments/:eventId/edit',
         templateUrl: 'modules/events/client/views/admin/edit-event.client.view.html',
         controller: 'EventController',
         resolve: {
