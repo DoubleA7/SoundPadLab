@@ -16,7 +16,6 @@ exports.create = function (req, res) {
     
   publication.save(function (err) {
     if (err) {
-      //console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -103,7 +102,6 @@ exports.publicationByID = function (req, res, next, id) {
     });
   }
 
-    //publication.findById(id).populate('name', 'displayName').exec(function (err, publication) {
   Publication.findById(id).exec(function (err, publication) {
     if (err) {
       return next(err);

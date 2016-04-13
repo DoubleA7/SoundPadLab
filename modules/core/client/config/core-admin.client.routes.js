@@ -25,12 +25,12 @@ angular.module('core.admin.routes').config(['$stateProvider',
       })
       .state('admin.publications', {
         url: '/publications',
-        templateUrl: 'modules/publications/client/views/list-publications.client.view.html',
+        templateUrl: 'modules/publications/client/views/admin/list-publications.client.view.html',
         controller: 'PublicationListPublicController'
       })
       .state('admin.publication', {
         url: '/publications/:publicationId',
-        templateUrl: 'modules/publications/client/views/view-publication.client.view.html',
+        templateUrl: 'modules/publications/client/views/admin/view-publication.client.view.html',
         controller: 'PublicationPublicController',
         resolve: {
           publicationResolve: ['$stateParams', 'publicationsPublic', function ($stateParams, publicationsPublic) {
