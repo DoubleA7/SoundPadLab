@@ -5,44 +5,39 @@
       <fieldset>
 		<div class="form-group">
 			<div class='input-group date' id='datetimepicker11'>
-				<input type='text' class="form-control" ng-model="appointment.time"/>
+				<input type='text' class="form-control" value="{{appointment.prettyDate}}" ng-model="appointment.time"/>
 				<span class="input-group-addon">
 					<span class="glyphicon glyphicon-calendar">
 					</span>
 				</span>
 			</div>
-			<p><strong>Previous Time: </strong>{{appointment.prettyDate}}</p>
+			<p><i>Previous: </i>{{appointment.prettyDate}}</p>
 		</div>
+
 		<div class="form-group" show_errors>
-			<label for="duration">Duration:</label>
-			<select name="duration" ng-model="appointment.duration" required>
-				<option ng-value=15>15 minutes</option>
-				<option ng-value=30>30 minutes</option>
-				<option ng-value=45>45 minutes</option>
-				<option ng-value=60>60 minutes</option>
-				<option ng-value=75>75 minutes</option>
-				<option ng-value=90>90 minutes</option>
-				<option ng-value=105>105 minutes</option>
-				<option ng-value=120>120 minutes</option>
-			</select>
-		</div>
-        <div class="form-group" show-errors>
-          <label for="participant">Participant</label>
-		  <select name="participant" ng-model="appointment.participant" required>
-		    <option ng-repeat="participant in participants" value="{{participant._id}}">{{participant.name}}</option>
-		  </select>
-          <div ng-messages="appointmentForm.participant.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Participant is required.</p>
+			<label for="duration">Duration (in minutes):</label>
+			<input type='number' name="duration" class="form-control" ng-model="appointment.duration" required/>
+          <div ng-messages="appointmentForm.duration.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Duration is required.
           </div>
-        </div>
+		</div>
+
         <div class="form-group" show-errors>
-          <label for="experiment">Experiment</label>
-		  <select name="experiment" ng-model="appointment.experiment" <!--required-->>
-		    <option ng-repeat="experiment in experiments" value="{{experiment._id}}">{{experiment.experiment_name}}</option>
+          <label for="experiment">Experiment:</label>
+		  <select name="experiment" ng-model="appointment.experiment" required>
+			  <option ng-repeat="experiment in experiments" value="{{experiment._id}}">
+			  {{experiment.experiment_name}}: {{experiment.experiment_conditions}}
+			  </option>
 		  </select>
-          <!--<div ng-messages="appointmentForm.experiment.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Experiment is required.</p
-          </div>-->
+          <div ng-messages="appointmentForm.experiment.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Experiment is required.
+          </div>
+		  <p><i>Previous: </i>{{prevExperimentName}}: {{prevExperimentConditions}}</p>
+        </div>
+
+        <div class="form-group">
+          <label for="comments">Comments:</label>
+			<textarea class="form-control" placeholder="Enter your message here" ng-model="appointment.comments"></textarea>
         </div>
 		
         <div class="text-center form-group">

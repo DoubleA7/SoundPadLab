@@ -2,17 +2,20 @@
 
 angular.module('events').controller('EventListPublicController', ['$scope', '$filter', 'eventsPublic',
   function ($scope, $filter, eventsPublic) {
-    console.log('events list initialized!!');
+
+    //will load all events
     eventsPublic.query(function (data) {
       $scope.events = data;
 
+      //formats date
       for (var i = 0; i < $scope.events.length; i++) {
         $scope.events[i].created_at = $scope.events[i].created_at.slice(0,10);
       }
-
+      //creates pagination of events
       $scope.buildPager();
     });
 
+    //next three functions build pagination
     $scope.buildPager = function () {
       $scope.pagedItems = [];
       $scope.itemsPerPage = 15;

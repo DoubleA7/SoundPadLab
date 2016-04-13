@@ -22,7 +22,7 @@ angular.module('experiments.admin').controller('ExperimentListController', ['$sc
       /* for some reason, the third search parameter was not resetting the list on empty. */
       if($scope.search3 ==='')
         $scope.search3 = undefined;
-      
+      //Filter by both name and coniditions
       $scope.filteredItems = $filter('filter')($scope.experiments, {
         $: $scope.search,
         experiment_conditions: $scope.search3,

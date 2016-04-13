@@ -1,5 +1,6 @@
 'use strict';
 
+// Directive to ensure password meets certain strength requirements
 angular.module('users')
   .directive('passwordValidator', ['PasswordValidator', function(PasswordValidator) {
     return {

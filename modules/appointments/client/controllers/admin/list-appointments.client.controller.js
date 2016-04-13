@@ -3,65 +3,58 @@
 angular.module('appointments.admin').controller('AppointmentListController', ['$scope', '$filter', 'appointmentAdmin', '$compile', '$timeout', 'uiCalendarConfig', '$location',
   function ($scope, $filter, appointmentAdmin, $compile, $timeout, uiCalendarConfig, $location) {
     
+    // Get Today's Info
     var date = new Date();
     var d = date.getDate();
     var m = date.getMonth();
     var y = date.getFullYear();
 
-    $scope.changeTo = 'Hungarian';
-
-
-    /* event source that pulls from google.com*/ 
-    $scope.eventSource = {
-      url: 'http://www.google.com/calendar/feeds/usa__en%40holiday.calendar.google.com/public/basic',
-      className: 'gcal-event',           // an option!
-      currentTimezone: 'America/New_York' // an option!
-    };
-
-
-    /* event source that contains custom events on the scope */
-    $scope.events = [
-      /*{ title: 'All Day Event',start: new Date(y, m, 1) },
-      { title: 'Long Event',start: new Date(y, m, d - 5),end: new Date(y, m, d - 2) },
-      { id: 999,title: 'Repeating Event',start: new Date(y, m, d - 3, 16, 0),allDay: false },
-      { id: 999,title: 'Repeating Event',start: new Date(y, m, d + 4, 16, 0),allDay: false },
-      { title: 'Birthday Party',start: new Date(y, m, d + 1, 19, 0),end: new Date(y, m, d + 1, 22, 30),allDay: false },
-      { title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/' }*/
-    ];
+    // List of events that will maintain appointments for calendar
+    $scope.events = [];
     
-    /* event source that calls a function on every view switch */
+    // Query appointments from DB and assign them to scope
+    appointmentAdmin.query(function (data) {
+      $scope.appointments = data;
+      for(var i = 0; i< $scope.appointments.length; i++){
+
+        // Get start time of i'th appointment
+        var j = new Date();
+        j.setTime(Date.parse($scope.appointments[i].time));
+        $scope.appointments[i].time = j.toLocaleString();
+
+        // Get end time of i'th appointment
+        var d = new Date();
+        d.setTime(Date.parse($scope.appointments[i].time) + ($scope.appointments[i].duration * 60 * 1000));
+
+		// Construct display text for i'th appointment in calendar
+        var appointmentTitle = $scope.appointments[i].participant.name + '\n';
+        appointmentTitle = appointmentTitle.concat($scope.appointments[i].experiment.experiment_name + '\n');
+        appointmentTitle = appointmentTitle.concat($scope.appointments[i].location);
+
+        // Finally add to events
+        $scope.events.push({
+          title: appointmentTitle,
+          start: j,
+          end: d,
+          className: ['openSesame'],
+          url: $location.absUrl() + '/' + $scope.appointments[i]._id,
+          id: $scope.appointments[i]._id
+        });
+      }
+      $scope.buildPager();
+    });
+
+
+    // Event source that calls approprite callback function on view-switches
     $scope.eventsF = function (start, end, timezone, callback) {
-      //var s = new Date(start).getTime() / 1000;
-      //var e = new Date(end).getTime() / 1000;
-      //var m = new Date(start).getMonth();
-      //var events = [{ title: 'Feed Me ' + m,start: s + (50000),end: s + (100000),allDay: false, className: ['customFeed'] }];
+      // Let callback function execute on events
       callback($scope.events);
     };
 
-    /*$scope.calEventsExt = {
-      color: '#f00',
-      textColor: 'yellow',
-      events: [
-        { type:'party',title: 'Lunch',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false },
-        { type:'party',title: 'Lunch 2',start: new Date(y, m, d, 12, 0),end: new Date(y, m, d, 14, 0),allDay: false },
-        { type:'party',title: 'Click for Google',start: new Date(y, m, 28),end: new Date(y, m, 29),url: 'http://google.com/' }
-      ]
-    };*/
-
-
-    /* alert on eventClick */
+    // Alert when clicking on event
     $scope.alertOnEventClick = function(date, jsEvent, view){
-      $scope.alertMessage = (date.title + ' was clicked ');
+      $scope.alertMessage = ('\tLoading...');
     };
-    /* alert on Drop */
-    $scope.alertOnDrop = function(event, delta, revertFunc, jsEvent, ui, view){
-      $scope.alertMessage = ('Event Dropped to make dayDelta ' + delta);
-    };
-    /* alert on Resize */
-    $scope.alertOnResize = function(event, delta, revertFunc, jsEvent, ui, view){
-      $scope.alertMessage = ('Event Resized to make dayDelta ' + delta);
-    };
-
 
     /* add and removes an event source of choice */
     $scope.addRemoveEventSource = function(sources,source) {
@@ -75,17 +68,6 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
       if(canAdd === 0){
         sources.push(source);
       }
-    };
-
-
-    /* add custom event*/
-    $scope.addEvent = function() {
-      $scope.events.push({
-        title: 'Open Sesame',
-        start: new Date(y, m, 28),
-        end: new Date(y, m, 29),
-        className: ['openSesame']
-      });
     };
 
 
@@ -117,7 +99,9 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
       $compile(element)($scope);
     };
 
-    /* config object */
+
+
+    // CALENDAR CONFIGURATIONS
     $scope.uiConfig = {
       calendar:{
         height: 'auto',
@@ -163,65 +147,19 @@ angular.module('appointments.admin').controller('AppointmentListController', ['$
       }
     };
 
-    /*$scope.changeLang = function() {
-      if($scope.changeTo === 'Hungarian'){
-        $scope.uiConfig.calendar.dayNames = ['Vasárnap', 'Hétfő', 'Kedd', 'Szerda', 'Csütörtök', 'Péntek', 'Szombat'];
-        $scope.uiConfig.calendar.dayNamesShort = ['Vas', 'Hét', 'Kedd', 'Sze', 'Csüt', 'Pén', 'Szo'];
-        $scope.changeTo= 'English';
-      } else {
-        $scope.uiConfig.calendar.dayNames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-        $scope.uiConfig.calendar.dayNamesShort = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-        $scope.changeTo = 'Hungarian';
-      }
-    };*/
 
-
-    /* event sources array*/
+    // Put together event construct that calendar needs
     $scope.eventSources = [$scope.events, $scope.eventsF];
-    //$scope.eventSources2 = [$scope.calEventsExt, $scope.eventsF, $scope.events];
 
+
+    // Ensure the calendars are in proper view
     angular.element(document).ready(function () {
       $scope.changeView('agendaWeek','MainCalendar');
       $scope.changeView('agendaDay','DayCalendar');
     });
 
-    // Query appointments from DB
-    appointmentAdmin.query(function (data) {
-      $scope.appointments = data;
-      for(var i = 0; i< $scope.appointments.length; i++){
-        //console.log($scope.appointments[i]);
-        //console.log($scope.appointments[i].time);
 
-        var j = new Date();
-        //console.log(Date.parse($scope.appointments[i].time));
-        //console.log(j);
-        j.setTime(Date.parse($scope.appointments[i].time));
-        //console.log(j);
-        $scope.appointments[i].time = j.toLocaleString();
-
-        var d = new Date();
-        d.setTime(Date.parse($scope.appointments[i].time) + ($scope.appointments[i].duration * 60 * 1000));
-        //console.log($scope.appointments[i].duration);
-        //console.log(d);
-
-        var appointmentTitle = $scope.appointments[i].participant.name + '\n';
-        console.log($scope.appointments[i]);
-        appointmentTitle = appointmentTitle.concat($scope.appointments[i].experiment.experiment_name + '\n');
-        appointmentTitle = appointmentTitle.concat($scope.appointments[i].location);
-        console.log($scope.appointments[i].experiments);
-
-        $scope.events.push({
-          title: appointmentTitle,
-          start: j,
-          end: d,
-          className: ['openSesame'],
-          url: $location.absUrl() + '/' + $scope.appointments[i]._id,
-          id: $scope.appointments[i]._id
-        });
-      }
-      $scope.buildPager();
-    });
-
+    // Pager setup functions to show all appointments in list view
     $scope.buildPager = function () {
       $scope.pagedItems = [];
       $scope.itemsPerPage = 15;

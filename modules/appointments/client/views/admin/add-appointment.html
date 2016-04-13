@@ -20,17 +20,11 @@
           </div>
         </div>
 		<div class="form-group" show_errors>
-			<label for="duration">Duration:</label>
-			<select name="duration" ng-model="credentials.duration" required>
-				<option value=15>15 minutes</option>
-				<option value=30>30 minutes</option>
-				<option value=45>45 minutes</option>
-				<option value=60>60 minutes</option>
-				<option value=75>75 minutes</option>
-				<option value=90>90 minutes</option>
-				<option value=105>105 minutes</option>
-				<option value=120>120 minutes</option>
-			</select>
+			<label for="duration">Duration (in minutes):</label>
+			<input type='number' name="duration"  class="form-control" ng-model="credentials.duration" required/>
+          <div ng-messages="appointmentForm.duration.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Duration is required.
+          </div>
 		</div>
         <div class="form-group" show-errors>
           <label for="participant">Participant</label>
@@ -48,9 +42,9 @@
 			{{experiment.experiment_name}}: {{experiment.experiment_conditions}}
 			</option>
 		  </select>
-          <!--<div ng-messages="appointmentForm.experiment.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Experiment is required.</p
-          </div>-->
+          <div ng-messages="appointmentForm.experiment.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Experiment is required.
+		  </div>
         </div>
 		
         <div class="text-center form-group">
