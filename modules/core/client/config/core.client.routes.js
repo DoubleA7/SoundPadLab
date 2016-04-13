@@ -29,8 +29,7 @@ angular.module('core').config(['$stateProvider', '$urlRouterProvider',
     })
     .state('core.about', { // About page
       url: '/about',
-      templateUrl: 'modules/core/client/views/about.client.view.html',
-      controller: 'AboutController'
+      templateUrl: 'modules/core/client/views/about.client.view.html'
     })
     .state('core.contact', { // Contact page with map and e-mail interface
       url: '/contact',
