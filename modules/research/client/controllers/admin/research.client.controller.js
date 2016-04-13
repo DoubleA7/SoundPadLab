@@ -101,7 +101,7 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
     $scope.update = function (isValid) {
       
       //check form here:
-      /* Check elsewhere for form validity. 
+      /* Check elsewhere for form validity!
       NOTE: (did not work in uploadProfilePicture)
       */
       /*
