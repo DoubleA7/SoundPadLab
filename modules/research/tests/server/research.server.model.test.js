@@ -51,7 +51,7 @@ describe('Research Schema Unit Tests', function() {
       }).save(function(err){
         should.exist(err);
         done();
-      })
+      });
     });
 
     it('throws an error when content not provided', function(done){
