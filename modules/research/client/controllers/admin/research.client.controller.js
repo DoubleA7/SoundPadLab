@@ -43,7 +43,7 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
     // Called after the user has successfully uploaded a new picture
     $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
       // Show success message
-      console.log("SUCCESS UPLOAD", response);
+      
       $scope.success = true;
       
       $scope.research.image = response;
@@ -72,7 +72,7 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
       $scope.success = $scope.error = null;
 
       // Start upload
-      console.log("STARTING UPLOAD?0");
+      
       $scope.uploader.uploadAll();
       
     };
@@ -100,16 +100,6 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
 
     $scope.update = function (isValid) {
       
-      //check form here:
-      /* Check elsewhere for form validity!
-      NOTE: (did not work in uploadProfilePicture)
-      */
-      /*
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'researchForm');
-        return;
-      }
-      */
       var research = $scope.research;
       research.$update(function () {
         $state.go('admin.research', {
