@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer'); // Package to send emails easily
 var transporter = nodemailer.createTransport({ // Create transport object using SMTP transport
   service: 'Gmail',
   auth: {
-    user: 'settlejonathen@gmail.com',
+    user: process.env.emailAddress,
     pass: process.env.PASSWORD
   }
 });
@@ -14,6 +14,7 @@ var transporter = nodemailer.createTransport({ // Create transport object using 
 //Keys for captcha. Private key should be set in environment
 var PUBLIC_KEY = '6LdW_hwTAAAAAN1J8l7A3gniCRA930e0OtvIf7j8';
 var PRIVATE_KEY = process.env.PRIVATE_KEY;
+
 
 /**
  * Render the main application page
@@ -72,7 +73,11 @@ exports.sendMail = function (req, res) {
     }
   },function (err, response, body) {
 
+    console.log(process.env.PRIVATE_KEY);
+    console.log(PRIVATE_KEY);
+
     var parsedBody = JSON.parse(body); // Obtain response from google
+    console.log(parsedBody);
 
     if(err){
       console.log('ERROR:\n',err);
