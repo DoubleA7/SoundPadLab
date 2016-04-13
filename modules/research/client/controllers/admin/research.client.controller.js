@@ -57,6 +57,7 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
     $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
       console.log(response);
       console.log(status);
+      alert(response.message);
       // Clear upload buttons
       $scope.cancelUpload();
 
