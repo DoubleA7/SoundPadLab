@@ -47,6 +47,12 @@ module.exports = {
       limits: {
         fileSize: 1*1024*1024 // Max file size in bytes (1 MB)
       }
+    },
+    researchUpload: {
+      dest: './modules/research/client/img/', // research tile image upload destination path
+      limits: {
+        fileSize: 1*1024*1024 // Max file size in bytes (1 MB)
+      }
     }
   }
 };

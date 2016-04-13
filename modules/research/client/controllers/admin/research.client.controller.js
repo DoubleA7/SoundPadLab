@@ -5,6 +5,9 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
     $scope.authentication = Authentication;
     $scope.research = researchResolve;
     
+    
+    
+    
     $scope.user = Authentication.user; //dont need this?
     $scope.imageURL = $scope.research.image;
 
@@ -40,9 +43,10 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
     // Called after the user has successfully uploaded a new picture
     $scope.uploader.onSuccessItem = function (fileItem, response, status, headers) {
       // Show success message
+      console.log("SUCCESS UPLOAD", response);
       $scope.success = true;
+      
       $scope.research.image = response;
-
       // Clear upload buttons
       $scope.cancelUpload();
 
@@ -62,11 +66,14 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
 
     // Change user profile picture
     $scope.uploadProfilePicture = function () {
+
       // Clear messages
       $scope.success = $scope.error = null;
 
       // Start upload
+      console.log("STARTING UPLOAD?0");
       $scope.uploader.uploadAll();
+      
     };
 
     // Cancel the upload process
@@ -91,14 +98,18 @@ angular.module('research.admin').controller('ResearchController', ['$scope', '$s
     };
 
     $scope.update = function (isValid) {
+      
+      //check form here:
+      /* Check elsewhere for form validity. 
+      NOTE: (did not work in uploadProfilePicture)
+      */
+      /*
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'researchForm');
-
-        return false;
+        return;
       }
-
+      */
       var research = $scope.research;
-
       research.$update(function () {
         $state.go('admin.research', {
           researchId: research._id

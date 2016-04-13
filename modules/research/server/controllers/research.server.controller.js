@@ -28,11 +28,9 @@ exports.create = function (req, res) {
  * Update profile picture
  */
 exports.changePicture = function (req, res) {
-  console.log("hiya");
-  console.log(req.user);
   var user = req.user;
   var message = null;
-  var upload = multer(config.uploads.eventUpload).single('newResearchPicture');
+  var upload = multer(config.uploads.researchUpload).single('newResearchPicture');
   var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
   
   // Filtering to upload only images
@@ -45,7 +43,7 @@ exports.changePicture = function (req, res) {
         message: 'Error occurred while uploading profile picture'
       });
     } else {
-      res.json(config.uploads.eventUpload.dest + req.file.filename);
+      res.json(config.uploads.researchUpload.dest + req.file.filename);
     }
   });
 };
@@ -59,7 +57,7 @@ exports.read = function (req, res) {
 //Update
 exports.update = function (req, res) {
   var research = req.research;
-
+  console.log(req.body);
   research.title = req.body.title;
   research.image = req.body.image;
   research.content = req.body.content;
