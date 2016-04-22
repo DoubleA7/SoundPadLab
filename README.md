@@ -151,3 +151,13 @@ git checkout -b branchName origin/branchName
 * work on your feature branch only until it is ready to be integrated into the main project
 * once it is ready, go on GitHub and send a Pull Request for this branch to be merged into dev branch
 
+### Libraries used
+* angular-file-upload 1.1.5,
+* ngmap
+* jquery
+* angular-ui-calendar
+* fullcalendar
+* moment
+* eonasdan-bootstrap-datetimepicker
+* angular-recaptcha
+* nya-bootstrap-select
