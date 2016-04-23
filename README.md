@@ -10,14 +10,43 @@ Our research interests include Human Computer Interaction in the contexts of 3D 
 To run site:
 * Download Repository from Github
 * Navigate to project folder
-* Run NPM install 
+* Run NPM install
 * Run Bower install
 * set environment variables:
 * export MONGOLAB_URI='XXXXXX'; (this is to set mongo database url)
 * export emailAddress='XXXX'(this is email to send notifications too)
 * export PASSWORD='XXXX'(put your email password)
 * export PRIVATE_KEY='XXX'(use private api key from google reCAPTCHA)
-* run grunt
+* run grunt (if this fails initially, you may need to use grunt -f)
+
+Site is organized into modules for each major section on the site. Each module folder will have a client and server side folder, each with sections specific to that modules code. The client side will have the views and html files here, and the server side will have the database data models. 
+
+### Git Workflow
+* NEVER work on master branch.
+* master branch should only be updated when dev branch is merged into it
+* each feature/user story should have its own branch off of dev branch
+* first person creating the feature branch off dev  should push the new branch so others can collaborate
+```bash
+git checkout -b branchName
+git push origin branchName
+```
+* to collaborate, copy in the new feature branch from origin and switch into it:
+```bash
+git checkout -b branchName origin/branchName
+```
+* work on your feature branch only until it is ready to be integrated into the main project
+* once it is ready, go on GitHub and send a Pull Request for this branch to be merged into dev branch
+
+### Libraries used
+* angular-file-upload 1.1.5,
+* ngmap
+* jquery
+* angular-ui-calendar
+* fullcalendar
+* moment
+* eonasdan-bootstrap-datetimepicker
+* angular-recaptcha
+* nya-bootstrap-select
 
 
 
@@ -134,30 +163,3 @@ And to run only the client tests, run the test:client task:
 ```bash
 $ grunt test:client
 ```
-
-### Git Workflow
-* NEVER work on master branch.
-* master branch should only be updated when dev branch is merged into it
-* each feature/user story should have its own branch off of dev branch
-* first person creating the feature branch off dev  should push the new branch so others can collaborate
-```bash
-git checkout -b branchName
-git push origin branchName
-```
-* to collaborate, copy in the new feature branch from origin and switch into it:
-```bash
-git checkout -b branchName origin/branchName
-```
-* work on your feature branch only until it is ready to be integrated into the main project
-* once it is ready, go on GitHub and send a Pull Request for this branch to be merged into dev branch
-
-### Libraries used
-* angular-file-upload 1.1.5,
-* ngmap
-* jquery
-* angular-ui-calendar
-* fullcalendar
-* moment
-* eonasdan-bootstrap-datetimepicker
-* angular-recaptcha
-* nya-bootstrap-select
