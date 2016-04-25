@@ -11,6 +11,7 @@ var path = require('path'),
   Participant = mongoose.model('Participant'),
   errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
 
+// Add user to experiment
 function addToExperiment(i, user) {
   if(i<user.experiments.length) {
     Experiment.findById(user.experiments[i]).exec(function(err,experiment){
@@ -25,6 +26,7 @@ function addToExperiment(i, user) {
   }
 }
 
+// Remove user from experiment
 function removeFromExperiment(i, user) {
   if(i<user.experiments.length) {
     Experiment.findById(user.experiments[i]).exec(function(err,experiment){
@@ -38,7 +40,8 @@ function removeFromExperiment(i, user) {
     return;
   }
 }  
-  
+
+// Add user to appointment  
 function addToAppointment(i, user) {
   if(i<user.appointments.length) {
     Appointment.findById(user.appointments[i]).exec(function(err,appointment){
@@ -53,6 +56,7 @@ function addToAppointment(i, user) {
   }
 }
 
+// Remove user from appointment
 function removeFromAppointment(i, user) {
   if(i <user.appointments.length) {
     Appointment.findById(user.appointments[i]).exec(function(err,appointment){
@@ -123,7 +127,6 @@ exports.delete = function (req, res) {
  * List of Users
  */
 exports.list = function (req, res) {
-  console.log("HERRE AT LIST");
   User.find({}, '-salt -password').sort('-created').populate('user', 'displayName').exec(function (err, users) {
     if (err) {
       return res.status(400).send({
@@ -132,6 +135,31 @@ exports.list = function (req, res) {
     }
 
     res.json(users);
+  });
+};
+
+/**
+ * List of Users
+ */
+exports.listMembers = function (req, res) {
+  console.log('HERRE AT LIST');
+  User.find({}, '-salt -password').sort('-created').populate('user', 'displayName').exec(function (err, users) {
+    if (err) {
+      return res.status(400).send({
+        message: errorHandler.getErrorMessage(err)
+      });
+    }
+
+    var members = [];
+
+    for (var i = 0; i < users.length; i++) {
+      members[i] = {
+        displayName: users[i].displayName,
+        profileImageURL: users[i].profileImageURL
+      };
+    }
+
+    res.json(members);
   });
 };
 

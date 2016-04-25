@@ -1,15 +1,16 @@
 'use strict';
 
-angular.module('audioFiles.admin').controller('AudioFileController', ['$scope', '$state', 'Authentication', 'audioFileResolve',
-  function ($scope, $state, Authentication, audioFileResolve) {
-    $scope.authentication = Authentication;
-    $scope.audioFile = audioFileResolve;
 
+angular.module('audioFiles.admin').controller('AudioFileController', ['$sce', '$http', '$scope', '$state', 'Authentication', 'audioFileResolve',
+  function ($sce, $http, $scope, $state, Authentication, audioFileResolve) {
+    $scope.authentication = Authentication;
+    //get current audioFile using resolve
+    $scope.audioFile = audioFileResolve;
+    //remove the audioFile from the database and the list
     $scope.remove = function (audioFile) {
       if (confirm('Are you sure you want to delete this audioFile?')) {
         if (audioFile) {
           audioFile.$remove();
-
           $scope.audioFiles.splice($scope.audioFiles.indexOf(audioFile), 1);
         } else {
           $scope.audioFile.$remove(function () {
@@ -18,23 +19,23 @@ angular.module('audioFiles.admin').controller('AudioFileController', ['$scope', 
         }
       }
     };
-
-    $scope.update = function (isValid) {
-      if (!isValid) {
-        $scope.$broadcast('show-errors-check-validity', 'audioFileForm');
-
-        return false;
-      }
-
+    //read the audio File fro the server by using the audioFile's path
+    $scope.readFile = function(){
       var audioFile = $scope.audioFile;
-
-      audioFile.$update(function () {
-        $state.go('admin.audioFile', {
-          audioFileId: audioFile._id
+      audioFile.$promise.then(function(response){
+        console.log(response);
+        //request to retreive audio data
+        $http.post('/api/audioFiles/mp3', response).success(function (response) {
+          console.log('SUCCESS mp3 http post');
+          //set audio src
+          $scope.mp3URL = $sce.trustAsResourceUrl(response);
+        }).error(function (response) {
+          console.log('FAILED TO htpp post');
+          $scope.error = response.message;
         });
-      }, function (errorResponse) {
-        $scope.error = errorResponse.data.message;
       });
     };
   }
 ]);
+
+

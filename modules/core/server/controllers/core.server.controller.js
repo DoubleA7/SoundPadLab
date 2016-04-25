@@ -1,14 +1,20 @@
 'use strict';
 
-var nodemailer = require('nodemailer');
-var transporter = nodemailer.createTransport({
+var request = require('request'); // Simplified HTTP request client for Node
+
+var nodemailer = require('nodemailer'); // Package to send emails easily
+var transporter = nodemailer.createTransport({ // Create transport object using SMTP transport
   service: 'Gmail',
   auth: {
-    user: 'settlejonathen@gmail.com',
-    pass: 'Ratandpig13'
-  },
-  debug: true
+    user: process.env.emailAddress,
+    pass: process.env.PASSWORD
+  }
 });
+
+//Keys for captcha. Private key should be set in environment
+var PUBLIC_KEY = '6LdW_hwTAAAAAN1J8l7A3gniCRA930e0OtvIf7j8';
+var PRIVATE_KEY = process.env.PRIVATE_KEY;
+
 
 /**
  * Render the main application page
@@ -56,21 +62,47 @@ exports.renderNotFound = function (req, res) {
  */
 exports.sendMail = function (req, res) {
 
-  var data = req.body;
+  var data = req.body; // Get data passed from form 
 
-  var mailOptions = {
-    from: data.email, // sender address
-    to: 'settlejonathen@gmail.com', // list of receivers
-    subject: 'Message from ' + data.name + ' via SoundPadLab app', // Subject line
-    text: data.email + " sent some template message and " + data.msg, // plaintext body
-  };
-
-  transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-      return console.log(error);
+  
+  request.post({ // Verify captcha with google
+    url: 'https://www.google.com/recaptcha/api/siteverify', 
+    form: { 
+      secret: PRIVATE_KEY, 
+      response: data.captcha
     }
-    console.log('Message sent: ' + info.response);
-  });
+  },function (err, response, body) {
 
-  res.json(data);
+    console.log(process.env.PRIVATE_KEY);
+    console.log(PRIVATE_KEY);
+
+    var parsedBody = JSON.parse(body); // Obtain response from google
+    console.log(parsedBody);
+
+    if(err){
+      console.log('ERROR:\n',err);
+    }
+    //if the request to googles verification service returns a body which has false within it means server failed
+    //validation, if it doesnt verification passed
+    if (parsedBody.success) {
+
+      // Object passed to sendMail function below
+      var mailOptions = {
+        from: data.email, // sender address
+        to: 'settlejonathen@gmail.com', // list of receivers
+        subject: 'Message from ' + data.name + ' via SoundPadLab app', // Subject line
+        text: data.email + ' sent some template message and ' + data.msg, // plaintext body
+      };
+
+      transporter.sendMail(mailOptions, function(error, info){ // Actually send e-mail
+        if(error){
+          return console.log(error);
+        }
+        console.log('Message sent: ' + info.response); // Output info on success
+      });
+      res.send(parsedBody.success); // Send success response
+    } else {
+      console.log('CAPTCHA NOT VALID');
+    }
+  });
 };

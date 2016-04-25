@@ -16,7 +16,6 @@ exports.create = function (req, res) {
     
   publication.save(function (err) {
     if (err) {
-      //console.log(err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -42,6 +41,7 @@ exports.update = function (req, res) {
   var publication = req.publication;
   publication.title = req.body.title;
   publication.information = req.body.information;
+  publication.url = req.body.url;
   
     
     //subject_id not being updated 
@@ -102,7 +102,6 @@ exports.publicationByID = function (req, res, next, id) {
     });
   }
 
-    //publication.findById(id).populate('name', 'displayName').exec(function (err, publication) {
   Publication.findById(id).exec(function (err, publication) {
     if (err) {
       return next(err);

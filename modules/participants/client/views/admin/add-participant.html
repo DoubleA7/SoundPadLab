@@ -19,38 +19,65 @@
         </div>
         <div class="form-group" show-errors>
           <label for="email">Email</label>
-          <input type="email" id="email" name="email" class="form-control" ng-model="credentials.email" placeholder="Email" lowercase required>
+          <input type="email" id="email" name="email" class="form-control" ng-model="credentials.email" placeholder="Email"  required>
           <div ng-messages="participantForm.email.$error" role="alert">
             <p class="help-block error-text" ng-message="required">Email address is required.</p>
             <p class="help-block error-text" ng-message="email">Email address is invalid.</p>
           </div>
         </div>
+		<div id='#datetimepicker12' class="form-group" show errors>
+		  <label for="dob">Date of Birth</label>
+			<div class='input-group date' id='datetimepicker12'>
+				<input type='text' class="form-control" />
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar">
+					</span>
+				</span>
+			</div>
+          <div ng-messages="participantForm.dob.$error" role="alert">
+            <p class="help-block error-text" ng-message="required">Date of Birth is required</p>
+          </div>
+		</div>
+		<div class="form-group" id='#datetimepicker13'>
+		  <label for="paid">Last Paid</label>
+			<div class='input-group date' id='datetimepicker13'>
+				<input type='text' class="form-control" />
+				<span class="input-group-addon">
+					<span class="glyphicon glyphicon-calendar">
+					</span>
+				</span>
+			</div>
+		</div>
         <div class="form-group" show-errors>
-          <label for="dob">Date of birth</label>
-          <input type="Date" id="dob" class="form-control" ng-model="credentials.dob" placeholder="Date of Birth" lowercase >
+          <label for="gender">Gender</label>
+            <input type="text" id="gender" name="gender" class="form-control" ng-model="credentials.gender" placeholder="gender">
+          <div ng-messages="participantForm.gender.$error" role="alert">
+            <p class="help-block error-text" ng-message="gender">Gender is invalid.</p>
+          </div>
         </div>
         <div class="form-group" show-errors>
-          <label for="gender">Gender (M/F)</label>
-            <input type="text" id="username" name="username" class="form-control" ng-model="credentials.gender" placeholder="gender" lowercase >
+          <label for="card_info">Card Info</label>
+          <input type="text" id="card_info" name="card_info" class="form-control" ng-model="credentials.card_info" placeholder="card info">
+          <div ng-messages="participantForm.card_info.$error" role="alert">
+            <p class="help-block error-text" ng-message="card_info">Card Info is invalid.</p>
+          </div>
         </div>
-
         <div class="form-group" show-errors>
-          <label for="username">Card Info</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="credentials.card_info" placeholder="card info" lowercase >
+          <label for="comment">Comment</label>
+          <input type="text" id="comment" name="comment" class="form-control" ng-model="credentials.comment" placeholder="participant comments">
+          <div ng-messages="participantForm.comment.$error" role="alert">
+            <p class="help-block error-text" ng-message="comment">Comment is invalid.</p>
+          </div>
         </div>
-
         <div class="form-group" show-errors>
-          <label for="username">Comment</label>
-          <input type="text" id="username" name="username" class="form-control" ng-model="credentials.comment" placeholder="participant comments" lowercase >
+          <label for="subject_id">Subject Id</label>
+          <input type="number" id="subjectid" name="subid" class="form-control" ng-model="credentials.subject_id" placeholder="Subject Id">
+          <div ng-messages="participantForm.subject_id.$error" role="alert">
+            <p class="help-block error-text" ng-message="subject_id">Subject ID is invalid.</p>
+          </div>
         </div>
-
         <div class="form-group" show-errors>
-          <label for="subject">Subject Id</label>
-          <input type="number" id="subjectid" name="subid" class="form-control" ng-model="credentials.subject_id" placeholder="Subject Id" lowercase >
-        </div>
-
-        <div class="form-group" show-errors>
-          <label for="firstName">Contact Lenses?</label>
+          <label for="contact_lenses">Contact Lenses?</label>
           <div class="radio">
             <label><input type="radio" name="optradio" ng-model="credentials.contact_lenses" ng-value="true">Yes</label>
           </div>
@@ -58,9 +85,12 @@
             <label><input type="radio" name="optradio" ng-model="credentials.contact_lenses" ng-value="false">No</label>
           </div>
         </div>
-
         <div class="form-group" show-errors>
-          <label for="firstName">Corrective Lenses?</label>
+          <label for="HRTF">HRTF assigned:</label>
+          <input type="text" id="subjectid" name="subid" class="form-control" ng-model="credentials.HRTF_assigned" placeholder="HRTF" >
+        </div>
+        <div class="form-group" show-errors>
+          <label for="corrective_lenses">Corrective Lenses?</label>
           <div class="radio">
             <label><input type="radio" name="optradio1" ng-model="credentials.corrective_lenses" ng-value="true">Yes</label>
           </div>
@@ -68,9 +98,8 @@
             <label><input type="radio" name="optradio1" ng-model="credentials.corrective_lenses" ng-value="false">No</label>
           </div>
         </div>
-
         <div class="form-group" show-errors>
-          <label for="firstName">Vision Test?</label>
+          <label for="vision_test">Vision Test?</label>
           <div class="radio">
             <label><input type="radio" name="optradio2" ng-model="credentials.vision_test" ng-value="true">Yes</label>
           </div>
@@ -78,9 +107,8 @@
             <label><input type="radio" name="optradio2" ng-model="credentials.vision_test" ng-value="false">No</label>
           </div>
         </div>
-
         <div class="form-group" show-errors>
-          <label for="firstName">Audiograms?</label>
+          <label for="took_audiogram">Took Audiogram?</label>
           <div class="radio">
             <label><input type="radio" name="optradio3" ng-model="credentials.took_audiogram" ng-value="true">Yes</label>
           </div>
@@ -88,17 +116,6 @@
             <label><input type="radio" name="optradio3" ng-model="credentials.took_audiogram" ng-value="false">No</label>
           </div>
         </div>
-
-        <div class="form-group" show-errors>
-          <label for="firstName">HRTF assigned?</label>
-          <div class="radio">
-            <label><input type="radio" name="optradio4" ng-model="credentials.HRTF_assigned" ng-value="true">Yes</label>
-          </div>
-          <div class="radio">
-            <label><input type="radio" name="optradio4" ng-model="credentials.HRTF_assigned" ng-value="false">No</label>
-          </div>
-        </div>
-        
         <div class="text-center form-group">
           <button type="submit" class="btn btn-primary">Add Participant</button>
         </div>

@@ -23,13 +23,16 @@ var PublicationSchema = new Schema({
     required: true },
       
     
-  tags: [String]
+  tags: [String],
     
-
+  url: {
+    type: String,
+    default: ''
+  }
 });
 
 
-/* create a 'pre' function that adds the updated_at (and created_at if not already there) property */
+/* 'pre' function that adds the updated_at (and created_at if not already there) property */
 PublicationSchema.pre('save', function(next) {
   var currentTime = new Date();
   this.updated_at = currentTime;

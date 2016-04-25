@@ -11,7 +11,7 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
 	// If user is signed in, redirect to admin if state is signin
     if ($scope.authentication.user) {
       if ($state.$current.name === 'authentication.signin') {
-        $location.path('/admin');
+        $location.path('/admin/appointments');
       }
     }
     // Guests get redirected to home if they attempt to signup
@@ -21,15 +21,18 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       }
     }
 
+    // Sign up new user
     $scope.signup = function (isValid) {
       $scope.error = null;
 
+      // Make sure form is valid
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'userForm');
 
         return false;
       }
 
+      // Add user to database
       $http.post('/api/auth/signup', $scope.credentials).success(function (response) {
         // And redirect to the previous or list of users 
         $state.go('admin.users', $state.previous.params);
@@ -38,22 +41,24 @@ angular.module('users').controller('AuthenticationController', ['$scope', '$stat
       });
     };
 
-
+    // Log in 
     $scope.signin = function (isValid) {
       $scope.error = null;
-      console.log("sign in!");
+
+      // Check form validity
       if (!isValid) {
         $scope.$broadcast('show-errors-check-validity', 'userForm');
 			
         return false;
       }
 
+      // Check credentials against database
       $http.post('/api/auth/signin', $scope.credentials).success(function (response) {
         // If successful we assign the response to the global user model
         $scope.authentication.user = response;
 
         // And redirect to the previous or admin-home page
-        $state.go($state.previous.state.name || 'admin.home', $state.previous.params);
+        $state.go($state.previous.state.name || 'admin.appointments', $state.previous.params);
       }).error(function (response) {
         $scope.error = response.message;
       });

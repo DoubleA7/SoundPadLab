@@ -12,6 +12,7 @@ module.exports = function (app) {
   .get(/*adminPolicy.isAllowed,*/research.read)
   .put(adminPolicy.isAllowed,research.update)
   .delete(adminPolicy.isAllowed,research.delete);
-
+  
+  app.route('/api/research/picture').post(research.changePicture);
   app.param('researchId', research.researchByID);
 };

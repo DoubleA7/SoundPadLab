@@ -4,15 +4,17 @@
 var path = require('path'),
   mongoose = require('mongoose'),
   Event_t = require('../models/events.server.model.js'),
-  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller'));
+  errorHandler = require(path.resolve('./modules/core/server/controllers/errors.server.controller')),
+  multer = require('multer'),
+  config = require(path.resolve('./config/config'));
 
-//Create
+//Create event
 exports.create = function (req, res) {
   var event = new Event_t(req.body);
   console.log(event);
   event.save(function (err) {
     if (err) {
-      console.log(err);
+      console.log('ERR',err);
       return res.status(400).send({
         message: errorHandler.getErrorMessage(err)
       });
@@ -22,6 +24,35 @@ exports.create = function (req, res) {
     }
   });
 };
+
+/**
+ * Update event picture
+ */
+exports.changePicture = function (req, res) {
+  //to record errors later on
+  var message = null;
+
+  //event uploader
+  var upload = multer(config.uploads.eventUpload).single('newEventPicture');
+
+  //selects path for images to save to
+  var profileUploadFileFilter = require(path.resolve('./config/lib/multer')).profileUploadFileFilter;
+  
+  // Filtering to upload only images
+  upload.fileFilter = profileUploadFileFilter;
+
+  upload(req, res, function (uploadError) {
+    if(uploadError) {
+      return res.status(400).send({
+        message: 'Error occurred while uploading event picture'
+      });
+    } else {
+      //returns location of photo for saving event
+      res.json(config.uploads.eventUpload.dest + req.file.filename);
+    }
+  });
+};
+
 
 //Read
 exports.read = function (req, res) {

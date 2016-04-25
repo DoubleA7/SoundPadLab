@@ -2,8 +2,9 @@
 
 angular.module('users').controller('ChangeProfilePictureController', ['$scope', '$timeout', '$window', 'Authentication', 'FileUploader',
   function ($scope, $timeout, $window, Authentication, FileUploader) {
-    $scope.user = Authentication.user;
-    $scope.imageURL = $scope.user.profileImageURL;
+
+    $scope.user = Authentication.user; // Get authentication context
+    $scope.imageURL = $scope.user.profileImageURL; // Get user's image URL
 
     // Create file uploader instance
     $scope.uploader = new FileUploader({
@@ -26,9 +27,10 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
         var fileReader = new FileReader();
         fileReader.readAsDataURL(fileItem._file);
 
+        // Update imageURL when load event is fired
         fileReader.onload = function (fileReaderEvent) {
           $timeout(function () {
-            $scope.imageURL = fileReaderEvent.target.result;
+            $scope.imageURL = fileReaderEvent.target.result; 
           }, 0);
         };
       }
@@ -48,6 +50,8 @@ angular.module('users').controller('ChangeProfilePictureController', ['$scope', 
 
     // Called after the user has failed to uploaded a new picture
     $scope.uploader.onErrorItem = function (fileItem, response, status, headers) {
+      console.log(response);
+      console.log(status);
       // Clear upload buttons
       $scope.cancelUpload();
 

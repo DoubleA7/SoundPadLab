@@ -9,12 +9,12 @@ var adminPolicy = require('../../../users/server/policies/admin.server.policy');
 module.exports = function (app) {
     // publications collection routes
   app.route('/api/publications')
-        .get(/*adminPolicy.isAllowed,*/publications.list)
+        .get(publications.list)
         .post(adminPolicy.isAllowed,publications.create);
 
     // Single publication routes
   app.route('/api/publications/:publicationId')
-        .get(/*adminPolicy.isAllowed,*/publications.read)
+        .get(publications.read)
         .put(adminPolicy.isAllowed,publications.update)
         .delete(adminPolicy.isAllowed,publications.delete);
 

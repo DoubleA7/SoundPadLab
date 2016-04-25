@@ -2,9 +2,15 @@
 
 angular.module('research').controller('ResearchListPublicController', ['$scope', '$filter', 'researchPublic',
   function ($scope, $filter, researchPublic) {
-    console.log("research list initialized!!");
+    console.log('research list initialized!!');
     researchPublic.query(function (data) {
       $scope.researchs = data;
+      
+      //re order data by time posted
+      for (var i = 0; i < $scope.researchs.length; i++) {
+        $scope.researchs[i].created_at = $scope.researchs[i].created_at.slice(0,10);
+      }
+
       $scope.buildPager();
     });
 

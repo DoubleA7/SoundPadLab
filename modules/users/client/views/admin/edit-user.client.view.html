@@ -3,8 +3,11 @@
     <h1>User <span ng-bind="user.username"></span></h1>
   </div>
   <div class="col-md-12">
+    <!--Form to edit user. Pre-populated with existing data. Checks to make sure required information is there.-->
     <form name="userForm" ng-submit="update(userForm.$valid)" novalidate>
       <fieldset>
+
+        <!--First Name field-->
         <div class="form-group" show-errors>
           <label for="firstName">First Name</label>
           <input type="text" id="firstName" name="firstName" class="form-control" ng-model="user.firstName" placeholder="First Name" required />
@@ -12,6 +15,8 @@
             <p class="help-block error-text" ng-message="required">First name is required.</p>
           </div>
         </div>
+
+        <!--Last Name field-->
         <div class="form-group" show-errors>
           <label for="lastName">Last Name</label>
           <input type="text" id="lastName" name="lastName" class="form-control" ng-model="user.lastName" placeholder="Last Name" required />
@@ -19,6 +24,8 @@
             <p class="help-block error-text" ng-message="required">Last name is required.</p>
           </div>
         </div>
+        
+        <!--Roles field-->
         <div class="form-group" show-errors>
           <label class="control-label" for="roles">Roles</label>
           <div class="controls">
@@ -28,12 +35,15 @@
             </div>
           </div>
         </div>
+
         <div class="form-group">
           <input type="submit" value="Update" class="btn btn-default">
         </div>
+
         <div ng-show="error" class="text-danger">
           <strong ng-bind="error"></strong>
         </div>
+
       </fieldset>
     </form>
   </div>

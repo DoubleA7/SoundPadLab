@@ -1,11 +1,12 @@
 'use strict';
-angular.module('core').controller('TeamController', ['$scope', '$state', 'Admin',
-  function ($scope, $state, Admin) {
-    console.log("team list initialized!!");
-    Admin.query(function (data) {
-      $scope.users = data;
-      console.log(JSON.stringify(data));
+
+// Members is factory that supplies Users name and profile pic for public access
+angular.module('core').controller('TeamController', ['$scope', '$state', 'Members',
+  function ($scope, $state, Members) {
+
+    // Retrieve Users data for use in view
+    Members.query(function (data) {
+      $scope.members = data;
     });
-    //console.log($scope.users);
   }
 ]);

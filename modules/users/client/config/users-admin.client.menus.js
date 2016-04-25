@@ -1,6 +1,6 @@
 'use strict';
 
-// Configuring the Articles module
+// Add Users to admin menu dropdown
 angular.module('users.admin').run(['Menus',
   function (Menus) {
     Menus.addSubMenuItem('topbar', 'admin', {

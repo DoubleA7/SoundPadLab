@@ -7,7 +7,7 @@ var mongoose = require('mongoose'),
   Schema = mongoose.Schema;
 
 /**
- * Participant Schema
+ * AudioFile Schema
  */
 
 var AudioFileSchema = new Schema({
@@ -18,7 +18,7 @@ var AudioFileSchema = new Schema({
   },
   
   title: { type: String,required:true },
-  download_link: { type: String, required:true }
+  filePath: { type: String, required:true }
     
 
 });
@@ -32,10 +32,6 @@ AudioFileSchema.pre('save', function(next) {
   {
     this.created_at = currentTime;
   }
-  
-  //var dob_str = new Date(Date.UTC(this.dob.year, , day, 0, 0, 0)); testing this.
-  
-  
   next();
 });
 

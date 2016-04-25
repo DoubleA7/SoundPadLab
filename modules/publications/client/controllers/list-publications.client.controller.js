@@ -1,13 +1,17 @@
 'use strict';
 
+//Get controller for non-Admin
 angular.module('publications').controller('PublicationListPublicController', ['$scope', '$filter', 'publicationsPublic',
   function ($scope, $filter, publicationsPublic) {
-    console.log("publications list initialized!!");
+    console.log('publications list initialized!!');
+
+    //Load input data
     publicationsPublic.query(function (data) {
       $scope.publications = data;
       $scope.buildPager();
     });
     
+    //Set up display pages
     $scope.buildPager = function () {
       $scope.pagedItems = [];
       $scope.itemsPerPage = 15;
@@ -15,6 +19,7 @@ angular.module('publications').controller('PublicationListPublicController', ['$
       $scope.figureOutItemsToDisplay();
     };
 
+    //Determine which items are on which page
     $scope.figureOutItemsToDisplay = function () {
       $scope.filteredItems = $filter('filter')($scope.publications, {
         $: $scope.search
@@ -25,6 +30,7 @@ angular.module('publications').controller('PublicationListPublicController', ['$
       $scope.pagedItems = $scope.filteredItems.slice(begin, end);
     };
 
+    //Change page
     $scope.pageChanged = function () {
       $scope.figureOutItemsToDisplay();
     };
